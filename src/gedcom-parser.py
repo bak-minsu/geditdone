@@ -6,14 +6,29 @@
 import sys
 import os
 import re
+from datetime import date
 
 class Individual:
     def __init__(self, id):
         self.id = id
 
+    def toString(self):
+        return '%s %s' % (self.id, self.name)
+
 class Family:
     def __init__(self, id):
         self.id = id
+        self.child_ids = []
+
+    def toString(self, individuals = None):
+        ''' Returns a string representation of the family. If a dictionary of individuals are provided, will attempt to lookup names. Otherwise only IDs will be given. ''' 
+        if individuals == None:
+            return '%s HUSB %s WIFE %s' % (self.id, self.husband_id, self.wife_id)
+        else:
+            husband = individuals[self.husband_id]
+            wife = individuals[self.wife_id]
+            return '%s HUSB %s WIFE %s' % (self.id, husband.toString(), wife.toString())
+        
 
 class Stack:
     items = []
@@ -42,6 +57,8 @@ class TagDefinition:
     tag_day = 'DAY'
     tag_mon = 'MONTH'
     tag_yr  = 'YEAR'
+
+    month_strs = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
 
     # Defines regular expressions for validating the argument types
     re_str = r'/^\w+?$/'
@@ -95,6 +112,8 @@ class GedcomParser:
     # tagStack is a TagInstances representing the hierarchy of tags parsed
     tagStack = Stack()
 
+    # Dictionaries of individual and family objects constructed from parsing
+    # Key is ID
     individuals = {}
     families = {}
 
@@ -103,16 +122,16 @@ class GedcomParser:
 
     def parse(self, file):
         for line in file:
-            print('--> %s' % line.rstrip('\n'))
+            #print('--> %s' % line.rstrip('\n'))
 
             tokens = self.tokenize(line)
             tagInstance = None
             if (len(tokens) > 0):
                 tagInstance = self.parseTag(tokens)
 
-            # TODO save tags
+            self.saveTagToObject(tagInstance)
 
-            print('<-- %s' % tagInstance.toString() if tagInstance != None else 'NA|NA|N|NA')
+            #print('<-- %s' % tagInstance.toString() if tagInstance != None else 'NA|NA|N|NA')
 
     def parseTag(self, tokens):
         lvl  = int(tokens[0])
@@ -171,6 +190,82 @@ class GedcomParser:
 
         return True
 
+    def saveTagToObject(self, tagInstance):
+        if tagInstance.level == 0:
+            id = tagInstance.args[0]
+
+            if tagInstance.tag == 'INDI':
+                if id in self.individuals:
+                    # TODO handle error when ID already exists
+                    print('ERROR: Individual with ID %s already exists' % id)
+                else:
+                    self.individuals[id] = Individual(id)
+            elif tagInstance.tag == 'FAM':
+                if id in self.families:
+                    # TODO handle error when ID already exists
+                    print('ERROR: Family with ID %s already exists' % id)
+                else:
+                    self.families[id] = Family(id)
+            # TODO do something with NOTE, HEAD, and TRLR
+        elif tagInstance.tag not in ('BIRT, DEAT', 'MARR', 'DIV'):
+            topLevelParent = tagInstance
+            while topLevelParent.parent != None:
+                topLevelParent = topLevelParent.parent
+
+            if topLevelParent.tag == 'INDI':
+                individual = self.individuals[topLevelParent.args[0]]
+
+                if tagInstance.tag == 'NAME':
+                    individual.name = ' '.join(tagInstance.args)
+                elif tagInstance.tag == 'SEX':
+                    individual.sex = tagInstance.args[0]
+                elif tagInstance.tag == 'FAMC':
+                    individual.famc = tagInstance.args[0]
+                elif tagInstance.tag == 'FAMS':
+                    individual.fams = tagInstance.args[0]
+                elif tagInstance.tag == 'DATE':
+                    date = GedcomParser.dateArgsToDate(tagInstance.args)
+                    if tagInstance.parent.tag == 'BIRT':
+                        individual.birth = date
+                    elif tagInstance.parent.tag == 'DEAT':
+                        individual.death = date
+            elif topLevelParent.tag == 'FAM':
+                family = self.families[topLevelParent.args[0]]
+
+                if tagInstance.tag == 'HUSB':
+                    family.husband_id = tagInstance.args[0]
+                elif tagInstance.tag == 'WIFE':
+                    family.wife_id = tagInstance.args[0]
+                elif tagInstance.tag == 'CHIL':
+                    family.child_ids.append(tagInstance.args[0])
+                elif tagInstance.tag == 'DATE':
+                    date = GedcomParser.dateArgsToDate(tagInstance.args)
+                    if tagInstance.parent.tag == 'MARR':
+                        family.married = date
+                    elif tagInstance.parent.tag == 'DEAT':
+                        family.divorced = date
+
+    def printIndividuals(self):
+        individual_ids = list(self.individuals.keys())
+        individual_ids.sort()
+        for id in individual_ids:
+            individual = self.individuals[id]
+            print(individual.toString())
+
+    def printFamilies(self):
+        family_ids = list(self.families.keys())
+        family_ids.sort()
+        for id in family_ids:
+            family = self.families[id]
+            print(family.toString(self.individuals))
+
+    @staticmethod
+    def dateArgsToDate(dateArgs):
+        dayInt   = int (dateArgs[0])
+        monthInt = TagDefinition.month_strs.index(dateArgs[1]) + 1
+        yearInt  = int(dateArgs[2])
+        return date(yearInt, monthInt, dayInt)
+
 def main():
     argCount = len(sys.argv)
     if argCount < 2:
@@ -179,12 +274,12 @@ def main():
         return
     
     inputFilename = sys.argv[1]
-
     inputFile = open(inputFilename, "r")
-
     parser = GedcomParser()
-
     parser.parse(inputFile)
+    
+    parser.printIndividuals()
+    parser.printFamilies()
 
     inputFile.close()
 
