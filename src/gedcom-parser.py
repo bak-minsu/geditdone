@@ -1,11 +1,35 @@
 #!/usr/bin/python3
 
 # I pledge my honor that I have abided by the Stevens Honor System.
-# Max Lepkowski, 10 September 2019
+# Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Park
 
 import sys
 import os
 import re
+
+class Individual:
+    def __init__(self, id):
+        self.id = id
+
+class Family:
+    def __init__(self, id):
+        self.id = id
+
+class Stack:
+    items = []
+
+    def __init__(self, items = []):
+        if items != None and len(items) > 0:
+            self.items = items
+    
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[-1] if len(self.items) > 0 else None
 
 class TagDefinition:
     # Defines all types of arguments
@@ -19,6 +43,7 @@ class TagDefinition:
     tag_mon = 'MONTH'
     tag_yr  = 'YEAR'
 
+    # Defines regular expressions for validating the argument types
     re_str = r'/^\w+?$/'
     re_sex = r'/^[MmFf]$/'
     re_day = r'/^\d\d?$/'
@@ -31,6 +56,20 @@ class TagDefinition:
         self.switchOrderFlag = switchOrderFlag  # Marks that this tag definition switches the order
         self.args = args                        # Argument types
         self.parents = parents                  # Has to be a child of the parents in this list
+
+class TagInstance:
+    def __init__(self, level, tag, args, wasOrderSwitched, parent, isValid = False):
+        self.level = level
+        self.tag = tag
+        self.args = args
+        self.wasOrderSwitched = wasOrderSwitched
+        self.parent = parent
+        self.isValid = isValid
+
+    def toString(self):
+        validString = "Y" if self.isValid else "N"
+        argString = ' '.join(self.args)
+        return "%i|%s|%s|%s" % (self.level, self.tag, validString, argString)
 
 class GedcomParser:
     validTags = {
@@ -53,7 +92,11 @@ class GedcomParser:
         'NOTE': TagDefinition([0], 'NOTE', 0, [TagDefinition.tag_str], [])
     }
 
-    lastTagParsed = [0, '']
+    # tagStack is a TagInstances representing the hierarchy of tags parsed
+    tagStack = Stack()
+
+    individuals = {}
+    families = {}
 
     def tokenize(self, line):
         return line.split()
@@ -61,54 +104,67 @@ class GedcomParser:
     def parse(self, file):
         for line in file:
             print('--> %s' % line.rstrip('\n'))
+
             tokens = self.tokenize(line)
-            output = 'NA|NA|N|NA'
+            tagInstance = None
             if (len(tokens) > 0):
-                output = self.parseTag(tokens)
-            print('<-- %s' % output)
-            
+                tagInstance = self.parseTag(tokens)
+
+            # TODO save tags
+
+            print('<-- %s' % tagInstance.toString() if tagInstance != None else 'NA|NA|N|NA')
 
     def parseTag(self, tokens):
         lvl  = int(tokens[0])
         tag  = tokens[1]
         args = tokens[2:]
 
-        # This method catches special cases where tag location is switch to the second position
+        # This method catches special cases where tag location is switched to the second position
         wasSwitched = False
-        if len(args) > 0 and args[0] in self.validTags:
-            tagDef = self.validTags[args[0]]
+        if len(args) > 0 and args[0] in GedcomParser.validTags:
+            tagDef = GedcomParser.validTags[args[0]]
             if tagDef.switchOrderFlag:
                 wasSwitched = True
                 t = tag
                 tag = args[0]
                 args[0] = t
 
-        isValid = self.validateTag(lvl, tag, args, wasSwitched, self.lastTagParsed)
-        validString = "Y" if isValid else "N"
-        argString = ' '.join(args)
+        # Pop the tagStack until we reach the first tag with a level lower than the current tag, this must be it's parent
+        parent = self.tagStack.peek()
+        while parent != None and parent.level >= lvl:
+            self.tagStack.pop()
+            parent = self.tagStack.peek()
 
-        # TODO - Put into stack
-        self.lastTagParsed = [lvl, tag]
-        return "%i|%s|%s|%s" % (lvl, tag, validString, argString)
-        
-        # TODO - change the name of 'precedingTag'
-        # TODO make stack of tags applied to object. A tag does not have to directy follow its parent
-    def validateTag(self, lvl, tag, args, wasSwitched, precedingTag):
+        tagInstance = TagInstance(lvl, tag, args, wasSwitched, parent)
+
+        isValid = self.validateTag(tagInstance)
+        tagInstance.isValid = isValid
+
+        self.tagStack.push(tagInstance)
+
+        return tagInstance
+
+    def validateTag(self, tagInstance):
         # Check that the tag is defined
-        if tag not in self.validTags:
+        if tagInstance.tag not in self.validTags:
             return False
 
-        tagDef = self.validTags[tag]
+        tagDef = self.validTags[tagInstance.tag]
         
-        # Check that the tag fits the format
-        if lvl not in tagDef.levels:
+        # Check that the tag is at an allowed level
+        if tagInstance.level not in tagDef.levels:
             return False
 
-        # TODO - this will change to use stacks instead
-        if precedingTag[0] < lvl and precedingTag[1] not in tagDef.parents:
+        # Check that the parentTag exists, has the appropriate level, and is valid for this tag
+        if tagInstance.parent == None:
+            if tagInstance.level > 0:
+                return False
+        elif tagInstance.parent.level != tagInstance.level - 1:
+            return False
+        elif tagInstance.parent.tag not in tagDef.parents:
             return False
 
-        if wasSwitched != tagDef.switchOrderFlag:
+        if tagInstance.wasOrderSwitched != tagDef.switchOrderFlag:
             return False
 
         # TODO Check type and number of args
