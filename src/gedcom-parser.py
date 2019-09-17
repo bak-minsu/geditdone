@@ -102,14 +102,14 @@ class GedcomParser:
         'HUSB': TagDefinition([1], 'HUSB', 0, [TagDefinition.tag_iid], ['FAM']),
         'WIFE': TagDefinition([1], 'WIFE', 0, [TagDefinition.tag_iid], ['FAM']),
         'CHIL': TagDefinition([1], 'CHIL', 0, [TagDefinition.tag_iid], ['FAM']),
-        'DIV':  TagDefinition([1], 'DIV',  0, [], ['FAM']),
+        'DIV' : TagDefinition([1], 'DIV',  0, [], ['FAM']),
         'DATE': TagDefinition([2], 'DATE', 0, [TagDefinition.tag_day, TagDefinition.tag_mon, TagDefinition.tag_yr], ['BIRT', 'DEAT', 'MARR', 'DIV']),
         'HEAD': TagDefinition([0], 'HEAD', 0, [], []),
         'TRLR': TagDefinition([0], 'TRLR', 0, [], []),
         'NOTE': TagDefinition([0], 'NOTE', 0, [TagDefinition.tag_str], [])
     }
 
-    # tagStack is a TagInstances representing the hierarchy of tags parsed
+    # tagStack is a Stack of TagInstances representing the hierarchy of tags parsed
     tagStack = Stack()
 
     # Dictionaries of individual and family objects constructed from parsing
@@ -148,7 +148,7 @@ class GedcomParser:
                 tag = args[0]
                 args[0] = t
 
-        # Pop the tagStack until we reach the first tag with a level lower than the current tag, this must be it's parent
+        # Pop the tagStack until we reach the first tag with a level lower than the current tag, this must be its parent
         parent = self.tagStack.peek()
         while parent != None and parent.level >= lvl:
             self.tagStack.pop()
