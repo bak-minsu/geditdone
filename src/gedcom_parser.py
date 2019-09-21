@@ -1,50 +1,9 @@
-#!/usr/bin/python3
-
 # I pledge my honor that I have abided by the Stevens Honor System.
-# Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Park
-
-import sys
-import os
+# Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Parkfrom gedcom_objects import Individual, Family
+from gedcom_objects import Individual, Family
+from generichelpers import Stack
 import re
 from datetime import date
-
-class Individual:
-    def __init__(self, id):
-        self.id = id
-
-    def toString(self):
-        return '%s %s' % (self.id, self.name)
-
-class Family:
-    def __init__(self, id):
-        self.id = id
-        self.child_ids = []
-
-    def toString(self, individuals = None):
-        ''' Returns a string representation of the family. If a dictionary of individuals are provided, will attempt to lookup names. Otherwise only IDs will be given. ''' 
-        if individuals == None:
-            return '%s HUSB %s WIFE %s' % (self.id, self.husband_id, self.wife_id)
-        else:
-            husband = individuals[self.husband_id]
-            wife = individuals[self.wife_id]
-            return '%s HUSB %s WIFE %s' % (self.id, husband.toString(), wife.toString())
-        
-
-class Stack:
-    items = []
-
-    def __init__(self, items = []):
-        if items != None and len(items) > 0:
-            self.items = items
-    
-    def push(self, item):
-        self.items.append(item)
-
-    def pop(self):
-        return self.items.pop()
-
-    def peek(self):
-        return self.items[-1] if len(self.items) > 0 else None
 
 class TagDefinition:
     # Defines all types of arguments
@@ -265,22 +224,3 @@ class GedcomParser:
         monthInt = TagDefinition.month_strs.index(dateArgs[1]) + 1
         yearInt  = int(dateArgs[2])
         return date(yearInt, monthInt, dayInt)
-
-def main():
-    argCount = len(sys.argv)
-    if argCount < 2:
-        # Changes command instructions as the name of this file changes
-        print('Usage: python3 %s input_file.GEDCOM'%(os.path.basename(__file__)))
-        return
-    
-    inputFilename = sys.argv[1]
-    inputFile = open(inputFilename, "r")
-    parser = GedcomParser()
-    parser.parse(inputFile)
-    
-    parser.printIndividuals()
-    parser.printFamilies()
-
-    inputFile.close()
-
-main()
