@@ -12,15 +12,16 @@ def main():
         # Changes command instructions as the name of this file changes
         print('Usage: python3 %s input_file.GEDCOM'%(os.path.basename(__file__)))
         return
-    
-    inputFilename = sys.argv[1]
-    inputFile = open(inputFilename, "r")
+
     parser = gedcom_parser.GedcomParser()
-    parser.parse(inputFile)
+
+    for i, arg in enumerate(sys.argv):
+        if i == 0:
+            continue
+        with open(arg, 'r') as inputFile:
+            parser.parse(inputFile)
     
     parser.printIndividuals()
     parser.printFamilies()
-
-    inputFile.close()
 
 main()
