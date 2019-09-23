@@ -1,37 +1,99 @@
 import unittest
 import gedcom_parser
+from datetime import date
 
 class DatesBeforeCurrentDate(unittest.TestCase):
-    #TODO: Make sure all dates are before current date
-    def runTest():
+    """Makes sure all dates are before current date"""
+    # Compare today to all dates from Births, Deaths, Divorces, and Marriages
+
+    def setUp(self):
+        self.today = date.today()
+        # self.indivudals = db.individuals
+        # self.families = db.families
+    def individual_dates_before_today(self):
+        """Checks that all births are before today"""
+        # for individual in individuals:
+            # self.assertTrue(individual.birth < today, "Some guy x was born after today")
+            # self.assertTrue(individual.death < today, "Some guy x died after today")
+
+    def family_dates_before_today(self):
+        """Checks that all divorces were before today"""
+        # for family in families:
+            # self.assertTrue(family.marriage < today, "Some family x was married after today")
+            # self.assertTrue(family.divorce < today, "Some family x was divorced after today")
         
+    def tearDown(self):
+        self.today = None
 
 class BirthBeforeMarriage(unittest.TestCase):
-    #TODO: Make sure birth is before marriage
+    """Makes sure births are before marriage"""
+    def births_before_marriage(self):
+        """Checks both people in the marriage were born before the marriage"""
 
 class BirthBeforeDeath(unittest.TestCase):
-    #TODO: Make sure all births are before death
+    """Makes sure births are before death"""
 
 class MarriageBeforeDivorce(unittest.TestCase):
-    #TODO: Make sure all mariages
+    """Makes sure marriage come before a divorce"""
+    def setUp(self):
+        # self.families = db.families
+
+    def runTest(self):
+        """Makes sure all marriages come before divorce"""
+        # for family in families:
+        #     self.assertTrue(family.marriage < family.divorce)
+
+    def tearDown(self):
+        # self.families = None
 
 class MarriageBeforeDeath(unittest.TestCase):
-    #TODO: Make sure all mariages come before death
+    """Makes sure mariages come before death"""
+
+    def setUp(self):
+        # self.families = db.families
+    
+    def runTest(self):
+        """Makes sure all marriages occur before death"""
+        # for family in families:
+        #     self.assertTrue(family.marriage < db.individual(family.partner1)[1].death)
+        #     self.assertTrue(family.marriage < db.individual(family.partner2)[2].death)
+
+    def tearDown(self):
+        # self.families = None
+        # self.individual = None
 
 class DivorceBeforeDeath(unittest.TestCase):
-    #TODO: Make sure all divorces occur before death
+    """Makes sure divorces occur before death"""
 
 class LessThan150YearsOld(unittest.TestCase):
-    #TODO: Make sure nobody reaches 150 years old
+    """Makes sure nobody reaches 150 years old"""
 
 class BirthBeforeParentMarriage(unittest.TestCase):
-    #TODO: Make sure birth happens after parent marriage
+    """Makes sure birth happens after parent marriage"""
 
 class DatabaseTest(unittest.TestCase):
-    #TODO: Make sure all database operations work correctly
+    """Makes sure database operations work correctly"""
 
-def suite():
+def family_suite():
+    """Runs tests related to the family relationship"""
     suite = unittest.TestSuite()
-    # suite.addTest()
-    # suite.TestLoader().loadTestsFromTestCase(DatesBeforeCurrentDate)
+    suite.TestLoader().loadTestsFromTestCase(BirthBeforeMarriage)
+    suite.TestLoader().loadTestsFromTestCase(MarriageBeforeDivorce)
+    suite.TestLoader().loadTestsFromTestCase(MarriageBeforeDeath)
+    suite.TestLoader().loadTestsFromTestCase(BirthBeforeParentMarriage)
     return suite
+
+def death_suite():
+    """Runs tests related to the individual"""
+    suite = unittest.TestSuite()
+    suite.TestLoader().loadTestsFromTestCase(BirthBeforeMarriage)
+    suite.TestLoader().loadTestsFromTestCase(BirthBeforeDeath)
+    suite.TestLoader().loadTestsFromTestCase(MarriageBeforeDeath)
+    suite.TestLoader().loadTestsFromTestCase(DivorceBeforeDeath)
+    suite.TestLoader().loadTestsFromTestCase(LessThan150YearsOld)
+    suite.TestLoader().loadTestsFromTestCase(BirthBeforeParentMarriage)
+    return suite
+
+def all_suite():
+    """Runs all of the testcases"""
+    unittest.main()

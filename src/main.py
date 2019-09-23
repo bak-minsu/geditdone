@@ -26,6 +26,6 @@ def main():
     parser.printFamilies()
 
     runner = unittest.TextTestRunner()
-    runner.run(gedcom_test.suite())
+    runner.run(gedcom_test.marriage_suite())
 
 main()
