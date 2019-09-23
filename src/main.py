@@ -3,7 +3,7 @@
 # Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Park
 
 import gedcom_parser
-import unittest, gedcom_test
+import unittest, gedcom_test_master
 import sys
 import os
 
