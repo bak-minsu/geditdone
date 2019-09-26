@@ -90,11 +90,6 @@ class BirthBeforeParentMarriage(unittest.TestCase):
     def runTest(self):
         pass
 
-class DatabaseTest(unittest.TestCase):
-    """Makes sure database operations work correctly"""
-    def runTest(self):
-        pass
-
 def family_suite():
     """Runs tests related to the family relationship"""
     suite = unittest.TestSuite()
