@@ -1,4 +1,13 @@
 class Individual:
+    
+    id = None
+    name = None
+    sex = None
+    birth = None
+    death = None
+    famc = None
+    fams = None
+
     def __init__(self, id):
         self.id = id
 
@@ -6,6 +15,14 @@ class Individual:
         return '%s %s' % (self.id, self.name)
 
 class Family:
+
+    id = None
+    husband_id = None
+    wife_id = None
+    child_ids = None
+    married = None
+    divorced = None
+
     def __init__(self, id):
         self.id = id
         self.child_ids = []
