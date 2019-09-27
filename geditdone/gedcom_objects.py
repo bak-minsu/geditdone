@@ -2,12 +2,12 @@ class Individual:
 
     def __init__(self, id, name=None, sex=None, birth=None, death=None, famc=None, fams=None):
         self.id = id
-        self.name = None
-        self.sex = None
-        self.birth = None
-        self.death = None
-        self.famc = None
-        self.fams = None
+        self.name = name
+        self.sex = sex
+        self.birth = birth
+        self.death = death
+        self.famc = famc
+        self.fams = fams
 
     def toString(self):
         return '%s %s' % (self.id, self.name)

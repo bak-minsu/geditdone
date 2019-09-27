@@ -1,7 +1,6 @@
 import unittest
-import US01_US02_Max, US03_US08_Gaby, US04_US05_Minsu, US06_US07_Ankush
 from datetime import date
-from gedcom_objects import Family, Individual
+from src.gedcom_objects import Family, Individual
 
 class DatesBeforeCurrentDate(unittest.TestCase):
 
@@ -44,7 +43,7 @@ class MarriageBeforeDivorce(unittest.TestCase):
         self.families = {
             "TEST1": Family("TEST1", ["TEST2", "TEST3", "TEST4"], "TEST5", "TEST6", date(2015, 10, 5)),
         }
-        self.validator = US04_US05_Minsu.ValidatorMinsu(self.individuals, self.families)
+        # self.validator = US04_US05_Minsu.ValidatorMinsu(self.individuals, self.families)
 
     def runTest(self):
         # self.validator.validate()

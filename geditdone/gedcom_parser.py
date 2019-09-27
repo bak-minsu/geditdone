@@ -1,7 +1,7 @@
 # I pledge my honor that I have abided by the Stevens Honor System.
 # Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Parkfrom gedcom_objects import Individual, Family
-from gedcom_objects import Individual, Family
-from generichelpers import Stack
+from geditdone.gedcom_objects import Individual, Family
+from geditdone.generichelpers import Stack
 import re
 from datetime import date
 
