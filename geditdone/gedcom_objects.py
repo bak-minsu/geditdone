@@ -14,7 +14,7 @@ class Individual:
 
 class Family:
 
-    def __init__(self, id, husband_id=None, wife_id=None, married=None, divorced=None):
+    def __init__(self, id, child_ids=[], husband_id=None, wife_id=None, married=None, divorced=None):
         self.id = id
         self.child_ids = []
         self.husband_id = husband_id

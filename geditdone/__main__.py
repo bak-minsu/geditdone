@@ -4,6 +4,7 @@
 
 import geditdone.gedcom_parser as gedcom_parser
 import geditdone.gedcom_validator as gedcom_validator
+import tests.gedcom_test as gedcom_test
 import sys
 import os
 
@@ -27,8 +28,10 @@ def main():
 
     validator = gedcom_validator.Validator(parser)
     validator.validate()
-    validator.get_all_functions()
 
+    suites = []
+    suites.append(gedcom_test.sprint1_suite())
+    gedcom_test.run_tests(suites)
 
 if __name__ == "__main__":
     main()
