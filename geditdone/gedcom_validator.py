@@ -13,9 +13,9 @@ class Validator:
         tests = self.get_all_functions()
         for test in tests:
             if not test(self.parser):
-                print("Invalid!")
+                self.invalid(test)
                 break
-    
+
     def get_all_functions(self):
         """Gets all functions in stories folder"""
         functions = []
@@ -28,3 +28,7 @@ class Validator:
 
         # print(functions)
         return functions
+
+    def invalid(self, function):
+        """What to do when the validator returns invalid"""
+        print("Function {} is invalid!".format(function.__name__))
