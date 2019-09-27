@@ -6,12 +6,15 @@ class ValidatorAnkush:
 
     def divorce_before_death(self):
         """Makes sure divorces occur before death"""
-        pass
+        return True
 
     def less_than_150_years_old(self):
         """Makes sure nobody reaches 150 years old"""
-        pass
+        return True
 
     def validate(self):
-        self.divorce_before_death()
-        self.less_than_150_years_old()
+        tests = [self.divorce_before_death, self.less_than_150_years_old]
+        for test in tests:
+            if not test():
+                print("Invalid!")
+                break

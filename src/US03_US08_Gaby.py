@@ -6,12 +6,15 @@ class ValidatorGaby:
 
     def birth_before_death(self):
         """Makes sure births are before death"""
-        pass
+        return True
 
     def birth_before_parent_marriage(self):
         """Makes sure birth happens after parent marriage"""
-        pass
+        return True
 
     def validate(self):
-        self.birth_before_death()
-        self.birth_before_parent_marriage
+        tests = [self.birth_before_death, self.birth_before_parent_marriage]
+        for test in tests:
+            if not test():
+                print("Invalid!")
+                break

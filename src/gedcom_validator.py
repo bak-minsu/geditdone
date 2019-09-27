@@ -4,5 +4,10 @@ class Validator:
         self.individuals = individuals
         self.families = families
 
+    # TODO: Return an error when invalid
     def validate(self):
-        pass
+        tests = []
+        for test in tests:
+            if not test():
+                print("Invalid!")
+                break
