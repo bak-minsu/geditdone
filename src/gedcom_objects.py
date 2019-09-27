@@ -1,6 +1,6 @@
 class Individual:
 
-    def __init__(self, id):
+    def __init__(self, id, name=None, sex=None, birth=None, death=None, famc=None, fams=None):
         self.id = id
         self.name = None
         self.sex = None
@@ -14,13 +14,13 @@ class Individual:
 
 class Family:
 
-    def __init__(self, id):
+    def __init__(self, id, husband_id=None, wife_id=None, married=None, divorced=None):
         self.id = id
         self.child_ids = []
-        self.husband_id = None
-        self.wife_id = None
-        self.married = None
-        self.divorced = None
+        self.husband_id = husband_id
+        self.wife_id = wife_id
+        self.married = married
+        self.divorced = divorced
 
     def toString(self, individuals = None):
         ''' Returns a string representation of the family. If a dictionary of individuals are provided, will attempt to lookup names. Otherwise only IDs will be given. ''' 
