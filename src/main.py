@@ -3,7 +3,7 @@
 # Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Park
 
 import gedcom_parser
-import unittest, gedcom_test
+import gedcom_test
 import sys
 import os
 import US01_US02_Max, US03_US08_Gaby, US04_US05_Minsu, US06_US07_Ankush
@@ -39,6 +39,8 @@ def main():
     minsu.validate()
     ankush = US06_US07_Ankush.ValidatorAnkush(individuals, families)
     ankush.validate()
+
+    gedcom_test.run_tests()
 
     # runner = unittest.TextTestRunner()
     # runner.run(gedcom_test.marriage_suite())

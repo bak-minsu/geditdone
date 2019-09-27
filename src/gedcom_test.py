@@ -1,10 +1,9 @@
 import unittest
-import gedcom_parser
+import US01_US02_Max, US03_US08_Gaby, US04_US05_Minsu, US06_US07_Ankush
 from datetime import date
+from gedcom_objects import Family, Individual
 
 class DatesBeforeCurrentDate(unittest.TestCase):
-    """Makes sure all dates are before current date"""
-    # Compare today to all dates from Births, Deaths, Divorces, and Marriages
 
     def setUp(self):
         self.today = date.today()
@@ -13,7 +12,6 @@ class DatesBeforeCurrentDate(unittest.TestCase):
         pass
 
     def individual_dates_before_today(self):
-        """Checks that all births are before today"""
         # for individual in individuals:
             # self.assertTrue(individual.birth < today, "Some guy x was born after today")
             # self.assertTrue(individual.death < today, "Some guy x died after today")
@@ -41,15 +39,15 @@ class BirthBeforeDeath(unittest.TestCase):
         pass
 
 class MarriageBeforeDivorce(unittest.TestCase):
-    """Makes sure marriage come before a divorce"""
     def setUp(self):
-        # self.families = db.families
-        pass
+        self.individuals = {}
+        self.families = {
+            "TEST1": Family("TEST1", ["TEST2", "TEST3", "TEST4"], "TEST5", "TEST6", date(2015, 10, 5)),
+        }
+        self.validator = US04_US05_Minsu.ValidatorMinsu(self.individuals, self.families)
 
     def runTest(self):
-        """Makes sure all marriages come before divorce"""
-        # for family in families:
-        #     self.assertTrue(family.marriage < family.divorce)
+        # self.validator.validate()
         pass
 
     def tearDown(self):
@@ -90,26 +88,11 @@ class BirthBeforeParentMarriage(unittest.TestCase):
     def runTest(self):
         pass
 
-def family_suite():
-    """Runs tests related to the family relationship"""
+def sprint1_suite():
     suite = unittest.TestSuite()
-    unittest.TestLoader().loadTestsFromTestCase(BirthBeforeMarriage)
-    unittest.TestLoader().loadTestsFromTestCase(MarriageBeforeDivorce)
-    unittest.TestLoader().loadTestsFromTestCase(MarriageBeforeDeath)
-    unittest.TestLoader().loadTestsFromTestCase(BirthBeforeParentMarriage)
+    suite.addTest(MarriageBeforeDivorce())
     return suite
 
-def death_suite():
-    """Runs tests related to the individual"""
-    suite = unittest.TestSuite()
-    suite.TestLoader().loadTestsFromTestCase(BirthBeforeMarriage)
-    suite.TestLoader().loadTestsFromTestCase(BirthBeforeDeath)
-    suite.TestLoader().loadTestsFromTestCase(MarriageBeforeDeath)
-    suite.TestLoader().loadTestsFromTestCase(DivorceBeforeDeath)
-    suite.TestLoader().loadTestsFromTestCase(LessThan150YearsOld)
-    suite.TestLoader().loadTestsFromTestCase(BirthBeforeParentMarriage)
-    return suite
-
-def all_suite():
-    """Runs all of the testcases"""
-    unittest.main()
+def run_tests():
+    runner = unittest.TextTestRunner()
+    runner.run(sprint1_suite())
