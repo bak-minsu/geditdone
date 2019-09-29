@@ -29,9 +29,7 @@ def main():
     validator = gedcom_validator.Validator(parser)
     validator.validate()
 
-    suites = []
-    suites.append(gedcom_test.sprint1_suite())
-    gedcom_test.run_tests(suites)
+    gedcom_test.run_tests()
 
 if __name__ == "__main__":
     main()
