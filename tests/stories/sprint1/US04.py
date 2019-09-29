@@ -8,7 +8,7 @@ class MarriageBeforeDivorce(unittest.TestCase):
 
     def correct_sequence(self):
         families = {
-            "TEST1": Family("TEST1", ["TEST2", "TEST3", "TEST4"], "TEST5", "TEST6", married=date(2015, 10, 5), divorced=date(2015, 10, 6)),
+            "TEST1": Family("TEST1", None, None, None, married=date(2015, 10, 5), divorced=date(2015, 10, 6)),
         }
         parser = TestParser({}, families)
         self.assertEqual(US04.marriage_before_divorce(parser), True)
@@ -40,4 +40,3 @@ class MarriageBeforeDivorce(unittest.TestCase):
         self.incorrect_sequence()
         self.correct_null_dates()
         self.incorrect_null_dates()
-    
