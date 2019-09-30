@@ -1,11 +1,11 @@
-from datetime import datetime
+from datetime import date
 
 def dates_before_current_date(parser):
     """Makes sure all dates are before current date"""
     individuals = parser.individuals
     families = parser.families
 
-    current_date = datetime.today()
+    current_date = date.today()
 
     # check all individual dates: birth, death
     for individual in individuals.values():
