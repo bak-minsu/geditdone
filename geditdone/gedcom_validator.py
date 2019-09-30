@@ -1,5 +1,5 @@
 import sys
-import inspect 
+import inspect
 # Try not to import unnecessary packages
 from geditdone.stories import *
 
@@ -14,7 +14,10 @@ class Validator:
         for story in stories:
             if not story(self.parser):
                 self.invalid(story)
-                break
+                # break
+                continue # comment this and uncomment 'break'
+            else:
+                self.valid(story)
 
     def get_all_stories(self):
         """Gets all functions in stories folder"""
@@ -32,3 +35,8 @@ class Validator:
     def invalid(self, function):
         """What to do when the validator returns invalid"""
         print("Function {} is invalid!".format(function.__name__))
+
+    # for debugging
+    def valid(self, function):
+        """What to do when the validator returns valid"""
+        print("Function {} is valid!".format(function.__name__))

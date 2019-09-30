@@ -46,4 +46,4 @@ class BirthBeforeDeath(unittest.TestCase):
         self.incorrect_order()
         self.incorrect_birth_null()
         self.correct_death_null()
-        self.correct_nulls
+        self.correct_nulls()
