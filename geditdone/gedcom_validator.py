@@ -10,13 +10,13 @@ class Validator:
 
     # TODO: Return an error when invalid
     def validate(self):
-        stories = self.get_all_functions()
+        stories = self.get_all_stories()
         for story in stories:
             if not story(self.parser):
                 self.invalid(story)
                 break
 
-    def get_all_functions(self):
+    def get_all_stories(self):
         """Gets all functions in stories folder"""
         functions = []
         modules = sys.modules.keys()
