@@ -34,7 +34,7 @@ class Validator:
 
     def invalid(self, function):
         """What to do when the validator returns invalid"""
-        print("Function {} is invalid!".format(function.__name__))
+        print("Function {} says the input file is invalid!".format(function.__name__))
 
     # for debugging
     def valid(self, function):
