@@ -10,10 +10,10 @@ class Validator:
 
     # TODO: Return an error when invalid
     def validate(self):
-        tests = self.get_all_functions()
-        for test in tests:
-            if not test(self.parser):
-                self.invalid(test)
+        stories = self.get_all_functions()
+        for story in stories:
+            if not story(self.parser):
+                self.invalid(story)
                 break
 
     def get_all_functions(self):
