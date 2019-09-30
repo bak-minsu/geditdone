@@ -3,9 +3,13 @@ def marriage_before_death(parser):
     individuals = parser.individuals
     families = parser.families
     for individual in individuals.values():
-        for family in families.values():
-            if family.married is not None and \
+        if individual.fams is not None:
+            fam = families.get(individual.fams)
+            if fam.married is not None and \
                 individual.death is not None and \
-                family.married >= individual.death:
-                return False
+                fam.married >= individual.death:
+                    return False
+            elif fam.married is None and \
+                individual.death is not None:
+                    return False
     return True

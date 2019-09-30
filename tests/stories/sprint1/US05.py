@@ -7,18 +7,64 @@ from geditdone.stories import *
 class MarriageBeforeDeath(unittest.TestCase):
     """Makes sure mariages come before death"""
 
-    def setUp(self):
-        # self.families = db.families
-        pass
+    def correctSeq(self):
+        individuals = {
+            "HUSB1": Individual("HUSB1", name=None, sex=None, birth=None, death=date(2015, 11, 6), famc=None, fams="TEST1"),
+            "WIFE1": Individual("WIFE1", name=None, sex=None, birth=None, death=date(2015, 11, 6), famc=None, fams="TEST1")
+        }
+        families = {
+            "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
+        }
+        parser = TestParser(individuals, families)
+        self.assertEqual(US05.marriage_before_death(parser), True)
+
+    def incorrectSeqHusb(self):
+        individuals = {
+            "HUSB1": Individual("HUSB1", name=None, sex=None, birth=None, death=date(2013, 9, 4), famc=None, fams="TEST1"),
+            "WIFE1": Individual("WIFE1", name=None, sex=None, birth=None, death=date(2015, 11, 6), famc=None, fams="TEST1")
+        }
+        families = {
+            "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
+        }
+        parser = TestParser(individuals, families)
+        self.assertEqual(US05.marriage_before_death(parser), False)
+
+    def incorrectSeqWife(self):
+        individuals = {
+            "HUSB1": Individual("HUSB1", name=None, sex=None, birth=None, death=date(2015, 11, 6), famc=None, fams="TEST1"),
+            "WIFE1": Individual("WIFE1", name=None, sex=None, birth=None, death=date(2013, 9, 4), famc=None, fams="TEST1")
+        }
+        families = {
+            "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
+        }
+        parser = TestParser(individuals, families)
+        self.assertEqual(US05.marriage_before_death(parser), False)
+
+    def nullMarriage(self):
+        individuals = {
+            "HUSB1": Individual("HUSB1", name=None, sex=None, birth=None, death=date(2015, 11, 6), famc=None, fams="TEST1"),
+            "WIFE1": Individual("WIFE1", name=None, sex=None, birth=None, death=date(2015, 11, 6), famc=None, fams="TEST1")
+        }
+        families = {
+            "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", None, None)
+        }
+        parser = TestParser(individuals, families)
+        self.assertEqual(US05.marriage_before_death(parser), False)
+
+    def nullDeath(self):
+        individuals = {
+            "HUSB1": Individual("HUSB1", name=None, sex=None, birth=None, death=None, famc=None, fams="TEST1"),
+            "WIFE1": Individual("WIFE1", name=None, sex=None, birth=None, death=date(2015, 11, 6), famc=None, fams="TEST1")
+        }
+        families = {
+            "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
+        }
+        parser = TestParser(individuals, families)
+        self.assertEqual(US05.marriage_before_death(parser), True)
     
     def runTest(self):
-        """Makes sure all marriages occur before death"""
-        # for family in families:
-        #     self.assertTrue(family.marriage < db.individual(family.partner1)[1].death)
-        #     self.assertTrue(family.marriage < db.individual(family.partner2)[2].death)
-        pass
-
-    def tearDown(self):
-        # self.families = None
-        # self.individual = None
-        pass
+        self.correctSeq()
+        self.incorrectSeqHusb()
+        self.incorrectSeqWife()
+        self.nullMarriage()
+        self.nullDeath()
