@@ -7,8 +7,8 @@ def birth_before_marriage(parser):
     errors = []
 
     for individual in individuals.values():
-        if individual.fams != None:
-            fam = families.get(individual.fams)
+        if individual.famc != None:
+            fam = families.get(individual.famc)
             if individual.birth is not None and \
                 fam.married is not None and \
                 individual.birth <= fam.married:
