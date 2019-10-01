@@ -2,7 +2,6 @@ import unittest
 
 from datetime import date
 from geditdone.gedcom_objects import Family, Individual
-from geditdone.stories import *
 from unittest.runner import TextTestResult
 
 class TextTestResultWithSuccesses(TextTestResult):
