@@ -9,10 +9,10 @@ def marriage_before_divorce(parser):
         if family.married is not None and \
             family.divorced is not None and \
             family.married >= family.divorced:
-                errorMessage = f'Family {family.id} marriage date {family.married} is after divorce date {family.divorced}'
-                errors.append(GedcomError(GedcomError.ErrorType.error, 'US04', None, errorMessage))
+                errorMessage = f'Marriage date {family.married} is after divorce date {family.divorced}'
+                errors.append(GedcomError(GedcomError.ErrorType.error, 'US04', family, errorMessage))
         elif family.married is None and family.divorced is not None:
-                errorMessage = f'Family {family.id} marriage date is None while divorce date is not.'
-                errors.append(GedcomError(GedcomError.ErrorType.error, 'US04', None, errorMessage))
+                errorMessage = f'Marriage date is None while divorce date is not.'
+                errors.append(GedcomError(GedcomError.ErrorType.error, 'US04', family, errorMessage))
 
     return errors

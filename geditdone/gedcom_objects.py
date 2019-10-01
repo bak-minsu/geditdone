@@ -24,14 +24,17 @@ class Family:
         self.married = married
         self.divorced = divorced
 
+    def __str__(self):
+        return 'FAM %s HUSB %s WIFE %s' % (self.id, self.husband_id, self.wife_id)
+
     def toString(self, individuals = None):
         ''' Returns a string representation of the family. If a dictionary of individuals are provided, will attempt to lookup names. Otherwise only IDs will be given. ''' 
         if individuals == None:
-            return '%s HUSB %s WIFE %s' % (self.id, self.husband_id, self.wife_id)
+            return self.__str__()
         else:
             husband = individuals[self.husband_id]
             wife = individuals[self.wife_id]
-            return '%s HUSB %s WIFE %s' % (self.id, husband, wife)
+            return 'FAM %s HUSB %s WIFE %s' % (self.id, husband, wife)
 
 class GedcomError:
 
@@ -45,4 +48,4 @@ class GedcomError:
 
     def toString(self):
         typeString = type(self.errorObject).__name__.upper()
-        return f'{self.errorType.name.upper()}, {typeString}, {self.storyId}, {self.errorObject.id}: {self.errorMessage}'
+        return f'{self.errorType.name.upper()}, {typeString}, {self.storyId}, {self.errorObject}: {self.errorMessage}'

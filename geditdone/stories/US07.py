@@ -16,15 +16,17 @@ def less_than_150_years_old(parser):
             if individual.death is not None:
                 individual_death_year=(datetime.strptime(str(individual.death), '%Y-%m-%d')).year
                 # print("individual_death_year: ",individual_death_year)
-                if (individual_death_year-individual_birth_year >= 150):
-                    errorMessage = f''
-                    errors.append(GedcomError.ErrorType.error, 'US0X', None, errorMessage)
+                age = individual_death_year-individual_birth_year
+                if (age >= 150):
+                    errorMessage = f'The person is more than 150 years old, at {age} years old'
+                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US07', individual, errorMessage))
             # if death is not true (still alive)
             else:
                 current_date_year=datetime.today().year
                 # print("current_date_year: ",current_date_year)
-                if (current_date_year-individual_birth_year >= 150):
-                    errorMessage = f''
-                    errors.append(GedcomError.ErrorType.error, 'US0X', None, errorMessage)
+                age = current_date_year-individual_birth_year
+                if (age >= 150):
+                    errorMessage = f'The person is more than 150 years old, at {age} years old'
+                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US07', individual, errorMessage))
 
     return errors

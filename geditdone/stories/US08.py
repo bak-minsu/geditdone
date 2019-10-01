@@ -9,14 +9,15 @@ def birth_before_parent_marriage(parser):
     for fam in families.values():
         if fam.child_ids != []:
             for childID in fam.child_ids:
-                if individuals.get(childID).birth is not None and \
+                child = individuals.get(childID)
+                if child.birth is not None and \
                     fam.married is not None and \
-                    individuals.get(childID).birth <= fam.married:
-                        errorMessage = f''
-                        errors.append(GedcomError.ErrorType.error("error", 'US08', None, errorMessage))
-                elif individuals.get(childID).birth is None and \
-                    fam.married is not None:
-                        errorMessage = f''
-                        errors.append(GedcomError.ErrorType.error("error" ,'US08', None, errorMessage))
+                    child.birth <= fam.married:
+                        errorMessage = f'Married {fam.married} after child was born {child.birth}'
+                        errors.append(GedcomError(GedcomError.ErrorType.error, 'US08', fam, errorMessage))
+                # elif child.birth is None and \
+                #     fam.married is not None:
+                #         errorMessage = f'Family {fam.id} is married but has a child with a null birth date'
+                #         errors.append(GedcomError(GedcomError.ErrorType.error, 'US08', fam, errorMessage))
 
     return errors
