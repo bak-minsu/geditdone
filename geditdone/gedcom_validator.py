@@ -41,4 +41,4 @@ class Validator:
     # for debugging
     def valid(self, function):
         """What to do when the validator returns valid"""
-        print("Function {} successfully passed!".format(function.__name__))
+        print("Validator function {} successfully passed!".format(function.__name__))
