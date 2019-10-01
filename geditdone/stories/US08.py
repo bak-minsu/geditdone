@@ -19,5 +19,4 @@ def birth_before_parent_marriage(parser):
                 #     fam.married is not None:
                 #         errorMessage = f'Family {fam.id} is married but has a child with a null birth date'
                 #         errors.append(GedcomError(GedcomError.ErrorType.error, 'US08', fam, errorMessage))
-
     return errors

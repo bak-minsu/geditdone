@@ -15,4 +15,8 @@ def marriage_before_death(parser):
                     fam.married >= individual.death:
                         errorMessage = f'Married {fam.married} after death {individual.death}'
                         errors.append(GedcomError(GedcomError.ErrorType.error, 'US05', individual, errorMessage))
+                # elif fam.married is None and \
+                #     individual.death is not None:
+                #         errorMessage = f'Not married but has died'
+                #         errors.append(GedcomError(GedcomError.ErrorType.error, 'US08', fam, errorMessage))
     return errors

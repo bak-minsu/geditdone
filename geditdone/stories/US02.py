@@ -1,7 +1,7 @@
 from geditdone.gedcom_objects import GedcomError
 
 def birth_before_marriage(parser):
-    """Makes sure births are before marriage"""
+    """Makes sure births are after marriage"""
     families = parser.families
     individuals = parser.individuals
     errors = []
@@ -11,8 +11,8 @@ def birth_before_marriage(parser):
             fam = families.get(individual.fams)
             if individual.birth is not None and \
                 fam.married is not None and \
-                individual.birth >= fam.married:
-                    errorMessage = f'Birth date {individual.birth} occurs after marriage date {fam.married}'
+                individual.birth <= fam.married:
+                    errorMessage = f'Birth date {individual.birth} occurs before marriage date {fam.married}'
                     errors.append(GedcomError(GedcomError.ErrorType.error, 'US02', fam, errorMessage))
             # elif individual.birth is None and family.married is not None:
             #     # TODO talk about this logic, not sure it makes sense
