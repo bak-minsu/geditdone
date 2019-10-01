@@ -14,10 +14,10 @@ def divorce_before_death(parser):
                     individual.death is not None and \
                     fam.divorced >= individual.death:
                         errorMessage = f''
-                        errors.append(GedcomError(GedcomError.ErrorType.error, 'US06', individual, "Divorce after death"))
+                        errors.append(GedcomError(GedcomError.ErrorType.error, 'US06', individual.name, "Divorce after death"))
                 elif fam.divorced is None and \
                     individual.death is not None:
                         errorMessage = f''
-                        errors.append(GedcomError(GedcomError.ErrorType.error, 'US06', individual, "Divorce after death"))
+                        errors.append(GedcomError(GedcomError.ErrorType.error, 'US06', individual.name, "Divorce after death"))
 
     return errors

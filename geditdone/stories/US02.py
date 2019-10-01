@@ -12,10 +12,10 @@ def birth_before_marriage(parser):
                 family.married is not None and \
                 individual.birth >= family.married:
                     errorMessage = f'{individual.id}\'s birth date {individual.birth} occurs after marriage date {family.married}'
-                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US02', family, errorMessage))
+                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US02', family.id, errorMessage))
             elif individual.birth is None and family.married is not None:
                 # TODO talk about this logic, not sure it makes sense
                     errorMessage = f'{individual.id}\'s does not have a birth date before marriage date {family.married}'
-                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US02', family, errorMessage))
+                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US02', family.id, errorMessage))
 
     return errors
