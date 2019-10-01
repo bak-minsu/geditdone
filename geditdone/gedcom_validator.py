@@ -41,4 +41,4 @@ class Validator:
     # for debugging
     def valid(self, function):
         """What to do when the validator returns valid"""
-        print("Function {} is valid!".format(function.__name__))
+        print("Function {} says the input file is valid!".format(function.__name__))
