@@ -15,16 +15,16 @@ def dates_before_current_date(parser):
             errorMessage = f'Birth date {individual.birth} occurs in the future'
             errors.append(GedcomError(GedcomError.ErrorType.error, 'US01', individual, errorMessage))
         elif individual.death is not None and individual.death >= current_date:
-            errorMessage = f'Death date {individual.birth} occurs in the future'
+            errorMessage = f'Death date {individual.death} occurs in the future'
             errors.append(GedcomError(GedcomError.ErrorType.error, 'US01', individual, errorMessage))
 
     # check all family dates: marriage, divorce
     for family in families.values():
         if family.married is not None and family.married >= current_date:
-            errorMessage = f'Marriage date {individual.birth} occurs in the future'
+            errorMessage = f'Marriage date {family.married} occurs in the future'
             errors.append(GedcomError(GedcomError.ErrorType.error, 'US01', family, errorMessage))
         elif family.divorced is not None and family.divorced >= current_date:
-            errorMessage = f'Divorce date {individual.birth} occurs in the future'
+            errorMessage = f'Divorce date {family.divorced} occurs in the future'
             errors.append(GedcomError(GedcomError.ErrorType.error, 'US01', family, errorMessage))
 
     return errors
