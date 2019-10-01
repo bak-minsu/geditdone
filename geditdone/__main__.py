@@ -15,22 +15,19 @@ def main():
         print('Usage: python3 %s input_file.GEDCOM'%(os.path.basename(__file__)))
         return
 
-    parser = gedcom_parser.GedcomParser()
-
     for i, arg in enumerate(sys.argv):
         if i == 0:
             continue
-        with open(arg, 'r') as inputFile:
-            parser.parse(inputFile)
-    
-    parser.printIndividuals()
-    parser.printFamilies()
-
-    validator = gedcom_validator.Validator(parser)
-    validator.validate()
-
-    # TODO running unit tests should be a separate command
-    # gedcom_test.run_tests()
+        if arg == "test":
+            gedcom_test.run_tests()
+        else:
+            with open(arg, 'r') as inputFile:
+                parser = gedcom_parser.GedcomParser()
+                parser.parse(inputFile)
+                parser.printIndividuals()
+                parser.printFamilies()
+                validator = gedcom_validator.Validator(parser)
+                validator.validate()
 
 if __name__ == "__main__":
     main()
