@@ -2,7 +2,7 @@ import unittest
 from datetime import date
 from tests.testhelpers import TestParser
 from geditdone.gedcom_objects import Family, Individual
-from geditdone.stories import *
+from geditdone.stories import US05
 
 class MarriageBeforeDeath(unittest.TestCase):
     """Makes sure mariages come before death"""
@@ -16,7 +16,7 @@ class MarriageBeforeDeath(unittest.TestCase):
             "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US05.marriage_before_death(parser), True)
+        self.assertEqual(len(US05.marriage_before_death(parser)), 0)
 
     def incorrectSeqHusb(self):
         individuals = {
@@ -27,7 +27,7 @@ class MarriageBeforeDeath(unittest.TestCase):
             "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US05.marriage_before_death(parser), False)
+        self.assertGreater(len(US05.marriage_before_death(parser)), 0)
 
     def incorrectSeqWife(self):
         individuals = {
@@ -38,7 +38,7 @@ class MarriageBeforeDeath(unittest.TestCase):
             "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US05.marriage_before_death(parser), False)
+        self.assertGreater(len(US05.marriage_before_death(parser)), 0)
 
     def nullMarriage(self):
         individuals = {
@@ -49,7 +49,7 @@ class MarriageBeforeDeath(unittest.TestCase):
             "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", None, None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US05.marriage_before_death(parser), False)
+        self.assertEqual(len(US05.marriage_before_death(parser)), 0)
 
     def nullDeath(self):
         individuals = {
@@ -60,7 +60,7 @@ class MarriageBeforeDeath(unittest.TestCase):
             "TEST1": Family("TEST1", [], "HUSB1", "WIFE1", date(2014, 10, 5), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US05.marriage_before_death(parser), True)
+        self.assertEqual(len(US05.marriage_before_death(parser)), 0)
     
     def runTest(self):
         self.correctSeq()

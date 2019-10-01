@@ -2,7 +2,7 @@ import unittest
 from datetime import date
 from tests.testhelpers import TestParser
 from geditdone.gedcom_objects import Family, Individual
-from geditdone.stories import *
+from geditdone.stories import US07
 
 class LessThan150YearsOld(unittest.TestCase):
     """Makes sure nobody reaches 150 years old"""

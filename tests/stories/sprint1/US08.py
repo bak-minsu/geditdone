@@ -2,7 +2,7 @@ import unittest
 from datetime import date
 from tests.testhelpers import TestParser
 from geditdone.gedcom_objects import Family, Individual
-from geditdone.stories import *
+from geditdone.stories import US08
 
 class BirthBeforeParentMarriage(unittest.TestCase):
     """Makes sure birth happens after parent marriage"""
@@ -15,7 +15,7 @@ class BirthBeforeParentMarriage(unittest.TestCase):
             "TEST1": Family("TEST1", ["CHILD1"], "TEST5", "TEST6", date(2015, 10, 5), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US08.birth_before_parent_marriage(parser), True)
+        self.assertEqual(len(US08.birth_before_parent_marriage(parser)), 0)
 
     def incorrectSeq(self):
         individuals = {
@@ -25,7 +25,7 @@ class BirthBeforeParentMarriage(unittest.TestCase):
             "TEST1": Family("TEST1", ["CHILD1"], "TEST5", "TEST6", date(2015, 11, 6), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US08.birth_before_parent_marriage(parser), False)
+        self.assertGreater(len(US08.birth_before_parent_marriage(parser)), 0)
 
     def birthNull(self):
         individuals = {
@@ -35,7 +35,7 @@ class BirthBeforeParentMarriage(unittest.TestCase):
             "TEST1": Family("TEST1", ["CHILD1"], "TEST5", "TEST6", date(2015, 11, 6), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US08.birth_before_parent_marriage(parser), False)
+        self.assertEqual(len(US08.birth_before_parent_marriage(parser)), 0)
 
     def noKids(self):
         individuals = {
@@ -45,7 +45,7 @@ class BirthBeforeParentMarriage(unittest.TestCase):
             "TEST1": Family("TEST1", [], "TEST5", "TEST6", date(2015, 11, 6), None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(US08.birth_before_parent_marriage(parser), True)
+        self.assertEqual(len(US08.birth_before_parent_marriage(parser)), 0)
 
     def runTest(self):
         self.correctSeq()
