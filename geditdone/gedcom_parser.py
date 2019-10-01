@@ -150,7 +150,7 @@ class GedcomParser:
         return True
 
     def saveTagToObject(self, tagInstance):
-        if tagInstance.level == 0:
+        if tagInstance.level == 0 and tagInstance.tag not in ['HEAD','TRLR','NOTE']:
             id = tagInstance.args[0]
 
             if tagInstance.tag == 'INDI':
@@ -209,7 +209,7 @@ class GedcomParser:
         individual_ids.sort()
         for id in individual_ids:
             individual = self.individuals[id]
-            print(individual.toString())
+            print(individual)
 
     def printFamilies(self):
         family_ids = list(self.families.keys())

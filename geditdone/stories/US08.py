@@ -13,10 +13,10 @@ def birth_before_parent_marriage(parser):
                     fam.married is not None and \
                     individuals.get(childID).birth <= fam.married:
                         errorMessage = f''
-                        errors.append(GedcomError.ErrorType.error, 'US0X', None, errorMessage)
+                        errors.append(GedcomError.ErrorType.error("error", 'US08', None, errorMessage))
                 elif individuals.get(childID).birth is None and \
                     fam.married is not None:
                         errorMessage = f''
-                        errors.append(GedcomError.ErrorType.error, 'US0X', None, errorMessage)
+                        errors.append(GedcomError.ErrorType.error("error" ,'US08', None, errorMessage))
 
     return errors

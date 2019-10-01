@@ -11,7 +11,7 @@ class Individual:
         self.famc = famc
         self.fams = fams
 
-    def toString(self):
+    def __str__(self):
         return '%s %s' % (self.id, self.name)
 
 class Family:
@@ -31,7 +31,7 @@ class Family:
         else:
             husband = individuals[self.husband_id]
             wife = individuals[self.wife_id]
-            return '%s HUSB %s WIFE %s' % (self.id, husband.toString(), wife.toString())
+            return '%s HUSB %s WIFE %s' % (self.id, husband, wife)
 
 class GedcomError:
 

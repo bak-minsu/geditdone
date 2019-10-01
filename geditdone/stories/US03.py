@@ -9,10 +9,10 @@ def birth_before_death(parser):
         if individual.birth is not None and \
             individual.death is not None and \
             individual.birth >= individual.death:
-                errorMessage = f''
-                errors.append(GedcomError.ErrorType.error, 'US0X', None, errorMessage)
+                errorMessage = f'Individual {individual.id} birth date {individual.birth} occurs after death date {individual.death}'
+                errors.append(GedcomError(GedcomError.ErrorType.error, 'US03', None, errorMessage))
         elif individual.birth is None and individual.death is not None:
-                errorMessage = f''
-                errors.append(GedcomError.ErrorType.error, 'US0X', None, errorMessage)
+                errorMessage = f'Individual {individual.id} birth is null while death date is not.'
+                errors.append(GedcomError(GedcomError.ErrorType.error, 'US03', None, errorMessage))
     
     return errors
