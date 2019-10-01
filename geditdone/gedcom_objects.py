@@ -32,8 +32,8 @@ class Family:
         if individuals == None:
             return self.__str__()
         else:
-            husband = individuals[self.husband_id]
-            wife = individuals[self.wife_id]
+            husband = individuals[self.husband_id] if self.husband_id is not None else None
+            wife = individuals[self.wife_id] if self.wife_id is not None else None
             return 'FAM %s HUSB %s WIFE %s' % (self.id, husband, wife)
 
 class GedcomError:
@@ -46,6 +46,6 @@ class GedcomError:
         self.errorObject = errorObject
         self.errorMessage = errorMessage
 
-    def toString(self):
+    def __str__(self):
         typeString = type(self.errorObject).__name__.upper()
         return f'{self.errorType.name.upper()}, {typeString}, {self.storyId}, {self.errorObject}: {self.errorMessage}'

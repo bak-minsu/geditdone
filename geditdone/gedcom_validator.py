@@ -16,9 +16,9 @@ class Validator:
             errors = story(self.parser)
             if len(errors) > 0:
                 self.invalid(story, errors)
-            else:
+            # else:
                 # WARNING: Testing purposes only
-                self.valid(story)
+                # self.valid(story)
 
     def get_all_stories(self):
         """Gets all functions in stories folder"""
@@ -36,7 +36,7 @@ class Validator:
     def invalid(self, function, errors):
         """What to do when the validator returns invalid"""
         for error in errors:
-            print(error.toString())
+            print(error)
 
     # for debugging
     def valid(self, function):
