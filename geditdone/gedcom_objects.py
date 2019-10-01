@@ -45,4 +45,4 @@ class GedcomError:
 
     def toString(self):
         typeString = type(self.errorObject).__name__.upper()
-        return f'{self.errorType.name.upper()}, {typeString}, {self.storyId}, {self.errorObject.id}: {self.errorMessage}'
+        return f'{self.errorType.name.upper()}, {typeString}, {self.storyId}, {self.errorObject}:, {self.errorMessage}'
