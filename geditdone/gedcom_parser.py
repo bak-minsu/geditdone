@@ -201,7 +201,7 @@ class GedcomParser:
                     date = GedcomParser.dateArgsToDate(tagInstance.args)
                     if tagInstance.parent.tag == 'MARR':
                         family.married = date
-                    elif tagInstance.parent.tag == 'DEAT':
+                    elif tagInstance.parent.tag == 'DIV':
                         family.divorced = date
 
     def printIndividuals(self):
