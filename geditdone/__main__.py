@@ -29,7 +29,8 @@ def main():
     validator = gedcom_validator.Validator(parser)
     validator.validate()
 
-    gedcom_test.run_tests()
+    # TODO running unit tests should be a separate command
+    # gedcom_test.run_tests()
 
 if __name__ == "__main__":
     main()

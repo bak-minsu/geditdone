@@ -1,5 +1,6 @@
 import sys
 import inspect
+from geditdone.gedcom_objects import GedcomError
 # Try not to import unnecessary packages
 from geditdone.stories import *
 
@@ -12,11 +13,11 @@ class Validator:
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
-            if not story(self.parser):
-                self.invalid(story)
-                # break
-                continue # comment this and uncomment 'break'
+            errors = story(self.parser)
+            if len(errors) > 0:
+                self.invalid(story, errors)
             else:
+                # WARNING: Testing purposes only
                 self.valid(story)
 
     def get_all_stories(self):
@@ -32,9 +33,10 @@ class Validator:
         # print(functions)
         return functions
 
-    def invalid(self, function):
+    def invalid(self, function, errors):
         """What to do when the validator returns invalid"""
-        print("Function {} says the input file is invalid!".format(function.__name__))
+        for error in errors:
+            print(error.toString())
 
     # for debugging
     def valid(self, function):

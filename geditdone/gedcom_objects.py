@@ -1,3 +1,5 @@
+from enum import Enum
+
 class Individual:
 
     def __init__(self, id, name=None, sex=None, birth=None, death=None, famc=None, fams=None):
@@ -30,3 +32,17 @@ class Family:
             husband = individuals[self.husband_id]
             wife = individuals[self.wife_id]
             return '%s HUSB %s WIFE %s' % (self.id, husband.toString(), wife.toString())
+
+class GedcomError:
+
+    ErrorType = Enum('ErrorType', 'error anomaly')
+
+    def __init__(self, errorType, storyId, errorObject, errorMessage):
+        self.errorType = errorType
+        self.storyId = storyId
+        self.errorObject = errorObject
+        self.errorMessage = errorMessage
+
+    def toString(self):
+        typeString = type(self.errorObject).__name__.upper()
+        return f'{self.errorType.name.upper()}, {typeString}, {self.storyId}, {self.errorObject.id}: {self.errorMessage}'
