@@ -1,0 +1,36 @@
+I01 Francis /Arbuckle/
+I02 Henry /Arbuckle/
+I03 Robert /Arbuckle/
+I04 Faye /Arbuckle/
+I05 Jon /Arbuckle/
+I06 Clara /Montoya/
+I07 Garfield /Montoya/
+I08 Odie /Montoya/
+FAM F01 HUSB I02 Henry /Arbuckle/ WIFE I01 Francis /Arbuckle/
+FAM F02 HUSB I03 Robert /Arbuckle/ WIFE I04 Faye /Arbuckle/
+FAM F03 HUSB I03 Robert /Arbuckle/ WIFE I06 Clara /Montoya/
+ERROR, INDIVIDUAL, US01, I08 Odie /Montoya/: Birth date 2022-04-14 occurs in the future
+ERROR, FAMILY, US01, FAM F02 HUSB I03 WIFE I04: Marriage date 2050-10-12 occurs in the future
+ERROR, FAMILY, US01, FAM F03 HUSB I03 WIFE I06: Marriage date 2050-08-11 occurs in the future
+ERROR, INDIVIDUAL, US07, I03 Robert /Arbuckle/: The person is more than 150 years old, at 155 years old
+ERROR, INDIVIDUAL, US05, I03 Robert /Arbuckle/: Married 2050-08-11 after death 1955-05-31
+ERROR, INDIVIDUAL, US05, I04 Faye /Arbuckle/: Married 2050-10-12 after death 1982-07-08
+ERROR, INDIVIDUAL, US03, I02 Henry /Arbuckle/: Birth date 2019-07-21 occurs after death date 2018-03-07
+ERROR, FAMILY, US02, FAM F01 HUSB I02 WIFE I01: Birth date 1800-06-02 occurs before marriage date 1956-05-31
+ERROR, FAMILY, US02, FAM F02 HUSB I03 WIFE I04: Birth date 1977-06-15 occurs before marriage date 2050-10-12
+ERROR, FAMILY, US02, FAM F03 HUSB I03 WIFE I06: Birth date 1976-10-07 occurs before marriage date 2050-08-11
+ERROR, FAMILY, US02, FAM F03 HUSB I03 WIFE I06: Birth date 2022-04-14 occurs before marriage date 2050-08-11
+ERROR, FAMILY, US08, FAM F01 HUSB I02 WIFE I01: Married 1956-05-31 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2022-04-14
+ERROR, INDIVIDUAL, US06, I02 Henry /Arbuckle/: Divorced 2018-03-20 after death 2018-03-07
+ERROR, INDIVIDUAL, US06, I04 Faye /Arbuckle/: Divorced 2010-10-12 after death 1982-07-08
+ERROR, FAMILY, US04, FAM F02 HUSB I03 WIFE I04: Marriage date 2050-10-12 is after divorce date 2010-10-12
