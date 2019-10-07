@@ -63,8 +63,8 @@ class GedcomDatabase:
 
         data = {
             "ID": all_ids,
-            "husband": all_husbands,
-            "wife": all_wives,
+            "husband_id": all_husbands,
+            "wife_id": all_wives,
             "married": all_marriages,
             "divorced": all_divorces,
             "reference": all_references,    # Reference to the Family class
