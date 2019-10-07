@@ -11,9 +11,9 @@ class Validator:
         self.db = GedcomDatabase(parser)
 
     def get_argument_count(self, function):
+        """Gets the total number of arguments in a function"""
         return len(inspect.getargspec(function)[0])
 
-    # TODO: Return an error when invalid
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
@@ -23,8 +23,7 @@ class Validator:
                 errors = story(self.parser)
             elif argument_count == 2:
                 errors = story(self.parser, self.db)
-            if len(errors) > 0:
-                self.invalid(story, errors)
+            self.invalid(story, errors)
             # else:
                 # WARNING: Testing purposes only
                 # self.valid(story)
@@ -46,8 +45,9 @@ class Validator:
 
     def invalid(self, function, errors):
         """What to do when the validator returns invalid"""
-        for error in errors:
-            print(error)
+        if len(errors) > 0:
+            for error in errors:
+                print(error)
 
     # for debugging
     def valid(self, function):
