@@ -12,12 +12,18 @@ class TextTestResultWithSuccesses(TextTestResult):
         super(TextTestResultWithSuccesses, self).addSuccess(test)
         self.successes.append(test)
 
+def get_suite_for_sprint(sprint_name):
+    """Gets suite for the sprint located in the folder sprint_name"""
+    return unittest.TestLoader().discover("./tests/stories/{}".format(sprint_name), pattern="US*.py", top_level_dir="./")
+
 def sprint1_suite():
-    suite = unittest.TestLoader().discover("./tests/stories/sprint1", pattern="US*.py", top_level_dir="./")
-    return suite
+    return get_suite_for_sprint("sprint1")
+
+def sprint2_suite():
+    return get_suite_for_sprint("sprint2")
 
 def run_tests():
-    suites = [sprint1_suite()]
+    suites = [sprint1_suite(), sprint2_suite()]
     combined = unittest.TestSuite(suites)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(combined)
