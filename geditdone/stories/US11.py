@@ -10,7 +10,7 @@ def no_bigamy(parser, db):
             if duplicate:
                 family_object = db.families.iloc[index]
                 interval = {
-                            "ID": eval("db.families.iloc[index].{}".format(wife_or_husband)),
+                            "ID": eval("db.families.iloc[index].{}_id".format(wife_or_husband)),
                             "married": family_object.married, 
                             "divorced": family_object.divorced,
                             "reference": family_object.reference,
@@ -43,11 +43,11 @@ def no_bigamy(parser, db):
                     family1 = interval_inner["reference"].id
                     family2 = interval_outer["reference"].id
                     errorMessage = f'Bigamy between Family {family1} and Family {family2}'
-                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US06', individual, errorMessage))
+                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US11', individual, errorMessage))
 
     fam_df = db.families
-    husband_duplicates = fam_df.duplicated(subset=["husband"], keep=False)
-    wife_duplicates = fam_df.duplicated(subset=["wife"], keep=False)
+    husband_duplicates = fam_df.duplicated(subset=["husband_id"], keep=False)
+    wife_duplicates = fam_df.duplicated(subset=["wife_id"], keep=False)
 
     husband_intervals = get_intervals_from_duplicates(husband_duplicates, "husband")
     wife_intervals = get_intervals_from_duplicates(wife_duplicates, "wife")
