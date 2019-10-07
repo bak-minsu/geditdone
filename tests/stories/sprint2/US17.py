@@ -18,7 +18,8 @@ class NoMarriagesToChildren(unittest.TestCase):
         }
         parser = TestParser(individuals, families)
         db = TestDatabase(individuals, families)
-        self.assertGreater(len(US17.no_marriages_to_children(parser, db)), 0)
+        error_count = len(US17.no_marriages_to_children(parser, db))
+        self.assertGreater(error_count, 0)
 
     def runTest(self):
         self.incorrect_marriages()
