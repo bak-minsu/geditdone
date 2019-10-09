@@ -22,8 +22,11 @@ def sprint1_suite():
 def sprint2_suite():
     return get_suite_for_sprint("sprint2")
 
-def run_tests():
+def run_tests(sprint_list):
+    sprints_to_run = []
     suites = [sprint1_suite(), sprint2_suite()]
+    for sprint_number in sprint_list:
+        sprints_to_run.append(suites[sprint_number-1])
     combined = unittest.TestSuite(suites)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(combined)

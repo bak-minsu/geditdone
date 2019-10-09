@@ -19,7 +19,7 @@ def main():
         if i == 0:
             continue
         if arg == "test":
-            gedcom_test.run_tests()
+            gedcom_test.run_tests([1,2])
         else:
             with open(arg, 'r') as inputFile:
                 parser = gedcom_parser.GedcomParser()
