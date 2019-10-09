@@ -3,6 +3,7 @@ A parser and validator for GEDCOM files
 
 ## Dependencies
 * Python 3
+* Pandas 0.23.4
 
 ## Running
 
