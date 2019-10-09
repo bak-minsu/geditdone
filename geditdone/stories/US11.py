@@ -29,9 +29,13 @@ def no_bigamy(parser, db):
             elif interval2["divorced"] == None and interval2["married"] < interval1["divorced"]:
                 return True
         # If both divorced at sometime
-        elif interval1["married"] < interval2["divorced"] \
-            or interval2["married"] < interval1["divorced"]:
-            return True
+        else:
+            # If interval 1 got married first
+            if interval1["married"] < interval2["married"] and interval2["married"] < interval1["divorced"]:
+                return True
+            # If interval 2 got married first
+            elif interval2["married"] < interval1["married"] and interval1["married"] < interval2["divorced"]:
+                return True
         return False
     
     def poligamy_exists(intervals):
