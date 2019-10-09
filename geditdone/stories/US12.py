@@ -1,6 +1,6 @@
 from geditdone.gedcom_objects import GedcomError
 
-def ParentsNotTooOld(parser):
+def parents_not_too_old(parser):
     """Makes sure birth happens before parent death"""
     individuals = parser.individuals
     families = parser.families
