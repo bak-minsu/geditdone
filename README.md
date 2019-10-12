@@ -1,6 +1,8 @@
 # geditdone
 >A parser and validator for GEDCOM files
 
+[![Build Status](https://travis-ci.org/maxlep/geditdone.svg?branch=master)](https://travis-ci.org/maxlep/geditdone)
+
 ## Dependencies
 > Check `requirements.txt` for the most up-to-date list of requirements
 
