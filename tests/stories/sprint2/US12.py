@@ -85,3 +85,4 @@ class BirthBeforeParentDeath(unittest.TestCase):
         # self.nullBirth()
         # self.nullMomBirth()
         # self.nullDadBirth()
+        pass
