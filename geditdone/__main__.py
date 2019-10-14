@@ -19,9 +19,7 @@ def main():
         if i == 0:
             continue
         if arg == "test":
-            gedcom_test.run_tests([1,2])
-        if arg == "travis":
-            return gedcom_test.get_all_tests()
+            gedcom_test.run_tests([1,2]
         else:
             # If a .GED file is given
             with open(arg, 'r') as inputFile:
