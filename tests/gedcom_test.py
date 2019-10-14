@@ -29,4 +29,4 @@ def run_tests(sprint_list):
         sprints_to_run.append(suites[sprint_number-1])
     combined = unittest.TestSuite(suites)
     runner = unittest.TextTestRunner(verbosity=2)
-    runner.run(combined)
+    return runner.run(combined) # Returns TestResult class

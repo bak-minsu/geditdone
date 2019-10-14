@@ -19,8 +19,10 @@ def main():
         if i == 0:
             continue
         if arg == "test":
-            gedcom_test.run_tests([1,2])
+            # Returns for Travis CI to read
+            return gedcom_test.run_tests([1,2])
         else:
+            # If a .GED file is given
             with open(arg, 'r') as inputFile:
                 parser = gedcom_parser.GedcomParser()
                 parser.parse(inputFile)
