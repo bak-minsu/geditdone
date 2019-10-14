@@ -4,7 +4,7 @@ from geditdone.gedcom_objects import Family, Individual
 from geditdone.stories import US17
 
 class NoMarriagesToChildren(unittest.TestCase):
-
+    """Makes sure that marriages between parent and children does not occur"""
     def incorrect_marriages(self):
         individuals = {
             "HUSB": Individual(id="HUSB", fams="FAM1"),
