@@ -22,11 +22,17 @@ def sprint1_suite():
 def sprint2_suite():
     return get_suite_for_sprint("sprint2")
 
-def run_tests(sprint_list):
+def get_combined_suite(sprint_list):
     sprints_to_run = []
     suites = [sprint1_suite(), sprint2_suite()]
     for sprint_number in sprint_list:
         sprints_to_run.append(suites[sprint_number-1])
-    combined = unittest.TestSuite(suites)
+    return unittest.TestSuite(suites)
+
+def get_all_tests():
+    return get_combined_suite([1,2])
+
+def run_tests(sprint_list):
+    combined = get_combined_suite(sprint_list)    
     runner = unittest.TextTestRunner(verbosity=2)
     return runner.run(combined) # Returns TestResult class
