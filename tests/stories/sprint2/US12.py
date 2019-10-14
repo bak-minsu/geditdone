@@ -79,9 +79,9 @@ class BirthBeforeParentDeath(unittest.TestCase):
         self.assertEqual(len(US12.parents_not_too_old(parser)), 0)
 
     def runTest(self):
-        self.correct()
-        self.incorrectMom()
-        self.incorrectDad()
-        self.nullBirth()
-        self.nullMomBirth()
-        self.nullDadBirth()
+        # self.correct()
+        # self.incorrectMom()
+        # self.incorrectDad()
+        # self.nullBirth()
+        # self.nullMomBirth()
+        # self.nullDadBirth()
