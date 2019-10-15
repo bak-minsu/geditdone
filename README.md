@@ -8,6 +8,7 @@
 
 * Python 3
 * Pandas 0.23.4
+* PrettyTables 0.9.2
 
 ### Install dependencies
 `pip3 install -r requirements.txt`
