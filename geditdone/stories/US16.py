@@ -3,35 +3,36 @@ from geditdone.gedcom_objects import GedcomError
 def male_last_name(parser, db):
     errors = []
 
-    # check individual and son have same last name 
-    for individual in parser.individuals.values():
-        famc = individual.famc
-        if famc != None:
+    for family in parser.families.values():
+        father = family.husband_id
+        children = family.child_ids
 
-            family = parser.families[famc]
-            father = family.husband_id
-            myself = individual.id
+        # DEBUG
+        #print()
+        #print("father id is: ", father)
+        #print("children ids are: ", children)
+        #print()
 
-            # get individual's father's full_name from ID
-            for individual2 in parser.individuals.values():
-                if individual2.id == father:
-                    fatherfather_full_name = individual2.name
+        # obtain father last_name 
+        for individual in parser.individuals.values():
+            if individual.id == father:
+                father_last_name=individual.name.split()[1]
+        #print("father_last_name: ", father_last_name)
 
-            # get individual's full_name
-            myself_full_name = individual.name
+        child_last_name = ""
 
-            # get last_name from full_name
-            father_last_name = " ".join(father_full_name.split()[1:-1])
-            myself_last_name = " ".join(myself_full_name.split()[1:-1])
-
-            # debug statements
-            print("myself_last_name: ", myself_last_name)
-            print("father_last_name:", father_last_name)
-
-
-            # error out if last_name does not match
-            if father_last_name != myself_last_name:
-                errorMessage = f'Males in {family} do not have the same last name'
-                errors.append(GedcomError(GedcomError.ErrorType.error, 'US16', family.reference, errorMessage))
+        for individual in parser.individuals.values():
+            #print("-----")
+            #print("individual is is: ", individual.name)
+            for i in range(len(children)):
+                if individual.sex == "M":
+                    if individual.id == children[i]:
+                        child_last_name = individual.name.split()[1]
+                        #print("child_last_name is: ", child_last_name)
+                        if child_last_name != father_last_name:
+                            errorMessage = f'Males ({individual.name}) in {family} do not have the same last name'
+                            errors.append(GedcomError(GedcomError.ErrorType.error, 'US16', family.reference, errorMessage))
+                #elif individual.sex == "F" and individual.id == children[i]:
+                    #print("child is female")
 
     return errors
