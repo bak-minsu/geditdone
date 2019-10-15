@@ -1,4 +1,5 @@
 import pandas as pd
+from prettytable import PrettyTable
 
 class GedcomDatabase:
 
@@ -39,7 +40,6 @@ class GedcomDatabase:
             "fams": all_fams,
             "reference": all_references,    # Reference to the Individual class
         }
-        
         return pd.DataFrame(data)
 
     def gen_families_dict(self, families):
@@ -67,7 +67,28 @@ class GedcomDatabase:
             "wife_id": all_wives,
             "married": all_marriages,
             "divorced": all_divorces,
+            "children": all_children,
             "reference": all_references,    # Reference to the Family class
         }
-
         return pd.DataFrame(data)
+    
+    def print_table(self, dataframe, table_name):
+        pt = PrettyTable()
+        columns = list(dataframe.columns) 
+        columns.remove("reference") # Reference to individual/family class is unnecessary
+        pt.field_names = columns
+        for index, row in dataframe.iterrows():
+            add_row_args = ""
+            for index, column in enumerate(columns):
+                if index == 0:
+                    add_row_args += "["
+                else:
+                    add_row_args += ","
+                add_row_args += "row['" + column + "']"
+            add_row_args += "]"
+            eval("pt.add_row({})".format(add_row_args))
+        print(pt)
+
+    def print_prettytable(self):
+        self.print_table(self.individuals, "Individuals")
+        self.print_table(self.families, "Families")
