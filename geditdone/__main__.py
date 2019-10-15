@@ -28,6 +28,7 @@ def main():
                 parser.printIndividuals()
                 parser.printFamilies()
                 validator = gedcom_validator.Validator(parser)
+                validator.prettytable()
                 validator.validate()
 
 if __name__ == "__main__":

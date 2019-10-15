@@ -14,6 +14,9 @@ class Validator:
         """Gets the total number of arguments in a function"""
         return len(inspect.getargspec(function)[0])
 
+    def prettytable(self):
+        self.db.print_prettytable()
+
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
@@ -24,9 +27,6 @@ class Validator:
             elif argument_count == 2:
                 errors = story(self.parser, self.db)
             self.invalid(story, errors)
-            # else:
-                # WARNING: Testing purposes only
-                # self.valid(story)
 
     def get_all_stories(self):
         """Gets all functions in stories folder"""
@@ -45,11 +45,7 @@ class Validator:
 
     def invalid(self, function, errors):
         """What to do when the validator returns invalid"""
+        # print(function.__name__)
         if len(errors) > 0:
             for error in errors:
                 print(error)
-
-    # for debugging
-    def valid(self, function):
-        """What to do when the validator returns valid"""
-        print("Validator function {} successfully passed!".format(function.__name__))

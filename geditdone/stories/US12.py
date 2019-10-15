@@ -1,4 +1,5 @@
 from geditdone.gedcom_objects import GedcomError
+from datetime import datetime
 
 def parents_not_too_old(parser):
     """Mother should be less than 60 years older than her children
@@ -23,6 +24,6 @@ def parents_not_too_old(parser):
                         individuals.get(fam.husband_id).birth is not None:
                             dadBirthYear = (datetime.strptime(str(individuals.get(fam.husband_id).birth), '%Y-%m-%d')).year
                             if childBirthYear - dadBirthYear >= 80:
-                                errorMessage = f'Father born {fatherBirthYear}, 80+ years before child was born {child.birth}'
+                                errorMessage = f'Father born {dadBirthYear}, 80+ years before child was born {child.birth}'
                                 errors.append(GedcomError(GedcomError.ErrorType.error, 'US12', fam, errorMessage))
     return errors
