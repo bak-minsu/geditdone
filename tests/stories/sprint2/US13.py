@@ -6,7 +6,7 @@ from geditdone.stories import US13
 
 class SiblingSpacing(unittest.TestCase):
 
-    def siblings_greater_than_9_months(self):
+    def siblings_greater_than_8_months(self):
         individuals = {
             "DAD": Individual("DAD", name=None, sex=None, birth=None, death=None, famc=None, fams="FAM"),
             "MOM": Individual("MOM", name=None, sex=None, birth=None, death=None, famc=None, fams="FAM"),
@@ -20,7 +20,7 @@ class SiblingSpacing(unittest.TestCase):
         parser = TestParser(individuals, families)
         self.assertEqual(len(US13.sibling_spacing(parser)), 0)
 
-    def siblings_less_than_9_months(self):
+    def siblings_less_than_8_months(self):
         individuals = {
             "DAD": Individual("DAD", name=None, sex=None, birth=None, death=None, famc=None, fams="FAM"),
             "MOM": Individual("MOM", name=None, sex=None, birth=None, death=None, famc=None, fams="FAM"),
@@ -47,6 +47,6 @@ class SiblingSpacing(unittest.TestCase):
         self.assertEqual(len(US13.sibling_spacing(parser)), 0)
 
     def runTest(self):
-        self.siblings_greater_than_9_months()
-        self.siblings_less_than_9_months()
+        self.siblings_greater_than_8_months()
+        self.siblings_less_than_8_months()
         self.no_siblings()

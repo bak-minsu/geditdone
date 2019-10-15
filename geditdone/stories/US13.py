@@ -15,10 +15,10 @@ def sibling_spacing(parser):
             children.sort(key=lambda x: x.birth or date(1,1,1))
             children = list(filter(lambda c: c.birth is not None, children))
             for i in range(1,len(children)):
-                twins = datehelpers.dates_within(children[i-1].birth, children[i].birth, 1, 'days')
-                lessThan9Months = datehelpers.dates_within(children[i-1].birth, children[i].birth, 9, 'months')
+                twins = datehelpers.dates_within(children[i-1].birth, children[i].birth, 2, 'days')
+                lessThan9Months = datehelpers.dates_within(children[i-1].birth, children[i].birth, 8, 'months')
                 if lessThan9Months and not twins:
-                    errorMessage = f'Siblings {children[i-1]}, {children[i]} born less than 9 months apart {children[i-1].birth}, {children[i].birth}'
+                    errorMessage = f'Siblings {children[i-1]}, {children[i]} born less than 8 months apart {children[i-1].birth}, {children[i].birth}'
                     errors.append(GedcomError(GedcomError.ErrorType.error, 'US10', fam, errorMessage))
 
     return errors
