@@ -23,3 +23,7 @@ Run the project from the repository root using the following command:
 Run the unit tests from the repository root with the following command:
 
 `python3 -m geditdone test`
+
+Travis CI also runs its own tests at every commit:
+
+https://travis-ci.org/bak-minsu/geditdone
