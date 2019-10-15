@@ -77,16 +77,11 @@ class GedcomDatabase:
         columns = list(dataframe.columns) 
         columns.remove("reference") # Reference to individual/family class is unnecessary
         pt.field_names = columns
-        for index, row in dataframe.iterrows():
-            add_row_args = ""
-            for index, column in enumerate(columns):
-                if index == 0:
-                    add_row_args += "["
-                else:
-                    add_row_args += ","
-                add_row_args += "row['" + column + "']"
-            add_row_args += "]"
-            eval("pt.add_row({})".format(add_row_args))
+        for _, row in dataframe.iterrows():
+            row_items = []
+            for column in columns:
+                row_items.append(row[column])
+            pt.add_row(row_items)
         print(pt)
 
     def print_prettytable(self):
