@@ -17,7 +17,7 @@ class CorrectGenderForRole(unittest.TestCase):
         }
         parser = TestParser(individuals, families)
         db = TestDatabase(individuals, families)
-        self.assertEquals(len(US21.correct_gender_for_role(parser, db)), 0)
+        self.assertEqual(len(US21.correct_gender_for_role(parser, db)), 0)
 
     def runTest(self):
         self.some_func()
