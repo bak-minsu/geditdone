@@ -52,7 +52,7 @@ class BirthBeforeParentDeath(unittest.TestCase):
             "FAM": Family("FAM", child_ids=["CHILD"], husband_id="DAD", wife_id="MOM", married=None, divorced=None)
         }
         parser = TestParser(individuals, families)
-        self.assertEqual(len(US12.parents_not_too_old(parser)), 1)
+        self.assertEqual(len(US12.parents_not_too_old(parser)), 0)
 
     def nullMomBirth(self):
         individuals = {
@@ -79,10 +79,9 @@ class BirthBeforeParentDeath(unittest.TestCase):
         self.assertEqual(len(US12.parents_not_too_old(parser)), 0)
 
     def runTest(self):
-        # self.correct()
-        # self.incorrectMom()
-        # self.incorrectDad()
-        # self.nullBirth()
-        # self.nullMomBirth()
-        # self.nullDadBirth()
-        pass
+        self.correct()
+        self.incorrectMom()
+        self.incorrectDad()
+        self.nullBirth()
+        self.nullMomBirth()
+        self.nullDadBirth()

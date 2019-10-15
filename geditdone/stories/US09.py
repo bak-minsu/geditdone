@@ -1,4 +1,6 @@
 from geditdone.gedcom_objects import GedcomError
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 def birth_before_parent_death(parser):
     """Child should be born before death of mother
@@ -19,9 +21,7 @@ def birth_before_parent_death(parser):
                             errors.append(GedcomError(GedcomError.ErrorType.error, 'US09', fam, errorMessage))
                     if fam.husband_id is not None and \
                         individuals.get(fam.husband_id).death is not None:
-                            # TODO https://stackoverflow.com/questions/546321/how-do-i-calculate-the-date-six-months-from-the-current-date-using-the-datetime
-                            # need dateutil for relative delta
-                            allowableDiff = individuals.get(fam.husband_id).death # + 9 months
+                            allowableDiff = individuals.get(fam.husband_id).death + relativedelta(months=+9)
                             if allowableDiff <= child.birth:
                                 errorMessage = f'Mother {individuals.get(fam.husband_id).name} died more than 9 months before child was born {child.birth}'
                                 errors.append(GedcomError(GedcomError.ErrorType.error, 'US09', fam, errorMessage))
