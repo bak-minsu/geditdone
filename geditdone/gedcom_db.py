@@ -82,6 +82,7 @@ class GedcomDatabase:
             for column in columns:
                 row_items.append(row[column])
             pt.add_row(row_items)
+        print(table_name)
         print(pt)
 
     def print_prettytable(self):
