@@ -4,7 +4,7 @@ from tests.testhelpers import TestParser, TestDatabase
 from geditdone.gedcom_objects import Family, Individual
 from geditdone.stories import US12
 
-class BirthBeforeParentDeath(unittest.TestCase):
+class ParentsNotTooOld(unittest.TestCase):
 
     def correct(self):
         individuals = {
