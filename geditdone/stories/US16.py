@@ -15,7 +15,7 @@ def male_last_name(parser, db):
             # get individual's father's full_name from ID
             for individual2 in parser.individuals.values():
                 if individual2.id == father:
-                    fatherfather_full_name = individual2.name
+                    father_full_name = individual2.name
 
             # get individual's full_name
             myself_full_name = individual.name
@@ -32,6 +32,6 @@ def male_last_name(parser, db):
             # error out if last_name does not match
             if father_last_name != myself_last_name:
                 errorMessage = f'Males in {family} do not have the same last name'
-                errors.append(GedcomError(GedcomError.ErrorType.error, 'US16', family.reference, errorMessage))
+                errors.append(GedcomError(GedcomError.ErrorType.error, 'US16', family, errorMessage))
 
     return errors

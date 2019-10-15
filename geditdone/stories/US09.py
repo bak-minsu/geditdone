@@ -13,6 +13,7 @@ def birth_before_parent_death(parser):
                 child = individuals.get(childID)
                 if child.birth is not None:
                     if fam.wife_id is not None and \
+                        individuals.get(fam.wife_id).death is not None and \
                         individuals.get(fam.wife_id).death <= child.birth:
                             errorMessage = f'Mother {individuals.get(fam.wife_id).name} died before child was born {child.birth}'
                             errors.append(GedcomError(GedcomError.ErrorType.error, 'US09', fam, errorMessage))
