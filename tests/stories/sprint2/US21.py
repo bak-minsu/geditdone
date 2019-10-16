@@ -6,7 +6,7 @@ from geditdone.stories import US21
 
 class CorrectGenderForRole(unittest.TestCase):
 
-    def test_correct_gender_for_role(self):
+    def correct_gender_for_role(self):
         individuals = {
             "HUSB": Individual(id="HUSB", name="Jim", sex="M", fams="FAM1"),
             "WIFE": Individual(id="WIFE", name="Pam", sex="F", fams="FAM2"),
@@ -20,4 +20,4 @@ class CorrectGenderForRole(unittest.TestCase):
         self.assertEqual(len(US21.correct_gender_for_role(parser, db)), 0)
 
     def runTest(self):
-        self.test_correct_gender_for_role()
+        self.correct_gender_for_role()

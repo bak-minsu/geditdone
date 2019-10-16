@@ -6,7 +6,7 @@ from geditdone.stories import US16
 
 class MaleLastNames(unittest.TestCase):
 
-    def test_male_last_names(self):
+    def male_last_names(self):
         individuals = {
             "HUSB": Individual(id="HUSB", name="Jim Halpert", sex="M", fams="FAM1"),
             "WIFE": Individual(id="WIFE", name="Pam Halpert", sex="F", fams="FAM2"),
@@ -23,4 +23,4 @@ class MaleLastNames(unittest.TestCase):
         pass
 
     def runTest(self):
-        self.test_male_last_names()
+        self.male_last_names()
