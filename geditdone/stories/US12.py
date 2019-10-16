@@ -18,12 +18,12 @@ def parents_not_too_old(parser):
                         individuals.get(fam.wife_id).birth is not None:
                             momBirthYear = (datetime.strptime(str(individuals.get(fam.wife_id).birth), '%Y-%m-%d')).year
                             if childBirthYear - momBirthYear >= 60:
-                                errorMessage = f'Mother born {momBirthYear}, 60+ years before child was born {child.birth}'
+                                errorMessage = f'Mother {individuals.get(fam.wife_id).name} born {momBirthYear}, 60+ years before child was born {child.birth}'
                                 errors.append(GedcomError(GedcomError.ErrorType.error, 'US12', fam, errorMessage))
                     if fam.husband_id is not None and \
                         individuals.get(fam.husband_id).birth is not None:
                             dadBirthYear = (datetime.strptime(str(individuals.get(fam.husband_id).birth), '%Y-%m-%d')).year
                             if childBirthYear - dadBirthYear >= 80:
-                                errorMessage = f'Father born {dadBirthYear}, 80+ years before child was born {child.birth}'
+                                errorMessage = f'Father {individuals.get(fam.husband_id).name} born {dadBirthYear}, 80+ years before child was born {child.birth}'
                                 errors.append(GedcomError(GedcomError.ErrorType.error, 'US12', fam, errorMessage))
     return errors

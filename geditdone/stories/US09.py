@@ -23,6 +23,6 @@ def birth_before_parent_death(parser):
                         individuals.get(fam.husband_id).death is not None:
                             allowableDiff = individuals.get(fam.husband_id).death + relativedelta(months=+9)
                             if allowableDiff <= child.birth:
-                                errorMessage = f'Mother {individuals.get(fam.husband_id).name} died more than 9 months before child was born {child.birth}'
+                                errorMessage = f'Father {individuals.get(fam.husband_id).name} died more than 9 months before child was born {child.birth}'
                                 errors.append(GedcomError(GedcomError.ErrorType.error, 'US09', fam, errorMessage))
     return errors
