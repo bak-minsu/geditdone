@@ -19,6 +19,6 @@ def sibling_spacing(parser):
                 lessThan9Months = datehelpers.dates_within(children[i-1].birth, children[i].birth, 8, 'months')
                 if lessThan9Months and not twins:
                     errorMessage = f'Siblings {children[i-1]}, {children[i]} born less than 8 months apart {children[i-1].birth}, {children[i].birth}'
-                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US10', fam, errorMessage))
+                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US13', fam, errorMessage))
 
     return errors
