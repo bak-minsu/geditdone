@@ -1,0 +1,68 @@
+@I1@ Jim /Halpert/
+@I2@ Pam /Halpert/
+@I3@ Dwight /Schrute/
+@I4@ Angela /Halpert/
+@I5@ Michael /Scott/
+FAM @F1@ HUSB @I1@ Jim /Halpert/ WIFE @I2@ Pam /Halpert/
+FAM @F2@ HUSB @I3@ Dwight /Schrute/ WIFE @I2@ Pam /Halpert/
+FAM @F3@ HUSB @I3@ Dwight /Schrute/ WIFE None
+FAM @F4@ HUSB @I1@ Jim /Halpert/ WIFE @I4@ Angela /Halpert/
+Individuals
++------+------------+------------+------+------+------------------+-----+
+|  ID  |   birth    |   death    | famc | fams |       name       | sex |
++------+------------+------------+------+------+------------------+-----+
+| @I1@ | 1900-02-26 | 2010-10-14 | None | @F1@ |  Jim /Halpert/   |  F  |
+| @I2@ | 1900-02-27 | 2010-10-13 | None | @F2@ |  Pam /Halpert/   |  M  |
+| @I3@ | 1927-11-01 |    None    | None | @F3@ | Dwight /Schrute/ |  M  |
+| @I4@ | 2011-11-04 |    None    | @F1@ | None | Angela /Halpert/ |  F  |
+| @I5@ | 2011-09-02 |    None    | @F1@ | None | Michael /Scott/  |  M  |
++------+------------+------------+------+------+------------------+-----+
+Families
++------+------------------+----------+------------+------------+---------+
+|  ID  |     children     | divorced | husband_id |  married   | wife_id |
++------+------------------+----------+------------+------------+---------+
+| @F1@ | ['@I4@', '@I5@'] |   None   |    @I1@    | 1902-08-06 |   @I2@  |
+| @F2@ | ['@I4@', '@I5@'] |   None   |    @I3@    | 1902-08-07 |   @I2@  |
+| @F3@ | ['@I4@', '@I5@'] |   None   |    @I3@    | 2011-03-05 |   None  |
+| @F4@ | ['@I4@', '@I5@'] |   None   |    @I1@    | 2003-08-03 |   @I4@  |
++------+------------------+----------+------------+------------+---------+
+ERROR, FAMILY, US17, FAM @F4@ HUSB @I1@ WIFE @I4@: Parent @I1@ married child @I4@
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Michael /Scott/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Michael /Scott/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE None: Males (Michael /Scott/) in FAM @F3@ HUSB @I3@ WIFE None do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Michael /Scott/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US13, FAM @F1@ HUSB @I1@ WIFE @I2@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM @F2@ HUSB @I3@ WIFE @I2@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM @F3@ HUSB @I3@ WIFE None: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM @F4@ HUSB @I1@ WIFE @I4@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US21, FAM @F1@ HUSB @I1@ WIFE @I2@: Husband in FAM @F1@ HUSB @I1@ WIFE @I2@ does not have the correct gender for role, has F instead.
+ERROR, FAMILY, US21, FAM @F1@ HUSB @I1@ WIFE @I2@: Wife in FAM @F1@ HUSB @I1@ WIFE @I2@ does not have the correct gender for role, has M instead.
+ERROR, FAMILY, US21, FAM @F2@ HUSB @I3@ WIFE @I2@: Wife in FAM @F2@ HUSB @I3@ WIFE @I2@ does not have the correct gender for role, has M instead.
+ERROR, FAMILY, US21, FAM @F4@ HUSB @I1@ WIFE @I4@: Husband in FAM @F4@ HUSB @I1@ WIFE @I4@ does not have the correct gender for role, has F instead.
+ERROR, INDIVIDUAL, US11, @I1@ Jim /Halpert/: Bigamy between Family @F4@ and Family @F1@
+ERROR, INDIVIDUAL, US11, @I3@ Dwight /Schrute/: Bigamy between Family @F3@ and Family @F2@
+ERROR, INDIVIDUAL, US11, @I2@ Pam /Halpert/: Bigamy between Family @F2@ and Family @F1@
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE None: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE None: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US10, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 before husband turned 14 1900-02-26
+ERROR, FAMILY, US10, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 before wife turned 14 1900-02-27
+ERROR, FAMILY, US10, FAM @F2@ HUSB @I3@ WIFE @I2@: Married 1902-08-07 before wife turned 14 1900-02-27
+ERROR, FAMILY, US10, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 before wife turned 14 2011-11-04
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2011-09-02
