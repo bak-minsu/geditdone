@@ -25,8 +25,6 @@ def main():
             with open(arg, 'r') as inputFile:
                 parser = gedcom_parser.GedcomParser()
                 parser.parse(inputFile)
-                parser.printIndividuals()
-                parser.printFamilies()
                 validator = gedcom_validator.Validator(parser)
                 validator.prettytable()
                 validator.validate()
