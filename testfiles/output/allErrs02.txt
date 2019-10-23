@@ -3,38 +3,103 @@
 @I3@ Dwight /Schrute/
 @I4@ Angela /Halpert/
 @I5@ Michael /Scott/
+I01 Francis /Arbuckle/
+I02 Henry /Arbuckle/
+I03 Robert /Arbuckle/
+I04 Faye /Arbuckle/
+I05 Jon /Arbuckle/
+I06 Clara /Montoya/
+I07 Garfield /Montoya/
+I08 Odie /Montoya/
 FAM @F1@ HUSB @I1@ Jim /Halpert/ WIFE @I2@ Pam /Halpert/
 FAM @F2@ HUSB @I3@ Dwight /Schrute/ WIFE @I2@ Pam /Halpert/
 FAM @F3@ HUSB @I3@ Dwight /Schrute/ WIFE None
 FAM @F4@ HUSB @I1@ Jim /Halpert/ WIFE @I4@ Angela /Halpert/
+FAM F01 HUSB I02 Henry /Arbuckle/ WIFE I01 Francis /Arbuckle/
+FAM F02 HUSB I03 Robert /Arbuckle/ WIFE I04 Faye /Arbuckle/
+FAM F03 HUSB I03 Robert /Arbuckle/ WIFE I06 Clara /Montoya/
 Individuals
-+------+------------+------------+------+------+------------------+-----+
-|  ID  |   birth    |   death    | famc | fams |       name       | sex |
-+------+------------+------------+------+------+------------------+-----+
-| @I1@ | 1900-02-26 | 2010-10-14 | None | @F1@ |  Jim /Halpert/   |  F  |
-| @I2@ | 1900-02-27 | 2010-10-13 | None | @F2@ |  Pam /Halpert/   |  M  |
-| @I3@ | 1927-11-01 |    None    | None | @F3@ | Dwight /Schrute/ |  M  |
-| @I4@ | 2011-11-04 |    None    | @F1@ | None | Angela /Halpert/ |  F  |
-| @I5@ | 2011-09-02 |    None    | @F1@ | None | Michael /Scott/  |  M  |
-+------+------------+------------+------+------+------------------+-----+
++------+------------+------------+------+------+--------------------+-----+
+|  ID  |   birth    |   death    | famc | fams |        name        | sex |
++------+------------+------------+------+------+--------------------+-----+
+| I01  | 1936-04-13 |    None    | None | F01  | Francis /Arbuckle/ |  F  |
+| I02  | 2019-07-21 | 2018-03-07 | None | F01  |  Henry /Arbuckle/  |  M  |
+| I03  | 1800-06-02 | 1955-05-31 | F01  | F03  | Robert /Arbuckle/  |  M  |
+| I04  | 1956-02-23 | 1982-07-08 | None | F02  |  Faye /Arbuckle/   |  F  |
+| I05  | 1977-06-15 |    None    | F02  | None |   Jon /Arbuckle/   |  M  |
+| I06  | 1962-05-09 |    None    | None | F03  |  Clara /Montoya/   |  F  |
+| I07  | 1976-10-07 |    None    | F03  | None | Garfield /Montoya/ |  M  |
+| I08  | 2022-04-14 |    None    | F03  | None |   Odie /Montoya/   |  M  |
+| @I1@ | 1900-02-26 | 2010-10-14 | None | @F1@ |   Jim /Halpert/    |  F  |
+| @I2@ | 1900-02-27 | 2010-10-13 | None | @F2@ |   Pam /Halpert/    |  M  |
+| @I3@ | 1927-11-01 |    None    | None | @F3@ |  Dwight /Schrute/  |  M  |
+| @I4@ | 2011-11-04 |    None    | @F1@ | None |  Angela /Halpert/  |  F  |
+| @I5@ | 2011-09-02 |    None    | @F1@ | None |  Michael /Scott/   |  M  |
++------+------------+------------+------+------+--------------------+-----+
 Families
-+------+------------------+----------+------------+------------+---------+
-|  ID  |     children     | divorced | husband_id |  married   | wife_id |
-+------+------------------+----------+------------+------------+---------+
-| @F1@ | ['@I4@', '@I5@'] |   None   |    @I1@    | 1902-08-06 |   @I2@  |
-| @F2@ | ['@I4@', '@I5@'] |   None   |    @I3@    | 1902-08-07 |   @I2@  |
-| @F3@ | ['@I4@', '@I5@'] |   None   |    @I3@    | 2011-03-05 |   None  |
-| @F4@ | ['@I4@', '@I5@'] |   None   |    @I1@    | 2003-08-03 |   @I4@  |
-+------+------------------+----------+------------+------------+---------+
++------+-----------------------------------------------------+------------+------------+------------+---------+
+|  ID  |                       children                      |  divorced  | husband_id |  married   | wife_id |
++------+-----------------------------------------------------+------------+------------+------------+---------+
+| F01  | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@'] | 2018-03-20 |    I02     | 1956-05-31 |   I01   |
+| F02  | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@'] | 2010-10-12 |    I03     | 2050-10-12 |   I04   |
+| F03  | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@'] |    None    |    I03     | 2050-08-11 |   I06   |
+| @F1@ | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@'] |    None    |    @I1@    | 1902-08-06 |   @I2@  |
+| @F2@ | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@'] |    None    |    @I3@    | 1902-08-07 |   @I2@  |
+| @F3@ | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@'] |    None    |    @I3@    | 2011-03-05 |   None  |
+| @F4@ | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@'] |    None    |    @I1@    | 2003-08-03 |   @I4@  |
++------+-----------------------------------------------------+------------+------------+------------+---------+
 ERROR, FAMILY, US17, FAM @F4@ HUSB @I1@ WIFE @I4@: Parent @I1@ married child @I4@
+ERROR, INDIVIDUAL, US01, I08 Odie /Montoya/: Birth date 2022-04-14 occurs in the future
+ERROR, FAMILY, US01, FAM F02 HUSB I03 WIFE I04: Marriage date 2050-10-12 occurs in the future
+ERROR, FAMILY, US01, FAM F03 HUSB I03 WIFE I06: Marriage date 2050-08-11 occurs in the future
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Garfield /Montoya/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Odie /Montoya/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Michael /Scott/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Garfield /Montoya/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Odie /Montoya/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Michael /Scott/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Garfield /Montoya/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Odie /Montoya/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Michael /Scott/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Robert /Arbuckle/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Garfield /Montoya/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Odie /Montoya/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
 ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Michael /Scott/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Robert /Arbuckle/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Garfield /Montoya/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Odie /Montoya/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
 ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Michael /Scott/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE None: Males (Robert /Arbuckle/) in FAM @F3@ HUSB @I3@ WIFE None do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE None: Males (Jon /Arbuckle/) in FAM @F3@ HUSB @I3@ WIFE None do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE None: Males (Jon /Arbuckle/) in FAM @F3@ HUSB @I3@ WIFE None do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE None: Males (Garfield /Montoya/) in FAM @F3@ HUSB @I3@ WIFE None do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE None: Males (Odie /Montoya/) in FAM @F3@ HUSB @I3@ WIFE None do not have the same last name
 ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE None: Males (Michael /Scott/) in FAM @F3@ HUSB @I3@ WIFE None do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Robert /Arbuckle/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Jon /Arbuckle/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Jon /Arbuckle/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Garfield /Montoya/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Odie /Montoya/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
 ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Michael /Scott/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, INDIVIDUAL, US07, I03 Robert /Arbuckle/: The person is more than 150 years old, at 155 years old
+ERROR, INDIVIDUAL, US05, I03 Robert /Arbuckle/: Married 2050-08-11 after death 1955-05-31
+ERROR, INDIVIDUAL, US05, I04 Faye /Arbuckle/: Married 2050-10-12 after death 1982-07-08
+ERROR, INDIVIDUAL, US03, I02 Henry /Arbuckle/: Birth date 2019-07-21 occurs after death date 2018-03-07
+ERROR, FAMILY, US13, FAM F01 HUSB I02 WIFE I01: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM F02 HUSB I03 WIFE I04: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM F03 HUSB I03 WIFE I06: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
 ERROR, FAMILY, US13, FAM @F1@ HUSB @I1@ WIFE @I2@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
 ERROR, FAMILY, US13, FAM @F2@ HUSB @I3@ WIFE @I2@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
 ERROR, FAMILY, US13, FAM @F3@ HUSB @I3@ WIFE None: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
 ERROR, FAMILY, US13, FAM @F4@ HUSB @I1@ WIFE @I4@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US02, FAM F01 HUSB I02 WIFE I01: Birth date 1800-06-02 occurs before marriage date 1956-05-31
+ERROR, FAMILY, US02, FAM F02 HUSB I03 WIFE I04: Birth date 1977-06-15 occurs before marriage date 2050-10-12
+ERROR, FAMILY, US02, FAM F03 HUSB I03 WIFE I06: Birth date 1976-10-07 occurs before marriage date 2050-08-11
+ERROR, FAMILY, US02, FAM F03 HUSB I03 WIFE I06: Birth date 2022-04-14 occurs before marriage date 2050-08-11
 ERROR, FAMILY, US21, FAM @F1@ HUSB @I1@ WIFE @I2@: Husband in FAM @F1@ HUSB @I1@ WIFE @I2@ does not have the correct gender for role, has F instead.
 ERROR, FAMILY, US21, FAM @F1@ HUSB @I1@ WIFE @I2@: Wife in FAM @F1@ HUSB @I1@ WIFE @I2@ does not have the correct gender for role, has M instead.
 ERROR, FAMILY, US21, FAM @F2@ HUSB @I3@ WIFE @I2@: Wife in FAM @F2@ HUSB @I3@ WIFE @I2@ does not have the correct gender for role, has M instead.
@@ -42,27 +107,108 @@ ERROR, FAMILY, US21, FAM @F4@ HUSB @I1@ WIFE @I4@: Husband in FAM @F4@ HUSB @I1@
 ERROR, INDIVIDUAL, US11, @I1@ Jim /Halpert/: Bigamy between Family @F4@ and Family @F1@
 ERROR, INDIVIDUAL, US11, @I3@ Dwight /Schrute/: Bigamy between Family @F3@ and Family @F2@
 ERROR, INDIVIDUAL, US11, @I2@ Pam /Halpert/: Bigamy between Family @F2@ and Family @F1@
+ERROR, FAMILY, US08, FAM F01 HUSB I02 WIFE I01: Married 1956-05-31 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F01 HUSB I02 WIFE I01: Divorced 2018-03-20 more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Divorced 2010-10-12 more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2011-11-04
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Divorced 2010-10-12 more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2011-09-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Divorced 2010-10-12 more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2011-11-04
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2011-09-02
+ERROR, FAMILY, US08, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F2@ HUSB @I3@ WIFE @I2@: Married 1902-08-07 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE None: Married 2011-03-05 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE None: Married 2011-03-05 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE None: Married 2011-03-05 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE None: Married 2011-03-05 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1976-10-07
+ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1936, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1936, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1936, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ born 1956, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Mother Clara /Montoya/ born 1962, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2022-04-14
 ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-11-04
 ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-11-04
 ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-09-02
 ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2022-04-14
 ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-11-04
 ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-11-04
 ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-09-02
 ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE None: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2022-04-14
 ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE None: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-11-04
 ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE None: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2022-04-14
 ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-11-04
 ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-09-02
+ERROR, INDIVIDUAL, US06, I02 Henry /Arbuckle/: Divorced 2018-03-20 after death 2018-03-07
+ERROR, INDIVIDUAL, US06, I04 Faye /Arbuckle/: Divorced 2010-10-12 after death 1982-07-08
 ERROR, FAMILY, US10, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 before husband turned 14 1900-02-26
 ERROR, FAMILY, US10, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 before wife turned 14 1900-02-27
 ERROR, FAMILY, US10, FAM @F2@ HUSB @I3@ WIFE @I2@: Married 1902-08-07 before wife turned 14 1900-02-27
 ERROR, FAMILY, US10, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 before wife turned 14 2011-11-04
+ERROR, FAMILY, US04, FAM F02 HUSB I03 WIFE I04: Marriage date 2050-10-12 is after divorce date 2010-10-12
+ERROR, FAMILY, US09, FAM F01 HUSB I02 WIFE I01: Father Henry /Arbuckle/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1976-10-07
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1976-10-07
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2022-04-14
 ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-11-04
 ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2011-11-04
 ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-09-02
 ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2022-04-14
 ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-11-04
 ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2022-04-14
 ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2011-11-04
 ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2011-09-02
