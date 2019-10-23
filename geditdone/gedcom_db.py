@@ -1,5 +1,5 @@
 import pandas as pd
-from geditdone.tablehelpers import TableHelpers
+from geditdone.tablecollector import TableCollector
 
 class GedcomDatabase:
 
@@ -12,6 +12,8 @@ class GedcomDatabase:
         # To understand how to use these, look up "Pandas Dataframes"
         GedcomDatabase.gen_individual_dict(parser.individuals)
         GedcomDatabase.gen_families_dict(parser.families)
+        TableCollector.add_table(GedcomDatabase.individuals, "Individuals")
+        TableCollector.add_table(GedcomDatabase.families, "Families")
 
     @classmethod
     def gen_individual_dict(cls, individuals):
@@ -76,7 +78,3 @@ class GedcomDatabase:
             "reference": all_references,    # Reference to the Family class
         }
         GedcomDatabase.families = pd.DataFrame(data)
-
-    def print_prettytable(self):
-        TableHelpers.print_table(self.individuals, "Individuals")
-        TableHelpers.print_table(self.families, "Families")

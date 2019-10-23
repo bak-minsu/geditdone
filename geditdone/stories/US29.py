@@ -1,5 +1,5 @@
 from geditdone.gedcom_db import GedcomDatabase
-from geditdone.tablehelpers import TableCollector
+from geditdone.tablecollector import TableCollector
 
 def list_deceased(parser):
     individuals = GedcomDatabase.individuals

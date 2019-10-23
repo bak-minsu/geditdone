@@ -1,5 +1,5 @@
 from geditdone.gedcom_db import GedcomDatabase
-from geditdone.tablehelpers import TableCollector
+from geditdone.tablecollector import TableCollector
 from prettytable import PrettyTable
 
 def older_siblings_by_age(parser):
