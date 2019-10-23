@@ -4,7 +4,7 @@ class TableCollector:
     tables = {}
 
     @classmethod
-    def add_table(cls, dataframe, table_name):
+    def add_dataframe(cls, dataframe, table_name):
         pt = PrettyTable()
         columns = list(dataframe.columns) 
         columns.remove("reference") # Reference to individual/family class is unnecessary

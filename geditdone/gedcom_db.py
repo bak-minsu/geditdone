@@ -12,8 +12,8 @@ class GedcomDatabase:
         # To understand how to use these, look up "Pandas Dataframes"
         GedcomDatabase.gen_individual_dict(parser.individuals)
         GedcomDatabase.gen_families_dict(parser.families)
-        TableCollector.add_table(GedcomDatabase.individuals, "Individuals")
-        TableCollector.add_table(GedcomDatabase.families, "Families")
+        TableCollector.add_dataframe(GedcomDatabase.individuals, "Individuals")
+        TableCollector.add_dataframe(GedcomDatabase.families, "Families")
 
     @classmethod
     def gen_individual_dict(cls, individuals):
