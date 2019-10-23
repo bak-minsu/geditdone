@@ -8,15 +8,9 @@ class Validator:
         """Initializes the class with families and individuals"""
         self.parser = parser
 
-    def get_argument_count(self, function):
-        """Gets the total number of arguments in a function"""
-        return len(inspect.getargspec(function)[0])
-
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
-            errors = None
-            argument_count = self.get_argument_count(story)
             story(self.parser)
 
     def get_all_stories(self):
