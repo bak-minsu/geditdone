@@ -26,7 +26,7 @@ class ErrorCollector:
 
     @classmethod
     def add_errors(cls, error_list):
-        if error_list != None and len(error_list) > 0:
+        if len(error_list) > 0:
             ErrorCollector.errors += error_list
     
     @classmethod

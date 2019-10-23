@@ -17,6 +17,7 @@ class Validator:
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
+            # print(story.__name__)
             argument_count = self.get_argument_count(story)
             errors = None
             if argument_count == 1:

@@ -30,12 +30,15 @@ def get_combined_suite(sprint_list):
     suites = [sprint1_suite(), sprint2_suite(), sprint3_suite()]
     for sprint_number in sprint_list:
         sprints_to_run.append(suites[sprint_number-1])
-    return unittest.TestSuite(suites)
+    return unittest.TestSuite(sprints_to_run)
 
 def get_all_tests():
-    return get_combined_suite([1,2,3])
+    return unittest.TestLoader().discover("./tests/stories/", pattern="US*.py", top_level_dir="./")
 
-def run_tests(sprint_list):
-    combined = get_combined_suite(sprint_list)    
+def run_tests(all=True, sprint_list=None):
+    if not all:
+        combined = get_combined_suite(sprint_list)    
+    else:
+        combined = get_all_tests()
     runner = unittest.TextTestRunner(verbosity=2)
     return runner.run(combined) # Returns TestResult class
