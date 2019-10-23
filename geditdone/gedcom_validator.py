@@ -8,25 +8,21 @@ class Validator:
     def __init__(self, parser):
         """Initializes the class with families and individuals"""
         self.parser = parser
-        self.db = GedcomDatabase(parser)
 
     def get_argument_count(self, function):
         """Gets the total number of arguments in a function"""
         return len(inspect.getargspec(function)[0])
 
     def prettytable(self):
-        self.db.print_prettytable()
+        pass
 
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
             errors = None
             argument_count = self.get_argument_count(story)
-            if argument_count == 1:
-                errors = story(self.parser)
-            elif argument_count == 2:
-                errors = story(self.parser, self.db)
-            self.invalid(story, errors)
+            errors = story(self.parser)
+            self.invalid(errors)
 
     def get_all_stories(self):
         """Gets all functions in stories folder"""
@@ -43,9 +39,8 @@ class Validator:
         # print(functions)
         return functions
 
-    def invalid(self, function, errors):
+    def invalid(self, errors):
         """What to do when the validator returns invalid"""
-        # print(function.__name__)
         if len(errors) > 0:
             for error in errors:
                 print(error)

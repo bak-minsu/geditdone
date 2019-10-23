@@ -1,6 +1,6 @@
 from geditdone.gedcom_objects import GedcomError
 
-def male_last_name(parser, db):
+def male_last_name(parser):
     errors = []
 
     for family in parser.families.values():

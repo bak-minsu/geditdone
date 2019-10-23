@@ -2,6 +2,8 @@
 # I pledge my honor that I have abided by the Stevens Honor System.
 # Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Park
 
+from geditdone.gedcom_db import GedcomDatabase
+from geditdone.tablehelpers import TableHelpers
 import geditdone.gedcom_parser as gedcom_parser
 import geditdone.gedcom_validator as gedcom_validator
 import tests.gedcom_test as gedcom_test
@@ -25,6 +27,9 @@ def main():
             with open(arg, 'r') as inputFile:
                 parser = gedcom_parser.GedcomParser()
                 parser.parse(inputFile)
+                GedcomDatabase.initialize(parser)
+                TableHelpers.print_table(GedcomDatabase.individuals, "Individuals")
+                TableHelpers.print_table(GedcomDatabase.families, "Families")
                 validator = gedcom_validator.Validator(parser)
                 validator.prettytable()
                 validator.validate()

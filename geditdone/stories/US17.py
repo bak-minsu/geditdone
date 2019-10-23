@@ -1,6 +1,7 @@
+from geditdone.gedcom_db import GedcomDatabase
 from geditdone.gedcom_objects import GedcomError
 
-def no_marriages_to_children(parser, db):
+def no_marriages_to_children(parser):
     errors = []
 
     for individual in parser.individuals.values():
@@ -10,9 +11,10 @@ def no_marriages_to_children(parser, db):
             mother = family.wife_id
             father = family.husband_id
             myself = individual.id
-            married_to_parent = db.families.loc[
-                (db.families["wife_id"] == mother) & (db.families["husband_id"] == myself) |
-                (db.families["wife_id"] == myself) & (db.families["husband_id"] == father) 
+            fam_df = GedcomDatabase.families
+            married_to_parent = fam_df.loc[
+                (fam_df["wife_id"] == mother) & (fam_df["husband_id"] == myself) |
+                (fam_df["wife_id"] == myself) & (fam_df["husband_id"] == father) 
                 ]
             for family in married_to_parent.iterrows():
                 family = family[1]

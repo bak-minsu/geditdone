@@ -1,6 +1,7 @@
 from geditdone.gedcom_objects import GedcomError
+from geditdone.gedcom_db import GedcomDatabase
 
-def no_bigamy(parser, db):
+def no_bigamy(parser):
     """Throws an error when poligamy is found"""
     errors = []
     
@@ -8,9 +9,9 @@ def no_bigamy(parser, db):
         intervals = []
         for index, duplicate in duplicates.items():
             if duplicate:
-                family_object = db.families.iloc[index]
+                family_object = GedcomDatabase.families.iloc[index]
                 interval = {
-                            "ID": eval("db.families.iloc[index].{}_id".format(wife_or_husband)),
+                            "ID": eval("GedcomDatabase.families.iloc[index].{}_id".format(wife_or_husband)),
                             "married": family_object.married, 
                             "divorced": family_object.divorced,
                             "reference": family_object.reference,
@@ -43,13 +44,13 @@ def no_bigamy(parser, db):
             ID_outer = interval_outer["ID"]
             for interval_inner in intervals[i+1:]:
                 if interval_inner["ID"] == ID_outer and intervals_intersect(interval_outer, interval_inner):
-                    individual = db.individuals[db.individuals.ID == ID_outer].iloc[0].reference
+                    individual = GedcomDatabase.individuals[GedcomDatabase.individuals.ID == ID_outer].iloc[0].reference
                     family1 = interval_inner["reference"].id
                     family2 = interval_outer["reference"].id
                     errorMessage = f'Bigamy between Family {family1} and Family {family2}'
                     errors.append(GedcomError(GedcomError.ErrorType.error, 'US11', individual, errorMessage))
 
-    fam_df = db.families
+    fam_df = GedcomDatabase.families
     husband_duplicates = fam_df.duplicated(subset=["husband_id"], keep=False)
     wife_duplicates = fam_df.duplicated(subset=["wife_id"], keep=False)
 

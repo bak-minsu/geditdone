@@ -1,6 +1,6 @@
 from geditdone.gedcom_objects import GedcomError
 
-def correct_gender_for_role(parser,db):
+def correct_gender_for_role(parser):
     errors = []
 
     for family in parser.families.values():

@@ -1,16 +1,20 @@
 import pandas as pd
-from prettytable import PrettyTable
+from geditdone.tablehelpers import TableHelpers
 
 class GedcomDatabase:
 
-    def __init__(self, parser):
+    individuals = None
+    families = None
+
+    @classmethod
+    def initialize(cls, parser):
         """Individual pandas dataframes for individual and family"""
         # To understand how to use these, look up "Pandas Dataframes"
-        self.individuals = self.gen_individual_dict(parser.individuals)
-        self.families = self.gen_families_dict(parser.families)
-        
-    def gen_individual_dict(self, individuals):
+        GedcomDatabase.gen_individual_dict(parser.individuals)
+        GedcomDatabase.gen_families_dict(parser.families)
 
+    @classmethod
+    def gen_individual_dict(cls, individuals):
         all_ids = []
         all_names = []
         all_sexes = []
@@ -40,9 +44,10 @@ class GedcomDatabase:
             "fams": all_fams,
             "reference": all_references,    # Reference to the Individual class
         }
-        return pd.DataFrame(data)
+        GedcomDatabase.individuals = pd.DataFrame(data)
 
-    def gen_families_dict(self, families):
+    @classmethod
+    def gen_families_dict(cls, families):
 
         all_ids = []
         all_children = []
@@ -70,21 +75,8 @@ class GedcomDatabase:
             "children": all_children,
             "reference": all_references,    # Reference to the Family class
         }
-        return pd.DataFrame(data)
-    
-    def print_table(self, dataframe, table_name):
-        pt = PrettyTable()
-        columns = list(dataframe.columns) 
-        columns.remove("reference") # Reference to individual/family class is unnecessary
-        pt.field_names = columns
-        for _, row in dataframe.iterrows():
-            row_items = []
-            for column in columns:
-                row_items.append(row[column])
-            pt.add_row(row_items)
-        print(table_name)
-        print(pt)
+        GedcomDatabase.families = pd.DataFrame(data)
 
     def print_prettytable(self):
-        self.print_table(self.individuals, "Individuals")
-        self.print_table(self.families, "Families")
+        TableHelpers.print_table(self.individuals, "Individuals")
+        TableHelpers.print_table(self.families, "Families")
