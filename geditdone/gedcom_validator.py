@@ -1,17 +1,29 @@
 import sys
 import inspect
-from geditdone.stories import *
+from geditdone.error import ErrorCollector
 from geditdone.gedcom_db import GedcomDatabase
+from geditdone.stories import *
 
 class Validator:
-    def __init__(self, parser):
+    def __init__(self, parser, db):
         """Initializes the class with families and individuals"""
         self.parser = parser
+        self.db = db
+
+    def get_argument_count(self, function):
+        """Gets the total number of arguments in a function"""
+        return len(inspect.getargspec(function)[0])
 
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
-            story(self.parser)
+            argument_count = self.get_argument_count(story)
+            errors = None
+            if argument_count == 1:
+                errors = story(self.parser)
+            elif argument_count == 2:
+                errors = story(self.parser, self.db)
+            ErrorCollector.add_errors(errors)
 
     def get_all_stories(self):
         """Gets all functions in stories folder"""

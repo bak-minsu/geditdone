@@ -1,16 +1,16 @@
-from geditdone.error import ErrorCollector, ErrorType
-from geditdone.gedcom_db import GedcomDatabase
+from geditdone.error import GedcomError, ErrorType
 
-def no_bigamy(parser):
+def no_bigamy(parser, db):
     """Throws an error when poligamy is found"""
+    errors = []
     
     def get_intervals_from_duplicates(duplicates, wife_or_husband):
         intervals = []
         for index, duplicate in duplicates.items():
             if duplicate:
-                family_object = GedcomDatabase.families.iloc[index]
+                family_object = db.families.iloc[index]
                 interval = {
-                            "ID": eval("GedcomDatabase.families.iloc[index].{}_id".format(wife_or_husband)),
+                            "ID": eval("db.families.iloc[index].{}_id".format(wife_or_husband)),
                             "married": family_object.married, 
                             "divorced": family_object.divorced,
                             "reference": family_object.reference,
@@ -43,13 +43,13 @@ def no_bigamy(parser):
             ID_outer = interval_outer["ID"]
             for interval_inner in intervals[i+1:]:
                 if interval_inner["ID"] == ID_outer and intervals_intersect(interval_outer, interval_inner):
-                    individual = GedcomDatabase.individuals[GedcomDatabase.individuals.ID == ID_outer].iloc[0].reference
+                    individual = db.individuals[db.individuals.ID == ID_outer].iloc[0].reference
                     family1 = interval_inner["reference"].id
                     family2 = interval_outer["reference"].id
                     errorMessage = f'Bigamy between Family {family1} and Family {family2}'
-                    ErrorCollector.add_error(ErrorType.error, 'US11', individual, errorMessage)
+                    errors.append(GedcomError(ErrorType.error, 'US11', individual, errorMessage))
 
-    fam_df = GedcomDatabase.families
+    fam_df = db.families
     husband_duplicates = fam_df.duplicated(subset=["husband_id"], keep=False)
     wife_duplicates = fam_df.duplicated(subset=["wife_id"], keep=False)
 
@@ -57,3 +57,5 @@ def no_bigamy(parser):
     wife_intervals = get_intervals_from_duplicates(wife_duplicates, "wife")
     poligamy_exists(husband_intervals)
     poligamy_exists(wife_intervals)
+
+    return errors

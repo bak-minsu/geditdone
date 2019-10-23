@@ -4,9 +4,9 @@
 
 from geditdone.error import ErrorCollector
 from geditdone.gedcom_db import GedcomDatabase
+from geditdone.gedcom_validator import Validator
 from geditdone.tablecollector import TableCollector
 import geditdone.gedcom_parser as gedcom_parser
-import geditdone.gedcom_validator as gedcom_validator
 import tests.gedcom_test as gedcom_test
 import sys
 import os
@@ -28,8 +28,8 @@ def main():
             with open(arg, 'r') as inputFile:
                 parser = gedcom_parser.GedcomParser()
                 parser.parse(inputFile)
-                GedcomDatabase.initialize(parser)
-                validator = gedcom_validator.Validator(parser)
+                db = GedcomDatabase(parser)
+                validator = Validator(parser, db)
                 validator.validate()
                 TableCollector.print_all()
                 ErrorCollector.print_all()

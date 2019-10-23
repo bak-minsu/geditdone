@@ -18,7 +18,7 @@ class MaleLastNames(unittest.TestCase):
         }
         parser = TestParser(individuals, families)
         db = TestDatabase(individuals, families)
-        error_count = len(US16.male_last_name(parser, db))
+        error_count = len(US16.male_last_name(parser))
         self.assertEqual(error_count, 0)
         pass
 

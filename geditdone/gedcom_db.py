@@ -6,17 +6,16 @@ class GedcomDatabase:
     individuals = None
     families = None
 
-    @classmethod
-    def initialize(cls, parser):
+    def __init__(self, parser):
         """Individual pandas dataframes for individual and family"""
         # To understand how to use these, look up "Pandas Dataframes"
-        GedcomDatabase.gen_individual_dict(parser.individuals)
-        GedcomDatabase.gen_families_dict(parser.families)
-        TableCollector.add_dataframe(GedcomDatabase.individuals, "Individuals")
-        TableCollector.add_dataframe(GedcomDatabase.families, "Families")
+        self.individuals = GedcomDatabase.gen_individuals(parser.individuals)
+        self.families = GedcomDatabase.gen_families(parser.families)
+        TableCollector.add_dataframe(self.individuals, "Individuals")
+        TableCollector.add_dataframe(self.families, "Families")
 
     @classmethod
-    def gen_individual_dict(cls, individuals):
+    def gen_individuals(cls, individuals):
         all_ids = []
         all_names = []
         all_sexes = []
@@ -46,10 +45,10 @@ class GedcomDatabase:
             "fams": all_fams,
             "reference": all_references,    # Reference to the Individual class
         }
-        GedcomDatabase.individuals = pd.DataFrame(data)
+        return pd.DataFrame(data)
 
     @classmethod
-    def gen_families_dict(cls, families):
+    def gen_families(cls, families):
 
         all_ids = []
         all_children = []
@@ -77,4 +76,4 @@ class GedcomDatabase:
             "children": all_children,
             "reference": all_references,    # Reference to the Family class
         }
-        GedcomDatabase.families = pd.DataFrame(data)
+        return pd.DataFrame(data)

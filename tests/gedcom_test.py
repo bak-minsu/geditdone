@@ -22,15 +22,18 @@ def sprint1_suite():
 def sprint2_suite():
     return get_suite_for_sprint("sprint2")
 
+def sprint3_suite():
+    return get_suite_for_sprint("sprint3")
+
 def get_combined_suite(sprint_list):
     sprints_to_run = []
-    suites = [sprint1_suite(), sprint2_suite()]
+    suites = [sprint1_suite(), sprint2_suite(), sprint3_suite()]
     for sprint_number in sprint_list:
         sprints_to_run.append(suites[sprint_number-1])
     return unittest.TestSuite(suites)
 
 def get_all_tests():
-    return get_combined_suite([1,2])
+    return get_combined_suite([1,2,3])
 
 def run_tests(sprint_list):
     combined = get_combined_suite(sprint_list)    

@@ -23,6 +23,11 @@ class ErrorCollector:
     def add_error(cls, errorType, storyId, errorObject, errorMessage):
         error = GedcomError(errorType, storyId, errorObject, errorMessage)
         ErrorCollector.errors.append(error)
+
+    @classmethod
+    def add_errors(cls, error_list):
+        if error_list != None and len(error_list) > 0:
+            ErrorCollector.errors += error_list
     
     @classmethod
     def print_all(cls):

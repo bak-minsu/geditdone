@@ -1,4 +1,4 @@
-from geditdone.error import ErrorCollector, ErrorType
+from geditdone.error import GedcomError, ErrorType
 from geditdone.datehelpers import DateHelpers
 from datetime import date
 from functools import reduce
@@ -7,6 +7,7 @@ def sibling_spacing(parser):
     """Returns errors for siblings who are not twins born less than 8 months apart"""
     individuals = parser.individuals
     families = parser.families
+    errors = []
 
     for fam in families.values():
         if len(fam.child_ids) > 1:
@@ -18,4 +19,6 @@ def sibling_spacing(parser):
                 lessThan9Months = DateHelpers.dates_within(children[i-1].birth, children[i].birth, 8, 'months')
                 if lessThan9Months and not twins:
                     errorMessage = f'Siblings {children[i-1]}, {children[i]} born less than 8 months apart {children[i-1].birth}, {children[i].birth}'
-                    ErrorCollector.add_error(ErrorType.error, 'US13', fam, errorMessage)
+                    errors.append(GedcomError(ErrorType.error, 'US13', fam, errorMessage))
+
+    return errors

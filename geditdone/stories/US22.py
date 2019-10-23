@@ -7,4 +7,4 @@ def unique_ids(parser):
 
     for family in parser.families.values():
         pass
-        #errors.append(GedcomError(GedcomError.ErrorType.error, 'US21', family, errorMessage))
+        #errors.append(GedcomError(ErrorType.error, 'US21', family, errorMessage))

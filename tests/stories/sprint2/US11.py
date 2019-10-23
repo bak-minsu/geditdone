@@ -64,8 +64,6 @@ class NoBigamy(unittest.TestCase):
         parser = TestParser(individuals, families)
         db = TestDatabase(individuals, families)
         error_count = len(US11.no_bigamy(parser, db))
-        for error in US11.no_bigamy(parser, db):
-            print(error)
         self.assertEqual(error_count, 0)
 
     def runTest(self):

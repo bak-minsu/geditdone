@@ -1,4 +1,4 @@
-from geditdone.error import ErrorCollector, ErrorType
+from geditdone.error import GedcomError, ErrorType
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
@@ -7,6 +7,7 @@ def birth_before_parent_death(parser):
     and before 9 months after death of father"""
     individuals = parser.individuals
     families = parser.families
+    errors = []
 
     for fam in families.values():
         if fam.child_ids != []:
@@ -17,10 +18,11 @@ def birth_before_parent_death(parser):
                         individuals.get(fam.wife_id).death is not None and \
                         individuals.get(fam.wife_id).death <= child.birth:
                             errorMessage = f'Mother {individuals.get(fam.wife_id).name} died before child was born {child.birth}'
-                            ErrorCollector.add_error(ErrorType.error, 'US09', fam, errorMessage)
+                            errors.append(GedcomError(ErrorType.error, 'US09', fam, errorMessage))
                     if fam.husband_id is not None and \
                         individuals.get(fam.husband_id).death is not None:
                             allowableDiff = individuals.get(fam.husband_id).death + relativedelta(months=+9)
                             if allowableDiff <= child.birth:
                                 errorMessage = f'Father {individuals.get(fam.husband_id).name} died more than 9 months before child was born {child.birth}'
-                                ErrorCollector.add_error(ErrorType.error, 'US09', fam, errorMessage)
+                                errors.append(GedcomError(ErrorType.error, 'US09', fam, errorMessage))
+    return errors

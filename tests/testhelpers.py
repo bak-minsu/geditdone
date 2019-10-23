@@ -7,7 +7,5 @@ class TestParser:
 
 class TestDatabase:
     def __init__(self, individuals, families):
-        parser = TestParser(individuals, families)
-        db = GedcomDatabase(parser)
-        self.individuals = db.individuals
-        self.families = db.families
+        self.individuals = GedcomDatabase.gen_individuals(individuals)
+        self.families = GedcomDatabase.gen_families(families)
