@@ -1,7 +1,6 @@
-from geditdone.gedcom_objects import GedcomError
+from geditdone.error import ErrorCollector, ErrorType
 
 def male_last_name(parser):
-    errors = []
 
     for family in parser.families.values():
         father = family.husband_id
@@ -21,6 +20,4 @@ def male_last_name(parser):
                         child_last_name = individual.name.split()[1]
                         if child_last_name != father_last_name:
                             errorMessage = f'Males ({individual.name}) in {family} do not have the same last name'
-                            errors.append(GedcomError(GedcomError.ErrorType.error, 'US16', family, errorMessage))
-
-    return errors
+                            ErrorCollector.add_error(ErrorType.error, 'US16', family, errorMessage)

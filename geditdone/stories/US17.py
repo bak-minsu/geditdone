@@ -1,8 +1,7 @@
 from geditdone.gedcom_db import GedcomDatabase
-from geditdone.gedcom_objects import GedcomError
+from geditdone.error import ErrorCollector, ErrorType
 
 def no_marriages_to_children(parser):
-    errors = []
 
     for individual in parser.individuals.values():
         famc = individual.famc
@@ -23,5 +22,4 @@ def no_marriages_to_children(parser):
                     parent = family.wife_id
                 else: parent = family.husband_id
                 errorMessage = f'Parent {parent} married child {myself}'
-                errors.append(GedcomError(GedcomError.ErrorType.error, 'US17', family.reference, errorMessage))
-    return errors
+                ErrorCollector.add_error(ErrorType.error, 'US17', family.reference, errorMessage)

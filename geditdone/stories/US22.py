@@ -1,7 +1,6 @@
-from geditdone.gedcom_objects import GedcomError
+from geditdone.error import ErrorCollector, ErrorType
 
 def unique_ids(parser):
-    errors = []
 
     for individual in parser.individuals.values():
         pass
@@ -9,5 +8,3 @@ def unique_ids(parser):
     for family in parser.families.values():
         pass
         #errors.append(GedcomError(GedcomError.ErrorType.error, 'US21', family, errorMessage))
-
-    return errors

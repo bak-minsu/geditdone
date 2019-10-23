@@ -2,8 +2,9 @@
 # I pledge my honor that I have abided by the Stevens Honor System.
 # Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Park
 
+from geditdone.error import ErrorCollector
 from geditdone.gedcom_db import GedcomDatabase
-from geditdone.tablehelpers import TableHelpers
+from geditdone.tablehelpers import TableHelpers, TableCollector
 import geditdone.gedcom_parser as gedcom_parser
 import geditdone.gedcom_validator as gedcom_validator
 import tests.gedcom_test as gedcom_test
@@ -31,8 +32,9 @@ def main():
                 TableHelpers.print_table(GedcomDatabase.individuals, "Individuals")
                 TableHelpers.print_table(GedcomDatabase.families, "Families")
                 validator = gedcom_validator.Validator(parser)
-                validator.prettytable()
                 validator.validate()
+                TableCollector.print_all()
+                ErrorCollector.print_all()
 
 if __name__ == "__main__":
     main()

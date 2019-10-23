@@ -1,9 +1,8 @@
-from geditdone.gedcom_objects import GedcomError
+from geditdone.error import ErrorCollector, ErrorType
 from geditdone.gedcom_db import GedcomDatabase
 
 def no_bigamy(parser):
     """Throws an error when poligamy is found"""
-    errors = []
     
     def get_intervals_from_duplicates(duplicates, wife_or_husband):
         intervals = []
@@ -48,7 +47,7 @@ def no_bigamy(parser):
                     family1 = interval_inner["reference"].id
                     family2 = interval_outer["reference"].id
                     errorMessage = f'Bigamy between Family {family1} and Family {family2}'
-                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US11', individual, errorMessage))
+                    ErrorCollector.add_error(ErrorType.error, 'US11', individual, errorMessage)
 
     fam_df = GedcomDatabase.families
     husband_duplicates = fam_df.duplicated(subset=["husband_id"], keep=False)
@@ -58,5 +57,3 @@ def no_bigamy(parser):
     wife_intervals = get_intervals_from_duplicates(wife_duplicates, "wife")
     poligamy_exists(husband_intervals)
     poligamy_exists(wife_intervals)
-
-    return errors

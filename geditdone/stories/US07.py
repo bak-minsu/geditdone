@@ -1,10 +1,9 @@
-from geditdone.gedcom_objects import GedcomError
+from geditdone.error import ErrorCollector, ErrorType
 from datetime import datetime
 
 def less_than_150_years_old(parser):
     """Makes sure nobody reaches 150 years old"""
     individuals = parser.individuals
-    errors = []
 
     for individual in individuals.values():
         # print("---------------------------------------------------------")
@@ -19,7 +18,7 @@ def less_than_150_years_old(parser):
                 age = individual_death_year-individual_birth_year
                 if (age >= 150):
                     errorMessage = f'The person is more than 150 years old, at {age} years old'
-                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US07', individual, errorMessage))
+                    ErrorCollector.add_error(ErrorType.error, 'US07', individual, errorMessage)
             # if death is not true (still alive)
             else:
                 current_date_year=datetime.today().year
@@ -27,6 +26,4 @@ def less_than_150_years_old(parser):
                 age = current_date_year-individual_birth_year
                 if (age >= 150):
                     errorMessage = f'The person is more than 150 years old, at {age} years old'
-                    errors.append(GedcomError(GedcomError.ErrorType.error, 'US07', individual, errorMessage))
-
-    return errors
+                    ErrorCollector.add_error(ErrorType.error, 'US07', individual, errorMessage)

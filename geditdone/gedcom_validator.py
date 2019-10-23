@@ -1,6 +1,5 @@
 import sys
 import inspect
-from geditdone.gedcom_objects import GedcomError
 from geditdone.stories import *
 from geditdone.gedcom_db import GedcomDatabase
 
@@ -13,16 +12,12 @@ class Validator:
         """Gets the total number of arguments in a function"""
         return len(inspect.getargspec(function)[0])
 
-    def prettytable(self):
-        pass
-
     def validate(self):
         stories = self.get_all_stories()
         for story in stories:
             errors = None
             argument_count = self.get_argument_count(story)
-            errors = story(self.parser)
-            self.invalid(errors)
+            story(self.parser)
 
     def get_all_stories(self):
         """Gets all functions in stories folder"""
@@ -38,9 +33,3 @@ class Validator:
 
         # print(functions)
         return functions
-
-    def invalid(self, errors):
-        """What to do when the validator returns invalid"""
-        if len(errors) > 0:
-            for error in errors:
-                print(error)
