@@ -1,4 +1,4 @@
-from geditdone.error import GedcomError, ErrorType
+from geditdone.error_objects import GedcomError, ErrorType
 
 def divorce_before_death(parser):
     """Makes sure divorces come before death"""

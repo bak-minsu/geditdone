@@ -1,4 +1,4 @@
-from geditdone.error import GedcomError, ErrorType
+from geditdone.error_objects import GedcomError, ErrorType
 from datetime import datetime
 
 def less_than_150_years_old(parser):

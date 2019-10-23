@@ -1,4 +1,4 @@
-from geditdone.error import GedcomError, ErrorType
+from geditdone.error_objects import GedcomError, ErrorType
 from geditdone.datehelpers import DateHelpers
 from datetime import date
 from functools import reduce

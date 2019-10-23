@@ -1,5 +1,4 @@
 import pandas as pd
-from geditdone.tablecollector import TableCollector
 
 class GedcomDatabase:
 
@@ -11,8 +10,6 @@ class GedcomDatabase:
         # To understand how to use these, look up "Pandas Dataframes"
         self.individuals = GedcomDatabase.gen_individuals(parser.individuals)
         self.families = GedcomDatabase.gen_families(parser.families)
-        TableCollector.add_dataframe(self.individuals, "Individuals")
-        TableCollector.add_dataframe(self.families, "Families")
 
     @classmethod
     def gen_individuals(cls, individuals):

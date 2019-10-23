@@ -1,14 +1,20 @@
 import sys
 import inspect
-from geditdone.error import ErrorCollector
+from geditdone.error_objects import GedcomError
 from geditdone.gedcom_db import GedcomDatabase
 from geditdone.stories import *
+from geditdone.tablehelpers import TableHelpers
+from prettytable import PrettyTable
 
 class Validator:
     def __init__(self, parser, db):
         """Initializes the class with families and individuals"""
         self.parser = parser
         self.db = db
+        self.errors = []
+        self.tables = []
+        self.tables.append(TableHelpers.dataframe2table(self.db.individuals, "Individuals"))
+        self.tables.append(TableHelpers.dataframe2table(self.db.families, "Families"))
 
     def get_argument_count(self, function):
         """Gets the total number of arguments in a function"""
@@ -19,12 +25,18 @@ class Validator:
         for story in stories:
             # print(story.__name__)
             argument_count = self.get_argument_count(story)
-            errors = None
             if argument_count == 1:
-                errors = story(self.parser)
+                self.process_return_value(story(self.parser))
             elif argument_count == 2:
-                errors = story(self.parser, self.db)
-            ErrorCollector.add_errors(errors)
+                self.process_return_value(story(self.parser, self.db))
+
+    def process_return_value(self, return_values):
+        for value in return_values:
+            if isinstance(value, GedcomError):
+                self.errors.append(value)
+            elif isinstance(value, PrettyTable):
+                self.tables.append(value)
+
 
     def get_all_stories(self):
         """Gets all functions in stories folder"""
@@ -40,3 +52,11 @@ class Validator:
 
         # print(functions)
         return functions
+
+    def print_errors(self):
+        for error in self.errors:
+            print(error)
+
+    def print_tables(self):
+        for table in self.tables:
+            print(table)

@@ -1,4 +1,4 @@
-from geditdone.error import GedcomError, ErrorType
+from geditdone.error_objects import GedcomError, ErrorType
 from datetime import date
 
 def dates_before_current_date(parser):

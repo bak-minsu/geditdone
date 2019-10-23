@@ -1,4 +1,4 @@
-from geditdone.error import GedcomError, ErrorType
+from geditdone.error_objects import GedcomError, ErrorType
 
 def no_bigamy(parser, db):
     """Throws an error when poligamy is found"""

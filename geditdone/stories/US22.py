@@ -1,4 +1,4 @@
-from geditdone.error import ErrorCollector, ErrorType
+from geditdone.error_objects import GedcomError, ErrorType
 
 def unique_ids(parser):
     errors = []
