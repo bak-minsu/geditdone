@@ -155,14 +155,12 @@ class GedcomParser:
 
             if tagInstance.tag == 'INDI':
                 if id in self.individuals:
-                    # TODO handle error when ID already exists
-                    print('ERROR: Individual with ID %s already exists' % id)
+                    self.individuals[id].duplicates += 1
                 else:
                     self.individuals[id] = Individual(id)
             elif tagInstance.tag == 'FAM':
                 if id in self.families:
-                    # TODO handle error when ID already exists
-                    print('ERROR: Family with ID %s already exists' % id)
+                    self.families[id].duplicates += 1
                 else:
                     self.families[id] = Family(id)
             # TODO do something with NOTE, HEAD, and TRLR

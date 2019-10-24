@@ -1,6 +1,6 @@
 class Individual:
 
-    def __init__(self, id, name=None, sex=None, birth=None, death=None, famc=None, fams=None):
+    def __init__(self, id, name=None, sex=None, birth=None, death=None, famc=None, fams=None, duplicates=0):
         self.id = id
         self.name = name
         self.sex = sex
@@ -8,19 +8,21 @@ class Individual:
         self.death = death
         self.famc = famc
         self.fams = fams
+        self.duplicates = duplicates
 
     def __str__(self):
         return '%s %s' % (self.id, self.name)
 
 class Family:
 
-    def __init__(self, id, child_ids=[], husband_id=None, wife_id=None, married=None, divorced=None):
+    def __init__(self, id, child_ids=[], husband_id=None, wife_id=None, married=None, divorced=None, duplicates=0):
         self.id = id
         self.child_ids = child_ids
         self.husband_id = husband_id
         self.wife_id = wife_id
         self.married = married
         self.divorced = divorced
+        self.duplicates = duplicates
 
     def __str__(self):
         return 'FAM %s HUSB %s WIFE %s' % (self.id, self.husband_id, self.wife_id)
