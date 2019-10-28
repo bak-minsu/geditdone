@@ -1,4 +1,6 @@
 from prettytable import PrettyTable
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 class TableHelpers:
 
@@ -16,3 +18,9 @@ class TableHelpers:
                 row_items.append(row[column])
             pt.add_row(row_items)               # Add the list-row to PrettyTable
         return pt
+
+    def calculateAge(date, reference):
+        if reference is not None:
+            return relativedelta(reference, date).years
+        else:
+            return relativedelta(date.today(), date).years
