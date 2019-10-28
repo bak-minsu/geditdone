@@ -16,3 +16,18 @@ class TableHelpers:
                 row_items.append(row[column])
             pt.add_row(row_items)               # Add the list-row to PrettyTable
         return pt
+
+    @classmethod
+    def get_row_count(cls, pt):
+        """Takes a prettytable as input and returns its rowcount"""
+        count = 0
+        for _ in pt:
+            count += 1
+        return count
+
+    @classmethod
+    def get_row_field_value(cls, row, field):
+        row.border = False
+        row.header = False
+        row._title = None
+        return row.get_string(fields=[field]).strip()
