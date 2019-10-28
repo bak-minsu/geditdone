@@ -59,4 +59,5 @@ class Validator:
 
     def print_tables(self):
         for table in self.tables:
+            print(table.title)
             print(table)

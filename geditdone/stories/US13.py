@@ -1,7 +1,6 @@
 from geditdone.error_objects import GedcomError, ErrorType
 from geditdone.datehelpers import DateHelpers
 from datetime import date
-from functools import reduce
 
 def sibling_spacing(parser):
     """Returns errors for siblings who are not twins born less than 8 months apart"""

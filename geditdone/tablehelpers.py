@@ -1,4 +1,6 @@
 from prettytable import PrettyTable
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 class TableHelpers:
 
@@ -31,3 +33,10 @@ class TableHelpers:
         row.header = False
         row._title = None
         return row.get_string(fields=[field]).strip()
+    
+    @classmethod
+    def calculateAge(cls, date, reference):
+        if reference is not None:
+            return relativedelta(reference, date).years
+        else:
+            return relativedelta(date.today(), date).years
