@@ -11,7 +11,6 @@ def list_ages(parser, db):
     ages = []
     for indiv in parser.individuals.values():
         if indiv.birth is not None:
-            print(indiv.birth)
             ages.append(TableHelpers.calculateAge(indiv.birth, None))
         else:
             ages.append(None)
