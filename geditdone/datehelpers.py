@@ -1,3 +1,4 @@
+from dateutil.relativedelta import relativedelta
 
 class DateHelpers:
     @classmethod
@@ -15,3 +16,10 @@ class DateHelpers:
             limit is a number
             units is a string in ('days','months','years')'''
         return DateHelpers.date_diff(date1, date2, units) <= limit
+
+    @classmethod
+    def calculate_age(cls, date, reference):
+        if reference is not None:
+            return relativedelta(reference, date).years
+        else:
+            return relativedelta(date.today(), date).years

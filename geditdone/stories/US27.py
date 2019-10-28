@@ -1,5 +1,6 @@
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from geditdone.datehelpers import DateHelpers
 from geditdone.tablehelpers import TableHelpers
 import pandas as pd
 
@@ -11,7 +12,7 @@ def list_ages(parser, db):
     ages = []
     for indiv in parser.individuals.values():
         if indiv.birth is not None:
-            ages.append(TableHelpers.calculateAge(indiv.birth, None))
+            ages.append(DateHelpers.calculate_age(indiv.birth, None))
         else:
             ages.append(None)
     individuals = db.individuals
