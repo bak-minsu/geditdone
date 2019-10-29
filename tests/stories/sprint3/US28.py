@@ -5,7 +5,7 @@ from geditdone.gedcom_objects import Family, Individual
 from geditdone.stories import US28
 from geditdone.tablehelpers import TableHelpers
 
-class ListDeceased(unittest.TestCase):
+class OrderSiblingsByAge(unittest.TestCase):
 
     def no_siblings(self):
         individuals = {
