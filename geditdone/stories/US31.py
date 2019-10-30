@@ -1,25 +1,19 @@
 from geditdone.tablehelpers import TableHelpers
 from datetime import datetime
+from prettytable import PrettyTable
+from geditdone.datehelpers import DateHelpers
 #from dateutil.relativedelta import relativedelta
 
 # over 30 and never married
 def list_living_single(parser, db):
-    tables = []
-    #individuals = db.individuals
-    individuals = parser.individuals
 
-    single_individuals = []
+    my_table = PrettyTable()
+    my_table.field_names = ["id", "name", "sex", "birth", "death", "famc","fams"]
 
+    for person in parser.individuals.values():
 
-    for individual in individuals:
-        individual_birth_year=(datetime.strptime(str(individual.birth), '%Y-%m-%d')).year
-        individual_death_year=(datetime.strptime(str(individual.death), '%Y-%m-%d')).year
-        age = individual_death_year-individual_birth_year
-        if (age >= 30):
-            # if no spouse found, add name to list of names
-            if individual.fams is None:
-                single_individuals.append(individual.name)
+        age = DateHelpers.calculate_age(person.birth, None)
 
-    pt = TableHelpers.dataframe2table(single_individuals, "Living Single Individuals")
-    tables.append(pt)
-    return tables
+        if ((person.fams is None) and (person.death is None) and (age >= 30)):
+            my_table.add_row([person.id, person.name, person.sex, person.birth, person.death, person.famc, person.fams])
+    return my_table

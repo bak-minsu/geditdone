@@ -1,23 +1,14 @@
 from geditdone.tablehelpers import TableHelpers
 from geditdone.error_objects import GedcomError, ErrorType
+from prettytable import PrettyTable
+
 
 def list_living_married(parser, db):
-    tables = []
-    #individuals = db.individuals
-    individuals = parser.individuals
-    families = parser.families
 
-    # store captured living married individuals
-    married_individuals = []
+    my_table = PrettyTable()
+    my_table.field_names = ["id", "name", "sex", "birth", "death", "famc","fams"]
 
-    for fam in families.values():
-        if fam.married:
-            # find wives and husbands and add to list of names
-            for individual in individuals.values():
-                if (individual.id == individuals.get(fam.wife_id) or individual.id == individuals.get(fam.husband_id)):
-                    married_individuals.append(individual.name)
-    #return(married_individuals)
-
-    pt = TableHelpers.dataframe2table(married_individuals, "Living Married Individuals")
-    tables.append(pt)
-    return tables
+    for person in parser.individuals.values():
+        if ((person.fams is not None) and (person.death is None)):
+            my_table.add_row([person.id, person.name, person.sex, person.birth, person.death, person.famc, person.fams])
+    return my_table
