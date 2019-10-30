@@ -6,6 +6,7 @@ from prettytable import PrettyTable
 def list_living_married(parser, db):
 
     my_table = PrettyTable()
+    my_table.title = "List Living Married"
     my_table.field_names = ["id", "name", "sex", "birth", "death", "famc","fams"]
 
     for person in parser.individuals.values():

@@ -8,6 +8,7 @@ from geditdone.datehelpers import DateHelpers
 def list_living_single(parser, db):
 
     my_table = PrettyTable()
+    my_table.title = "List Living Single"
     my_table.field_names = ["id", "name", "sex", "birth", "death", "famc","fams"]
 
     for person in parser.individuals.values():
