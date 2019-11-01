@@ -25,9 +25,12 @@ def sprint2_suite():
 def sprint3_suite():
     return get_suite_for_sprint("sprint3")
 
+def sprint4_suite():
+    return get_suite_for_sprint("sprint4")
+
 def get_combined_suite(sprint_list):
     sprints_to_run = []
-    suites = [sprint1_suite(), sprint2_suite(), sprint3_suite()]
+    suites = [sprint1_suite(), sprint2_suite(), sprint3_suite(), sprint4_suite()]
     for sprint_number in sprint_list:
         sprints_to_run.append(suites[sprint_number-1])
     return unittest.TestSuite(sprints_to_run)
