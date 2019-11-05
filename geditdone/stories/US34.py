@@ -6,8 +6,10 @@ from geditdone.datehelpers import DateHelpers
 # List all couples who were married when the older spouse was more than twice as old as the younger spouse
 def list_large_age_differences(parser):
 
+    list_tables = []
+
     my_table = PrettyTable()
-    my_table.title = "List Large Age Differences"
+    my_table.title = "US34: List Large Age Differences"
     my_table.field_names = ["id", "name", "sex", "birth", "marriage", "age_married", "death", "famc","fams"]
 
     lower_age = 0
@@ -40,4 +42,6 @@ def list_large_age_differences(parser):
             my_table.add_row(spouse1)
             my_table.add_row(spouse2)
 
-    return my_table
+    list_tables.append(my_table)
+
+    return list_tables
