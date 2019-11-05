@@ -48,6 +48,7 @@ class Validator:
                 # Gets a list of functions from the module, [-4:] is to get the last 4 characters, "US01" for example.
                 function_list = eval("inspect.getmembers({}, inspect.isfunction)".format(module[-4:]))
                 # List of tuples representing functions, where the second item is the reference to the function
+                # print(module)
                 functions.append(function_list[0][1])
 
         # print(functions)
@@ -59,6 +60,4 @@ class Validator:
 
     def print_tables(self):
         for table in self.tables:
-            if (hasattr(table, "title")):
-                print(table.title)
             print(table)
