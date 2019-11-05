@@ -22,11 +22,11 @@ def reject_illegitimate_dates(parser):
                 return False
 
         # return out if year is negative 
-        if date_to_check[0]=='-':
+        if str(date_to_check)[:1]=='-':
             return False
 
         # slit year/month/day, need to use this to bypass datetime inherit checks
-        dt=date_to_check.split('-')
+        dt=str(date_to_check).split('-')
 
         # check negatives, days greater than 31
         if int(dt[2])>31 or int(dt[1])>12 or int(dt[2])<1 or int(dt[1])<1 or int(dt[0])<0:
