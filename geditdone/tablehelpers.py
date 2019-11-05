@@ -19,6 +19,17 @@ class TableHelpers:
         return pt
 
     @classmethod
+    def individuals2table(cls, individuals, table_name):
+        """Converts a list of individuals to a table"""
+        pt = PrettyTable()
+        pt.title = table_name
+        pt.field_names = ["ID", "name", "sex", "birth", "death", "famc", "fams"]
+        for individual in individuals:
+            row = [individual.id, individual.name, individual.sex, individual.birth, individual.death, individual.famc, individual.fams]
+            pt.add_row(row)
+        return pt
+
+    @classmethod
     def get_row_count(cls, pt):
         """Takes a prettytable as input and returns its rowcount"""
         count = 0
