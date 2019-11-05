@@ -4,52 +4,54 @@ from prettytable import PrettyTable
 from geditdone.datehelpers import DateHelpers
 from geditdone.error_objects import GedcomError, ErrorType
 
-# check leap year
-def is_leap_year(year):
-    if year % 400 == 0:
-        return True
-    if year % 100 == 0:
-        return False
-    if year % 4 == 0:
-        return True
-    else:
-        return False
-
-# verify date
-def date_verifier(date_to_check):
-
-    # return out if year is negative 
-    if date_to_check[0]=='-':
-        return False
-
-    # slit year/month/day, need to use this to bypass datetime inherit checks
-    dt=date_to_check.split('-')
-
-    # check negatives, days greater than 31
-    if int(dt[2])>31 or int(dt[1])>12 or int(dt[2])<1 or int(dt[1])<1 or int(dt[0])<0:
-        return False
-
-    # first 7 months, odd months have 31 days
-    if int(dt[1])<=7:
-        if int(dt[1])%2==0:
-            # check leap years, days for Feb
-            if int(dt[1])==2:
-                if is_leap_year(int(dt[0])):
-                    if int(dt[2])>29:
-                        return False
-                elif int(dt[2])>28:
-                        return False
-            if int(dt[2])>30:
-                return False
-    # last 5 months, odd months have 30 days
-    elif int(dt[1])>=8:
-        if int(dt[1])%2==1:
-            if int(dt[2])>30:
-                return False
-
-    return True
 
 def reject_illegitimate_dates(parser):
+
+    # verify date
+    def date_verifier(date_to_check):
+
+        # check leap year
+        def is_leap_year(year):
+            if year % 400 == 0:
+                return True
+            if year % 100 == 0:
+                return False
+            if year % 4 == 0:
+                return True
+            else:
+                return False
+
+        # return out if year is negative 
+        if date_to_check[0]=='-':
+            return False
+
+        # slit year/month/day, need to use this to bypass datetime inherit checks
+        dt=date_to_check.split('-')
+
+        # check negatives, days greater than 31
+        if int(dt[2])>31 or int(dt[1])>12 or int(dt[2])<1 or int(dt[1])<1 or int(dt[0])<0:
+            return False
+
+        # first 7 months, odd months have 31 days
+        if int(dt[1])<=7:
+            if int(dt[1])%2==0:
+                # check leap years, days for Feb
+                if int(dt[1])==2:
+                    if is_leap_year(int(dt[0])):
+                        if int(dt[2])>29:
+                            return False
+                    elif int(dt[2])>28:
+                            return False
+                if int(dt[2])>30:
+                    return False
+        # last 5 months, odd months have 30 days
+        elif int(dt[1])>=8:
+            if int(dt[1])%2==1:
+                if int(dt[2])>30:
+                    return False
+
+        return True
+
     errors = []
     #print()
     valid_date = True
