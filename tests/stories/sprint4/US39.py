@@ -22,18 +22,6 @@ class UpcomingAnniversaries(unittest.TestCase):
         parser = TestParser(individuals, families)
         pt_list = US39.upcoming_anniversaries(parser)
         self.assertEqual(len(pt_list), 1)
-    
-    def no_table(self):
-        marriage = date(2001, self.today.month, self.today.day)
-        individuals = {}
-        families = {
-            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 35, "days")),
-            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 36, "days")),
-            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 100, "days")),
-        }
-        parser = TestParser(individuals, families)
-        pt_list = US39.upcoming_anniversaries(parser)
-        self.assertEqual(len(pt_list), 0)
 
     def one_anniversary(self):
         marriage = date(2001, self.today.month, self.today.day)
@@ -61,6 +49,5 @@ class UpcomingAnniversaries(unittest.TestCase):
 
     def runTest(self):
         self.one_table()
-        self.no_table()
         self.one_anniversary()
         self.two_anniversaries()

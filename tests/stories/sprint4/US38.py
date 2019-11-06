@@ -23,18 +23,6 @@ class UpcomingBirthdays(unittest.TestCase):
         pt_list = US38.upcoming_birthdays(parser)
         self.assertEqual(len(pt_list), 1)
 
-    def no_table(self):
-        birthday = date(2001, self.today.month, self.today.day)
-        individuals = {
-            "PERSON1": Individual(id="PERSON1", birth=DateHelpers.add_time(birthday, 35, "days")),
-            "PERSON2": Individual(id="PERSON2", birth=DateHelpers.add_time(birthday, 35, "days")),
-            "PERSON3": Individual(id="PERSON3", birth=DateHelpers.add_time(birthday, 35, "days")),
-        }
-        families = {}
-        parser = TestParser(individuals, families)
-        pt_list = US38.upcoming_birthdays(parser)
-        self.assertEqual(len(pt_list), 0)
-
     def one_birthday(self):
         birthday = date(2001, self.today.month, self.today.day)
         individuals = {
@@ -63,4 +51,3 @@ class UpcomingBirthdays(unittest.TestCase):
         self.one_table()
         self.one_birthday()
         self.two_birthdays()
-        self.no_table()
