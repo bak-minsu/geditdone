@@ -33,7 +33,8 @@ class ListLargeAgeDifferences(unittest.TestCase):
         }
 
         parser = TestParser(individuals, families)
-        pt_list = US34.list_large_age_differences(parser)
+        db = TestDatabase(individuals, families)
+        pt_list = US34.list_large_age_differences(parser, db)
         #print(pt_list)
         self.assertEqual(TableHelpers.get_row_count(pt_list[0]), 0)
 

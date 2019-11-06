@@ -4,7 +4,7 @@ from prettytable import PrettyTable
 from geditdone.datehelpers import DateHelpers
 
 # List all couples who were married when the older spouse was more than twice as old as the younger spouse
-def list_large_age_differences(parser):
+def list_large_age_differences(parser, db):
 
     list_tables = []
 
