@@ -22,25 +22,30 @@ def list_large_age_differences(parser, db):
 
         for spouse in parser.individuals.values():
             if (spouse.id == fam.wife_id) or (spouse.id == fam.husband_id):
-                spouse_age = DateHelpers.date_diff(spouse.birth, fam.married,'years')
 
-                if len(spouse1)==0:
-                    spouse1.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
-                else:
-                    spouse2.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
+                if spouse.birth is not None and fam.married is not None:
+                    spouse_age = DateHelpers.date_diff(spouse.birth, fam.married,'years')
 
-                if lower_age==0 and higher_age==0:
-                    lower_age = spouse_age
-                else:
-                    if spouse_age>lower_age:
-                        higher_age = spouse_age
-                    elif spouse_age<lower_age:
-                        higher_age = lower_age
+                    if len(spouse1)==0:
+                        spouse1.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
+                    else:
+                        spouse2.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
+
+                    if lower_age==0 and higher_age==0:
                         lower_age = spouse_age
+                    else:
+                        if spouse_age>lower_age:
+                            higher_age = spouse_age
+                        elif spouse_age<lower_age:
+                            higher_age = lower_age
+                            lower_age = spouse_age
+            else:
+                continue
 
-        if higher_age/2 > lower_age:
-            my_table.add_row(spouse1)
-            my_table.add_row(spouse2)
+        if len(spouse1)!=0 and len(spouse2)!=0:
+            if higher_age/2 > lower_age:
+                my_table.add_row(spouse1)
+                my_table.add_row(spouse2)
 
     list_tables.append(my_table)
 
