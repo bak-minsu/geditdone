@@ -17,14 +17,6 @@ class DateHelpers:
             limit is a number
             units is a string in ('days','months','years')'''
         return DateHelpers.date_diff(date1, date2, units) <= limit
-    
-    @classmethod
-    def change_year(cls, prev_date, year):
-        """returns a new datetime.date instance with an updated year
-            date is a datetime.date instance
-            year is a number
-        """
-        return date(year, prev_date.month, prev_date.day)
 
     @classmethod
     def calculate_age(cls, date, reference):
@@ -32,3 +24,12 @@ class DateHelpers:
             return relativedelta(reference, date).years
         else:
             return relativedelta(date.today(), date).years
+
+    @classmethod
+    def add_time(cls, date, amount, unit):
+        if unit == "year":
+            return date + relativedelta(years=amount)
+        if unit == "month":
+            return date + relativedelta(months=amount)
+        if unit == "day":
+            return date + relativedelta(days=amount)
