@@ -1,4 +1,5 @@
 from dateutil.relativedelta import relativedelta
+from datetime import date
 
 class DateHelpers:
     @classmethod
@@ -23,3 +24,12 @@ class DateHelpers:
             return relativedelta(reference, date).years
         else:
             return relativedelta(date.today(), date).years
+
+    @classmethod
+    def add_time(cls, date, amount, units):
+        if units == "years":
+            return date + relativedelta(years=amount)
+        if units == "months":
+            return date + relativedelta(months=amount)
+        if units == "days":
+            return date + relativedelta(days=amount)
