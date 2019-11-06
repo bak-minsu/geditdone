@@ -10,12 +10,12 @@ def list_large_age_differences(parser, db):
 
     my_table = PrettyTable()
     my_table.title = "US34: List Large Age Differences"
-    my_table.field_names = ["id", "name", "sex", "birth", "marriage", "age_married", "death", "famc","fams"]
-
-    lower_age = 0
-    higher_age = 0
+    my_table.field_names = ["id", "name", "sex", "birth", "marriage", "age_married", "death", "famc","fams","young_married_age","older_married_age"]
 
     for fam in parser.families.values():
+
+        lower_age = 0
+        higher_age = 0
 
         spouse1=[]
         spouse2=[]
@@ -26,11 +26,6 @@ def list_large_age_differences(parser, db):
                 if spouse.birth is not None and fam.married is not None:
                     spouse_age = DateHelpers.date_diff(spouse.birth, fam.married,'years')
 
-                    if len(spouse1)==0:
-                        spouse1.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
-                    else:
-                        spouse2.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
-
                     if lower_age==0 and higher_age==0:
                         lower_age = spouse_age
                     else:
@@ -39,8 +34,15 @@ def list_large_age_differences(parser, db):
                         elif spouse_age<lower_age:
                             higher_age = lower_age
                             lower_age = spouse_age
+
+                    if len(spouse1)==0:
+                        spouse1.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
+                    else:
+                        spouse2.extend([spouse.id, spouse.name, spouse.sex, spouse.birth, fam.married, round(spouse_age,1), spouse.death, spouse.famc, spouse.fams])
             else:
                 continue
+        spouse1.extend([round(lower_age,1), round(higher_age,1)])
+        spouse2.extend([round(lower_age,1), round(higher_age,1)])
 
         if len(spouse1)!=0 and len(spouse2)!=0:
             if higher_age/2 > lower_age:
