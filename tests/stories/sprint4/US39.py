@@ -15,9 +15,9 @@ class UpcomingAnniversaries(unittest.TestCase):
         marriage = date(2001, self.today.month, self.today.day)
         individuals = {}
         families = {
-            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 15, "day")),
-            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 16, "day")),
-            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 1, "day")),
+            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 15, "days")),
+            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 16, "days")),
+            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 1, "days")),
         }
         parser = TestParser(individuals, families)
         pt_list = US39.upcoming_anniversaries(parser)
@@ -27,9 +27,9 @@ class UpcomingAnniversaries(unittest.TestCase):
         marriage = date(2001, self.today.month, self.today.day)
         individuals = {}
         families = {
-            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 35, "day")),
-            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 36, "day")),
-            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 100, "day")),
+            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 35, "days")),
+            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 36, "days")),
+            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 100, "days")),
         }
         parser = TestParser(individuals, families)
         pt_list = US39.upcoming_anniversaries(parser)
@@ -39,9 +39,9 @@ class UpcomingAnniversaries(unittest.TestCase):
         marriage = date(2001, self.today.month, self.today.day)
         individuals = {}
         families = {
-            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 15, "day")),
-            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 36, "day")),
-            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 100, "day")),
+            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 15, "days")),
+            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 36, "days")),
+            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 100, "days")),
         }
         parser = TestParser(individuals, families)
         pt_list = US39.upcoming_anniversaries(parser)
@@ -51,9 +51,9 @@ class UpcomingAnniversaries(unittest.TestCase):
         marriage = date(2001, self.today.month, self.today.day)
         individuals = {}
         families = {
-            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 15, "day")),
-            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 16, "day")),
-            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 100, "day")),
+            "FAM1": Family(id="FAM1", married=DateHelpers.add_time(marriage, 15, "days")),
+            "FAM2": Family(id="FAM2", married=DateHelpers.add_time(marriage, 16, "days")),
+            "FAM3": Family(id="FAM3", married=DateHelpers.add_time(marriage, 100, "days")),
         }
         parser = TestParser(individuals, families)
         pt_list = US39.upcoming_anniversaries(parser)
