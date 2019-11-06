@@ -8,12 +8,10 @@ def upcoming_birthdays(parser):
     upcoming_people = []
     found = False
     for individual in parser.individuals.values():
-        # print(DateHelpers.add_time(individual.birth, 15, "day"))
-        # print(individual.birth)
         updated = date(today.year, individual.birth.month, individual.birth.day)
         # If we've passed the date, we check the next year
         if updated < today:
-            updated = date(today.year, individual.birth.month, individual.birth.day)
+            updated = date(today.year+1, individual.birth.month, individual.birth.day)
         if DateHelpers.date_diff(updated, today, "days") <= 30:
             if not found: found = True
             upcoming_people.append(individual)
