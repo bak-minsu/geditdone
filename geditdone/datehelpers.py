@@ -26,10 +26,10 @@ class DateHelpers:
             return relativedelta(date.today(), date).years
 
     @classmethod
-    def add_time(cls, date, amount, unit):
-        if unit == "year":
+    def add_time(cls, date, amount, units):
+        if units == "years":
             return date + relativedelta(years=amount)
-        if unit == "month":
+        if units == "months":
             return date + relativedelta(months=amount)
-        if unit == "day":
+        if units == "days":
             return date + relativedelta(days=amount)
