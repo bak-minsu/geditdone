@@ -3,13 +3,11 @@ from tests.testhelpers import TestParser, TestDatabase
 from geditdone.gedcom_objects import Family, Individual
 from geditdone.stories import US32
 from geditdone.tablehelpers import TableHelpers
-from geditdone.datehelpers import DateHelpers
 from datetime import date
 
 class ListMultipleBirths(unittest.TestCase):
 
     def no_multiple_births(self):
-        birthday = date(2007, 6, 20)
         individuals = {
             'CHILD1': Individual(id='CHILD1', birth=date(2006, 1, 15), famc='FAM1'),
             'CHILD2': Individual(id='CHILD2', birth=date(2007, 6, 19), famc='FAM1'),
@@ -24,7 +22,6 @@ class ListMultipleBirths(unittest.TestCase):
         self.assertEqual(len(pt_list), 0)
 
     def one_pair_twins(self):
-        birthday = date(2007, 6, 20)
         individuals = {
             'CHILD1': Individual(id='CHILD1', birth=date(2006, 1, 15), famc='FAM1'),
             'CHILD2': Individual(id='CHILD2', birth=date(2007, 6, 19), famc='FAM1'),
@@ -40,7 +37,6 @@ class ListMultipleBirths(unittest.TestCase):
         self.assertEqual(TableHelpers.get_row_count(pt_list[0]), 1)
 
     def two_pair_twins(self):
-        birthday = date(2007, 6, 20)
         individuals = {
             'CHILD1': Individual(id='CHILD1', birth=date(2007, 6, 19), famc='FAM1'),
             'CHILD2': Individual(id='CHILD2', birth=date(2007, 6, 19), famc='FAM1'),
@@ -60,7 +56,6 @@ class ListMultipleBirths(unittest.TestCase):
         self.assertEqual(TableHelpers.get_row_count(pt_list[0]), 2)
 
     def two_pair_twins_two_families(self):
-        birthday = date(2007, 6, 20)
         individuals = {
             'CHILD1': Individual(id='CHILD1', birth=date(2005, 3, 10), famc='FAM1'),
             'CHILD2': Individual(id='CHILD2', birth=date(2006, 2, 23), famc='FAM1'),

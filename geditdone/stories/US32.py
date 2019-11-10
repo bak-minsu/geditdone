@@ -1,5 +1,4 @@
 from geditdone.tablehelpers import TableHelpers
-from datetime import date
 from pandas import DataFrame
 
 def list_multiple_births(parser, db):
