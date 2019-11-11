@@ -1,18 +1,20 @@
 from geditdone.tablehelpers import TableHelpers
-from geditdone.error_objects import GedcomError, ErrorType
-from prettytable import PrettyTable
+from geditdone.datehelpers import DateHelpers
+from datetime import date
 
-
+'''
+List all people in a GEDCOM file who died in the last 30 days
+'''
 def list_recent_deaths(parser, db):
     tables = []
-
-    my_table = PrettyTable()
-    my_table.title = "US36: Recent Deaths"
-    my_table.field_names = ["id", "name", "sex", "birth", "death", "famc","fams"]
+    recents = []
+    today = date.today()
 
     for person in parser.individuals.values():
-        pass
+        if person.death is not None:
+            if (DateHelpers.dates_within(today, person.death, 30, "days")):
+                recents.append(person)
 
-    tables.append(my_table)
+    tables.append(TableHelpers.individuals2table(recents, "US36: Recent Deaths"))
 
     return tables

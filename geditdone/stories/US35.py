@@ -1,18 +1,20 @@
 from geditdone.tablehelpers import TableHelpers
-from geditdone.error_objects import GedcomError, ErrorType
-from prettytable import PrettyTable
+from geditdone.datehelpers import DateHelpers
+from datetime import date
 
-
+'''
+List all people in a GEDCOM file who were born in the last 30 days
+'''
 def list_recent_births(parser, db):
     tables = []
-
-    my_table = PrettyTable()
-    my_table.title = "US35: Recent Births"
-    my_table.field_names = ["id", "name", "sex", "birth", "death", "famc","fams"]
+    recents = []
+    today = date.today()
 
     for person in parser.individuals.values():
-        pass
+        if person.birth is not None:
+            if (DateHelpers.dates_within(today, person.birth, 30, "days")):
+                recents.append(person)
 
-    tables.append(my_table)
+    tables.append(TableHelpers.individuals2table(recents, "US35: Recent Births"))
 
     return tables

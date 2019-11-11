@@ -4,12 +4,13 @@ from tests.testhelpers import TestParser, TestDatabase
 from geditdone.gedcom_objects import Family, Individual
 from geditdone.stories import US35
 from geditdone.tablehelpers import TableHelpers
+from geditdone.datehelpers import DateHelpers
 
 class ListRecentBirths(unittest.TestCase):
 
-    def Recent(self):
+    def recent(self):
         individuals = {
-            "RECENT": Individual(id="RECENT", birth=date(2000,1,15)),
+            "RECENT": Individual(id="RECENT", birth=date.today()),
             "OLD": Individual(id="OLD", birth=date(1989,7,31))
         }
 
@@ -40,7 +41,7 @@ class ListRecentBirths(unittest.TestCase):
         self.assertEqual(TableHelpers.get_row_count(pt_list[0]), 0)
 
     def runTest(self):
-        # self.recent()
-        # self.noneRecent()
-        # self.nullBirth()
+        self.recent()
+        self.noneRecent()
+        self.nullBirth()
         pass

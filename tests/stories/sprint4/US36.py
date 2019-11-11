@@ -7,9 +7,9 @@ from geditdone.tablehelpers import TableHelpers
 
 class ListRecentDeaths(unittest.TestCase):
 
-    def Recent(self):
+    def recent(self):
         individuals = {
-            "RECENT": Individual(id="RECENT", death=date(2000,1,15)),
+            "RECENT": Individual(id="RECENT", death=date.today()),
             "OLD": Individual(id="OLD", death=date(1989,7,31))
         }
 
@@ -40,7 +40,7 @@ class ListRecentDeaths(unittest.TestCase):
         self.assertEqual(TableHelpers.get_row_count(pt_list[0]), 0)
 
     def runTest(self):
-        # self.recent()
-        # self.noneRecent()
-        # self.nullDeath()
+        self.recent()
+        self.noneRecent()
+        self.nullDeath()
         pass
