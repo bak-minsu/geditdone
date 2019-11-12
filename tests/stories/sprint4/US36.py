@@ -43,4 +43,3 @@ class ListRecentDeaths(unittest.TestCase):
         self.recent()
         self.noneRecent()
         self.nullDeath()
-        pass

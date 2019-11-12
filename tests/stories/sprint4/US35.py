@@ -44,4 +44,3 @@ class ListRecentBirths(unittest.TestCase):
         self.recent()
         self.noneRecent()
         self.nullBirth()
-        pass
