@@ -17,6 +17,6 @@ def list_ages(parser, db):
             ages.append(None)
     individuals = db.individuals
     individuals["Age"] = pd.Series(ages).values
-    newTable = TableHelpers.dataframe2table(individuals, "Individuals and Ages")
+    newTable = TableHelpers.dataframe2table(individuals, "US27: Individuals and Ages")
     tables.append(newTable)
     return tables

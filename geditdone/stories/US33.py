@@ -14,7 +14,6 @@ def list_orphans(parser):
                 child = parser.individuals[child_id]
                 if DateHelpers.calculate_age(child.birth, None) < 18:
                     orphans.append(child)
-    if len(orphans) > 0:
-        pt = TableHelpers.individuals2table(orphans, "US33 - List Orphans")
-        tables.append(pt)
+    pt = TableHelpers.individuals2table(orphans, "US33: List Orphans")
+    tables.append(pt)
     return tables

@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.6/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.6/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/minty/Class/SSW555/geditdone/geditdone/__main__.py", line 36, in <module>
+    main()
+  File "/home/minty/Class/SSW555/geditdone/geditdone/__main__.py", line 28, in main
+    parser.parse(inputFile)
+  File "/home/minty/Class/SSW555/geditdone/geditdone/gedcom_parser.py", line 91, in parse
+    self.saveTagToObject(tagInstance)
+  File "/home/minty/Class/SSW555/geditdone/geditdone/gedcom_parser.py", line 184, in saveTagToObject
+    date = GedcomParser.dateArgsToDate(tagInstance.args)
+  File "/home/minty/Class/SSW555/geditdone/geditdone/gedcom_parser.py", line 224, in dateArgsToDate
+    return date(yearInt, monthInt, dayInt)
+ValueError: day is out of range for month
