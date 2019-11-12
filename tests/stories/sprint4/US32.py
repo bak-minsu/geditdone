@@ -19,7 +19,7 @@ class ListMultipleBirths(unittest.TestCase):
         parser = TestParser(individuals, families)
         db = TestDatabase(individuals, families)
         pt_list = US32.list_multiple_births(parser, db)
-        self.assertEqual(len(pt_list), 0)
+        self.assertEqual(len(pt_list), 1)
 
     def one_pair_twins(self):
         individuals = {

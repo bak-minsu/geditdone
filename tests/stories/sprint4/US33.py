@@ -20,7 +20,7 @@ class ListOrphans(unittest.TestCase):
         }
         parser = TestParser(individuals, families)
         pt_list = US33.list_orphans(parser)
-        self.assertEqual(len(pt_list), 0)
+        self.assertEqual(len(pt_list), 1)
 
     def old_orphans(self):
         individuals = {
@@ -35,7 +35,7 @@ class ListOrphans(unittest.TestCase):
         }
         parser = TestParser(individuals, families)
         pt_list = US33.list_orphans(parser)
-        self.assertEqual(len(pt_list), 0)
+        self.assertEqual(len(pt_list), 1)
 
     def young_orphans(self):
         individuals = {
