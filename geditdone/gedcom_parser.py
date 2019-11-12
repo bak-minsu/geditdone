@@ -2,6 +2,7 @@
 # Ankush Dave, Max Lepkowski, Gabrielle Padriga, Minsu Parkfrom gedcom_objects import Individual, Family
 from geditdone.gedcom_objects import Individual, Family
 from geditdone.generichelpers import Stack
+from geditdone.error_objects import GedcomError, ErrorType
 import re
 from datetime import date
 
@@ -181,7 +182,7 @@ class GedcomParser:
                 elif tagInstance.tag == 'FAMS':
                     individual.fams = tagInstance.args[0]
                 elif tagInstance.tag == 'DATE':
-                    date = GedcomParser.dateArgsToDate(tagInstance.args)
+                    date = GedcomParser.dateArgsToDate(tagInstance.args, individual)
                     if tagInstance.parent.tag == 'BIRT':
                         individual.birth = date
                     elif tagInstance.parent.tag == 'DEAT':
@@ -196,7 +197,7 @@ class GedcomParser:
                 elif tagInstance.tag == 'CHIL':
                     family.child_ids.append(tagInstance.args[0])
                 elif tagInstance.tag == 'DATE':
-                    date = GedcomParser.dateArgsToDate(tagInstance.args)
+                    date = GedcomParser.dateArgsToDate(tagInstance.args, family)
                     if tagInstance.parent.tag == 'MARR':
                         family.married = date
                     elif tagInstance.parent.tag == 'DIV':
@@ -217,8 +218,13 @@ class GedcomParser:
             print(family.toString(self.individuals))
 
     @staticmethod
-    def dateArgsToDate(dateArgs):
+    def dateArgsToDate(dateArgs, gedcom_object):
         dayInt   = int (dateArgs[0])
         monthInt = TagDefinition.month_strs.index(dateArgs[1]) + 1
         yearInt  = int(dateArgs[2])
-        return date(yearInt, monthInt, dayInt)
+        try:
+            return date(yearInt, monthInt, dayInt)
+        except ValueError:
+            error = GedcomError(ErrorType.error, "US42", gedcom_object, "Incorrect Date Given. Correct this error before running the program. Exiting.")
+            print(error)
+            exit()
