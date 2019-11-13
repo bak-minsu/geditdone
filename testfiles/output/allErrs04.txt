@@ -1,123 +1,208 @@
-+------------------------------------------------------------------------+
-|                              Individuals                               |
-+-----+--------------------+-----+------------+------------+------+------+
-|  ID |        name        | sex |   birth    |   death    | famc | fams |
-+-----+--------------------+-----+------------+------------+------+------+
-| I01 | Francis /Arbuckle/ |  F  | 1920-04-13 | 2010-12-11 | None | F01  |
-| I02 |  Henry /Arbuckle/  |  M  | 1920-07-21 | 2019-11-07 | None | F01  |
-| I03 | Robert /Arbuckle/  |  M  | 2009-06-02 |    None    | F01  | F02  |
-| I04 |  Faye /Arbuckle/   |  F  | 1957-02-23 | 1982-07-08 | None | F02  |
-| I05 |   Jon /Arbuckle/   |  M  | 1977-06-15 |    None    | F02  | None |
-| I06 |  Clara /Montoya/   |  F  | 2019-11-11 |    None    | None | F03  |
-| I07 | Garfield /Montoya/ |  M  | 1979-04-14 |    None    | F03  | None |
-| I08 |   Odie /Montoya/   |  M  | 1979-04-14 |    None    | F03  | None |
-+-----+--------------------+-----+------------+------------+------+------+
-+------------------------------------------------------------------------------------------+
-|                                         Families                                         |
-+-----+------------+---------+------------+----------+-------------------------------------+
-|  ID | husband_id | wife_id |  married   | divorced |               children              |
-+-----+------------+---------+------------+----------+-------------------------------------+
-| F01 |    I02     |   I01   | 1929-05-31 |   None   | ['I03', 'I05', 'I05', 'I07', 'I08'] |
-| F02 |    I03     |   I04   | 2009-11-29 |   None   | ['I03', 'I05', 'I05', 'I07', 'I08'] |
-| F03 |    I03     |   I06   | 1963-02-11 |   None   | ['I03', 'I05', 'I05', 'I07', 'I08'] |
-+-----+------------+---------+------------+----------+-------------------------------------+
-+------------------------------------------------------------------------------------------------------------------------------------------+
-|                                                     US34: List Large Age Differences                                                     |
-+-----+-------------------+-----+------------+------------+-------------+------------+------+------+-------------------+-------------------+
-|  id |        name       | sex |   birth    |  marriage  | age_married |   death    | famc | fams | young_married_age | older_married_age |
-+-----+-------------------+-----+------------+------------+-------------+------------+------+------+-------------------+-------------------+
-| I03 | Robert /Arbuckle/ |  M  | 2009-06-02 | 2009-11-29 |     0.5     |    None    | F01  | F02  |        0.5        |        52.8       |
-| I04 |  Faye /Arbuckle/  |  F  | 1957-02-23 | 2009-11-29 |     52.8    | 1982-07-08 | None | F02  |        0.5        |        52.8       |
-+-----+-------------------+-----+------------+------------+-------------+------------+------+------+-------------------+-------------------+
-+----------------------------------------------------------------+
-|                      US35: Recent Births                       |
-+-----+-----------------+-----+------------+-------+------+------+
-|  ID |       name      | sex |   birth    | death | famc | fams |
-+-----+-----------------+-----+------------+-------+------+------+
-| I06 | Clara /Montoya/ |  F  | 2019-11-11 |  None | None | F03  |
-+-----+-----------------+-----+------------+-------+------+------+
++--------------------------------------------------------------------------+
+|                               Individuals                                |
++------+--------------------+------+------------+------------+------+------+
+|  ID  |        name        | sex  |   birth    |   death    | famc | fams |
++------+--------------------+------+------------+------------+------+------+
+| I01  | Francis /Arbuckle/ |  F   | 1936-04-13 |    None    | None | F01  |
+| I02  |  Henry /Arbuckle/  |  M   | 2019-07-21 | 2018-03-07 | None | F01  |
+| I03  | Robert /Arbuckle/  |  M   | 1800-06-02 | 1955-05-31 | F01  | F03  |
+| I04  |  Faye /Arbuckle/   |  F   | 1956-02-23 | 1982-07-08 | None | F02  |
+| I05  |   Jon /Arbuckle/   |  M   | 1977-06-15 |    None    | F02  | None |
+| I06  |  Clara /Montoya/   |  F   | 1962-05-09 |    None    | None | F03  |
+| I07  | Garfield /Montoya/ |  M   | 1976-10-07 |    None    | F03  | None |
+| I08  |   Odie /Montoya/   |  M   | 2022-04-14 |    None    | F03  | None |
+| @I1@ |   Jim /Halpert/    |  F   | 1900-02-26 | 2010-10-14 | None | @F1@ |
+| @I2@ |   Pam /Halpert/    |  M   | 1900-02-27 | 2010-10-13 | None | @F2@ |
+| @I3@ |  Dwight /Schrute/  |  M   | 1927-11-01 |    None    | None | @F3@ |
+| @I4@ |  Angela /Halpert/  |  F   | 2011-11-04 |    None    | @F1@ | None |
+| @I5@ |  Michael /Scott/   |  M   | 2011-09-02 |    None    | @F1@ | None |
+| I09  |    Chuck Norris    | None | 1959-07-04 |    None    | None | F04  |
+| I10  |   Martha Stewart   | None | 1961-10-03 |    None    | None | F04  |
+| I11  |     John Cena      | None | 1986-04-19 |    None    | F04  | None |
+| I12  |    Huey SameID     | None | 1980-08-21 |    None    | F04  | None |
+| I13  |   Britney Spears   | None | 1987-07-17 |    None    | F04  | None |
+| I14  |    Chuck Norris    | None | 2010-02-01 |    None    | None | None |
+| I15  |     John Cena      | None | 1986-04-19 |    None    | None | None |
+| I16  |   Ronald Reagan    | None | 1950-05-17 | 2016-08-25 | None | None |
+| T01  |    Arya /Stark/    |  F   | 1920-04-13 | 2010-12-11 | None | G01  |
+| T02  |  Dany /Targaryan/  |  M   | 1920-07-21 | 2019-11-07 | None | G01  |
+| T03  |     Jon /Snow/     |  M   | 2009-06-02 |    None    | G01  | G02  |
+| T04  | Cercei /Lannister/ |  M   | 1977-06-15 | 1982-07-08 | G02  | G02  |
+| T06  | Tyrion /Lannister/ |  F   | 2019-11-11 |    None    | None | G03  |
+| T07  |   Sansa /Stark/    |  M   | 1979-04-14 |    None    | G03  | None |
+| T08  |    Khal /Drogo/    |  M   | 1979-04-14 |    None    | G03  | None |
++------+--------------------+------+------------+------------+------+------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                               Families                                                                              |
++------+------------+---------+------------+------------+-------------------------------------------------------------------------------------------------------------+
+|  ID  | husband_id | wife_id |  married   |  divorced  |                                                   children                                                  |
++------+------------+---------+------------+------------+-------------------------------------------------------------------------------------------------------------+
+| F01  |    I02     |   I01   | 1956-05-31 | 2018-03-20 | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| F02  |    I03     |   I04   | 2050-10-12 | 2010-10-12 | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| F03  |    I03     |   I06   | 2050-08-11 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| @F1@ |    @I1@    |   @I2@  | 1902-08-06 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| @F2@ |    @I3@    |   @I2@  | 1902-08-07 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| @F3@ |    @I3@    |   T01   | 2011-03-05 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| @F4@ |    @I1@    |   @I4@  | 2003-08-03 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| F04  |    I09     |   I10   | 1981-06-08 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| F05  |    I11     |   I13   | 2004-04-22 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| G01  |    T02     |   T01   | 1929-05-31 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| G02  |    T03     |   T04   | 2009-11-29 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
+| G03  |    T03     |   T06   | 1963-02-11 |    None    | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
++------+------------+---------+------------+------------+-------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                      US34: List Large Age Differences                                                      |
++------+--------------------+-----+------------+------------+-------------+------------+------+------+-------------------+-------------------+
+|  id  |        name        | sex |   birth    |  marriage  | age_married |   death    | famc | fams | young_married_age | older_married_age |
++------+--------------------+-----+------------+------------+-------------+------------+------+------+-------------------+-------------------+
+| I01  | Francis /Arbuckle/ |  F  | 1936-04-13 | 1956-05-31 |     20.1    |    None    | None | F01  |        20.1       |        63.1       |
+| I02  |  Henry /Arbuckle/  |  M  | 2019-07-21 | 1956-05-31 |     63.1    | 2018-03-07 | None | F01  |        20.1       |        63.1       |
+| I03  | Robert /Arbuckle/  |  M  | 1800-06-02 | 2050-10-12 |    250.4    | 1955-05-31 | F01  | F03  |        94.6       |       250.4       |
+| I04  |  Faye /Arbuckle/   |  F  | 1956-02-23 | 2050-10-12 |     94.6    | 1982-07-08 | None | F02  |        94.6       |       250.4       |
+| I03  | Robert /Arbuckle/  |  M  | 1800-06-02 | 2050-08-11 |    250.2    | 1955-05-31 | F01  | F03  |        88.3       |       250.2       |
+| I06  |  Clara /Montoya/   |  F  | 1962-05-09 | 2050-08-11 |     88.3    |    None    | None | F03  |        88.3       |       250.2       |
+| @I2@ |   Pam /Halpert/    |  M  | 1900-02-27 | 1902-08-07 |     2.4     | 2010-10-13 | None | @F2@ |        2.4        |        25.2       |
+| @I3@ |  Dwight /Schrute/  |  M  | 1927-11-01 | 1902-08-07 |     25.2    |    None    | None | @F3@ |        2.4        |        25.2       |
+| @I1@ |   Jim /Halpert/    |  F  | 1900-02-26 | 2003-08-03 |    103.4    | 2010-10-14 | None | @F1@ |        8.3        |       103.4       |
+| @I4@ |  Angela /Halpert/  |  F  | 2011-11-04 | 2003-08-03 |     8.3     |    None    | @F1@ | None |        8.3        |       103.4       |
+| T03  |     Jon /Snow/     |  M  | 2009-06-02 | 2009-11-29 |     0.5     |    None    | G01  | G02  |        0.5        |        32.5       |
+| T04  | Cercei /Lannister/ |  M  | 1977-06-15 | 2009-11-29 |     32.5    | 1982-07-08 | G02  | G02  |        0.5        |        32.5       |
++------+--------------------+-----+------------+------------+-------------+------------+------+------+-------------------+-------------------+
++-------------------------------------------------------------------+
+|                        US35: Recent Births                        |
++-----+--------------------+-----+------------+-------+------+------+
+|  ID |        name        | sex |   birth    | death | famc | fams |
++-----+--------------------+-----+------------+-------+------+------+
+| T06 | Tyrion /Lannister/ |  F  | 2019-11-11 |  None | None | G03  |
++-----+--------------------+-----+------------+-------+------+------+
 +------------------------------------------------------------------+
 |                        US33: List Orphans                        |
-+-----+-------------------+-----+------------+-------+------+------+
-|  ID |        name       | sex |   birth    | death | famc | fams |
-+-----+-------------------+-----+------------+-------+------+------+
-| I03 | Robert /Arbuckle/ |  M  | 2009-06-02 |  None | F01  | F02  |
-+-----+-------------------+-----+------------+-------+------+------+
-+-------------------------------------------------------------------+
-|                      US31: List Living Single                     |
-+-----+--------------------+-----+------------+-------+------+------+
-|  id |        name        | sex |   birth    | death | famc | fams |
-+-----+--------------------+-----+------------+-------+------+------+
-| I05 |   Jon /Arbuckle/   |  M  | 1977-06-15 |  None | F02  | None |
-| I07 | Garfield /Montoya/ |  M  | 1979-04-14 |  None | F03  | None |
-| I08 |   Odie /Montoya/   |  M  | 1979-04-14 |  None | F03  | None |
-+-----+--------------------+-----+------------+-------+------+------+
++------+------------------+-----+------------+-------+------+------+
+|  ID  |       name       | sex |   birth    | death | famc | fams |
++------+------------------+-----+------------+-------+------+------+
+| I08  |  Odie /Montoya/  |  M  | 2022-04-14 |  None | F03  | None |
+| @I4@ | Angela /Halpert/ |  F  | 2011-11-04 |  None | @F1@ | None |
+| @I5@ | Michael /Scott/  |  M  | 2011-09-02 |  None | @F1@ | None |
+| T03  |    Jon /Snow/    |  M  | 2009-06-02 |  None | G01  | G02  |
+| I08  |  Odie /Montoya/  |  M  | 2022-04-14 |  None | F03  | None |
+| @I4@ | Angela /Halpert/ |  F  | 2011-11-04 |  None | @F1@ | None |
+| @I5@ | Michael /Scott/  |  M  | 2011-09-02 |  None | @F1@ | None |
+| T03  |    Jon /Snow/    |  M  | 2009-06-02 |  None | G01  | G02  |
+| I08  |  Odie /Montoya/  |  M  | 2022-04-14 |  None | F03  | None |
+| @I4@ | Angela /Halpert/ |  F  | 2011-11-04 |  None | @F1@ | None |
+| @I5@ | Michael /Scott/  |  M  | 2011-09-02 |  None | @F1@ | None |
+| T03  |    Jon /Snow/    |  M  | 2009-06-02 |  None | G01  | G02  |
++------+------------------+-----+------------+-------+------+------+
++--------------------------------------------------------------------+
+|                      US31: List Living Single                      |
++-----+--------------------+------+------------+-------+------+------+
+|  id |        name        | sex  |   birth    | death | famc | fams |
++-----+--------------------+------+------------+-------+------+------+
+| I05 |   Jon /Arbuckle/   |  M   | 1977-06-15 |  None | F02  | None |
+| I07 | Garfield /Montoya/ |  M   | 1976-10-07 |  None | F03  | None |
+| I11 |     John Cena      | None | 1986-04-19 |  None | F04  | None |
+| I12 |    Huey SameID     | None | 1980-08-21 |  None | F04  | None |
+| I13 |   Britney Spears   | None | 1987-07-17 |  None | F04  | None |
+| I15 |     John Cena      | None | 1986-04-19 |  None | None | None |
+| T07 |   Sansa /Stark/    |  M   | 1979-04-14 |  None | G03  | None |
+| T08 |    Khal /Drogo/    |  M   | 1979-04-14 |  None | G03  | None |
++-----+--------------------+------+------------+-------+------+------+
 +----------------------------------------------------------------------+
 |                         US36: Recent Deaths                          |
 +-----+------------------+-----+------------+------------+------+------+
 |  ID |       name       | sex |   birth    |   death    | famc | fams |
 +-----+------------------+-----+------------+------------+------+------+
-| I02 | Henry /Arbuckle/ |  M  | 1920-07-21 | 2019-11-07 | None | F01  |
+| T02 | Dany /Targaryan/ |  M  | 1920-07-21 | 2019-11-07 | None | G01  |
 +-----+------------------+-----+------------+------------+------+------+
-+------------------------------------------------------------------------+
-|                      US29 - Deceased Individuals                       |
-+-----+--------------------+-----+------------+------------+------+------+
-|  ID |        name        | sex |   birth    |   death    | famc | fams |
-+-----+--------------------+-----+------------+------------+------+------+
-| I01 | Francis /Arbuckle/ |  F  | 1920-04-13 | 2010-12-11 | None | F01  |
-| I02 |  Henry /Arbuckle/  |  M  | 1920-07-21 | 2019-11-07 | None | F01  |
-| I04 |  Faye /Arbuckle/   |  F  | 1957-02-23 | 1982-07-08 | None | F02  |
-+-----+--------------------+-----+------------+------------+------+------+
-+------------------------------------------------------------------+
-|                    US30: List Living Married                     |
-+-----+-------------------+-----+------------+-------+------+------+
-|  id |        name       | sex |   birth    | death | famc | fams |
-+-----+-------------------+-----+------------+-------+------+------+
-| I03 | Robert /Arbuckle/ |  M  | 2009-06-02 |  None | F01  | F02  |
-| I06 |  Clara /Montoya/  |  F  | 2019-11-11 |  None | None | F03  |
-+-----+-------------------+-----+------------+-------+------+------+
++--------------------------------------------------------------------------+
+|                       US29 - Deceased Individuals                        |
++------+--------------------+------+------------+------------+------+------+
+|  ID  |        name        | sex  |   birth    |   death    | famc | fams |
++------+--------------------+------+------------+------------+------+------+
+| I02  |  Henry /Arbuckle/  |  M   | 2019-07-21 | 2018-03-07 | None | F01  |
+| I03  | Robert /Arbuckle/  |  M   | 1800-06-02 | 1955-05-31 | F01  | F03  |
+| I04  |  Faye /Arbuckle/   |  F   | 1956-02-23 | 1982-07-08 | None | F02  |
+| @I1@ |   Jim /Halpert/    |  F   | 1900-02-26 | 2010-10-14 | None | @F1@ |
+| @I2@ |   Pam /Halpert/    |  M   | 1900-02-27 | 2010-10-13 | None | @F2@ |
+| I16  |   Ronald Reagan    | None | 1950-05-17 | 2016-08-25 | None | None |
+| T01  |    Arya /Stark/    |  F   | 1920-04-13 | 2010-12-11 | None | G01  |
+| T02  |  Dany /Targaryan/  |  M   | 1920-07-21 | 2019-11-07 | None | G01  |
+| T04  | Cercei /Lannister/ |  M   | 1977-06-15 | 1982-07-08 | G02  | G02  |
++------+--------------------+------+------------+------------+------+------+
++---------------------------------------------------------------------+
+|                      US30: List Living Married                      |
++------+--------------------+------+------------+-------+------+------+
+|  id  |        name        | sex  |   birth    | death | famc | fams |
++------+--------------------+------+------------+-------+------+------+
+| I01  | Francis /Arbuckle/ |  F   | 1936-04-13 |  None | None | F01  |
+| I06  |  Clara /Montoya/   |  F   | 1962-05-09 |  None | None | F03  |
+| @I3@ |  Dwight /Schrute/  |  M   | 1927-11-01 |  None | None | @F3@ |
+| I09  |    Chuck Norris    | None | 1959-07-04 |  None | None | F04  |
+| I10  |   Martha Stewart   | None | 1961-10-03 |  None | None | F04  |
+| T03  |     Jon /Snow/     |  M   | 2009-06-02 |  None | G01  | G02  |
+| T06  | Tyrion /Lannister/ |  F   | 2019-11-11 |  None | None | G03  |
++------+--------------------+------+------------+-------+------+------+
 +-------------------------------+
 |     US32: Multiple Births     |
 +-------+------------+----------+
 | FamID | Birthdate  | Children |
 +-------+------------+----------+
-|  F03  | 1979-04-14 |    2     |
+|  G03  | 1979-04-14 |    2     |
 +-------+------------+----------+
-+------------------------------------------------------------------------------------------+
-|                               US39: Upcoming Anniversaries                               |
-+-----+------------+---------+------------+----------+-------------------------------------+
-|  id | husband_id | wife_id |  married   | divorced |               children              |
-+-----+------------+---------+------------+----------+-------------------------------------+
-| F02 |    I03     |   I04   | 2009-11-29 |   None   | ['I03', 'I05', 'I05', 'I07', 'I08'] |
-+-----+------------+---------+------------+----------+-------------------------------------+
-+------------------------------------------------------------------------------+
-|                          US27: Individuals and Ages                          |
-+-----+--------------------+-----+------------+------------+------+------+-----+
-|  ID |        name        | sex |   birth    |   death    | famc | fams | Age |
-+-----+--------------------+-----+------------+------------+------+------+-----+
-| I01 | Francis /Arbuckle/ |  F  | 1920-04-13 | 2010-12-11 | None | F01  |  99 |
-| I02 |  Henry /Arbuckle/  |  M  | 1920-07-21 | 2019-11-07 | None | F01  |  99 |
-| I03 | Robert /Arbuckle/  |  M  | 2009-06-02 |    None    | F01  | F02  |  10 |
-| I04 |  Faye /Arbuckle/   |  F  | 1957-02-23 | 1982-07-08 | None | F02  |  62 |
-| I05 |   Jon /Arbuckle/   |  M  | 1977-06-15 |    None    | F02  | None |  42 |
-| I06 |  Clara /Montoya/   |  F  | 2019-11-11 |    None    | None | F03  |  0  |
-| I07 | Garfield /Montoya/ |  M  | 1979-04-14 |    None    | F03  | None |  40 |
-| I08 |   Odie /Montoya/   |  M  | 1979-04-14 |    None    | F03  | None |  40 |
-+-----+--------------------+-----+------------+------------+------+------+-----+
-+----------------------------------------------------------------+
-|                    US38: Upcoming Birthdays                    |
-+-----+-----------------+-----+------------+-------+------+------+
-|  ID |       name      | sex |   birth    | death | famc | fams |
-+-----+-----------------+-----+------------+-------+------+------+
-| I06 | Clara /Montoya/ |  F  | 2019-11-11 |  None | None | F03  |
-+-----+-----------------+-----+------------+-------+------+------+
-+------------------------------------------------------------------------+
-|         US28: Children in Family F01 Descending - Oldest First         |
-+-----+-------------------+-----+------------+-------+------+------+-----+
-|  ID |        name       | sex |   birth    | death | famc | fams | Age |
-+-----+-------------------+-----+------------+-------+------+------+-----+
-| I03 | Robert /Arbuckle/ |  M  | 2009-06-02 |  None | F01  | F02  |  10 |
-+-----+-------------------+-----+------------+-------+------+------+-----+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                   US39: Upcoming Anniversaries                                                                   |
++-----+------------+---------+------------+----------+-------------------------------------------------------------------------------------------------------------+
+|  id | husband_id | wife_id |  married   | divorced |                                                   children                                                  |
++-----+------------+---------+------------+----------+-------------------------------------------------------------------------------------------------------------+
+| G02 |    T03     |   T04   | 2009-11-29 |   None   | ['I03', 'I05', 'I05', 'I07', 'I08', '@I4@', '@I5@', 'I11', 'I12', 'I13', 'T03', 'T04', 'T04', 'T07', 'T08'] |
++-----+------------+---------+------------+----------+-------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------+
+|                           US27: Individuals and Ages                           |
++------+--------------------+------+------------+------------+------+------+-----+
+|  ID  |        name        | sex  |   birth    |   death    | famc | fams | Age |
++------+--------------------+------+------------+------------+------+------+-----+
+| I01  | Francis /Arbuckle/ |  F   | 1936-04-13 |    None    | None | F01  |  83 |
+| I02  |  Henry /Arbuckle/  |  M   | 2019-07-21 | 2018-03-07 | None | F01  |  0  |
+| I03  | Robert /Arbuckle/  |  M   | 1800-06-02 | 1955-05-31 | F01  | F03  | 219 |
+| I04  |  Faye /Arbuckle/   |  F   | 1956-02-23 | 1982-07-08 | None | F02  |  63 |
+| I05  |   Jon /Arbuckle/   |  M   | 1977-06-15 |    None    | F02  | None |  42 |
+| I06  |  Clara /Montoya/   |  F   | 1962-05-09 |    None    | None | F03  |  57 |
+| I07  | Garfield /Montoya/ |  M   | 1976-10-07 |    None    | F03  | None |  43 |
+| I08  |   Odie /Montoya/   |  M   | 2022-04-14 |    None    | F03  | None |  -2 |
+| @I1@ |   Jim /Halpert/    |  F   | 1900-02-26 | 2010-10-14 | None | @F1@ | 119 |
+| @I2@ |   Pam /Halpert/    |  M   | 1900-02-27 | 2010-10-13 | None | @F2@ | 119 |
+| @I3@ |  Dwight /Schrute/  |  M   | 1927-11-01 |    None    | None | @F3@ |  92 |
+| @I4@ |  Angela /Halpert/  |  F   | 2011-11-04 |    None    | @F1@ | None |  8  |
+| @I5@ |  Michael /Scott/   |  M   | 2011-09-02 |    None    | @F1@ | None |  8  |
+| I09  |    Chuck Norris    | None | 1959-07-04 |    None    | None | F04  |  60 |
+| I10  |   Martha Stewart   | None | 1961-10-03 |    None    | None | F04  |  58 |
+| I11  |     John Cena      | None | 1986-04-19 |    None    | F04  | None |  33 |
+| I12  |    Huey SameID     | None | 1980-08-21 |    None    | F04  | None |  39 |
+| I13  |   Britney Spears   | None | 1987-07-17 |    None    | F04  | None |  32 |
+| I14  |    Chuck Norris    | None | 2010-02-01 |    None    | None | None |  9  |
+| I15  |     John Cena      | None | 1986-04-19 |    None    | None | None |  33 |
+| I16  |   Ronald Reagan    | None | 1950-05-17 | 2016-08-25 | None | None |  69 |
+| T01  |    Arya /Stark/    |  F   | 1920-04-13 | 2010-12-11 | None | G01  |  99 |
+| T02  |  Dany /Targaryan/  |  M   | 1920-07-21 | 2019-11-07 | None | G01  |  99 |
+| T03  |     Jon /Snow/     |  M   | 2009-06-02 |    None    | G01  | G02  |  10 |
+| T04  | Cercei /Lannister/ |  M   | 1977-06-15 | 1982-07-08 | G02  | G02  |  42 |
+| T06  | Tyrion /Lannister/ |  F   | 2019-11-11 |    None    | None | G03  |  0  |
+| T07  |   Sansa /Stark/    |  M   | 1979-04-14 |    None    | G03  | None |  40 |
+| T08  |    Khal /Drogo/    |  M   | 1979-04-14 |    None    | G03  | None |  40 |
++------+--------------------+------+------------+------------+------+------+-----+
++-----------------------------------------------+
+|            US38: Upcoming Birthdays           |
++----+------+-----+-------+-------+------+------+
+| ID | name | sex | birth | death | famc | fams |
++----+------+-----+-------+-------+------+------+
++----+------+-----+-------+-------+------+------+
++-----------------------------------------------------------------------------+
+|            US28: Children in Family F01 Descending - Oldest First           |
++-----+-------------------+-----+------------+------------+------+------+-----+
+|  ID |        name       | sex |   birth    |   death    | famc | fams | Age |
++-----+-------------------+-----+------------+------------+------+------+-----+
+| I03 | Robert /Arbuckle/ |  M  | 1800-06-02 | 1955-05-31 | F01  | F03  | 219 |
++-----+-------------------+-----+------------+------------+------+------+-----+
 +---------------------------------------------------------------------+
 |        US28: Children in Family F02 Descending - Oldest First       |
 +-----+----------------+-----+------------+-------+------+------+-----+
@@ -130,27 +215,502 @@
 +-----+--------------------+-----+------------+-------+------+------+-----+
 |  ID |        name        | sex |   birth    | death | famc | fams | Age |
 +-----+--------------------+-----+------------+-------+------+------+-----+
-| I07 | Garfield /Montoya/ |  M  | 1979-04-14 |  None | F03  | None |  40 |
-| I08 |   Odie /Montoya/   |  M  | 1979-04-14 |  None | F03  | None |  40 |
+| I07 | Garfield /Montoya/ |  M  | 1976-10-07 |  None | F03  | None |  43 |
+| I08 |   Odie /Montoya/   |  M  | 2022-04-14 |  None | F03  | None |  -2 |
 +-----+--------------------+-----+------------+-------+------+------+-----+
-ERROR, INDIVIDUAL, US01, I06 Clara /Montoya/: Birth date 2019-11-11 occurs in the future
-ERROR, FAMILY, US02, FAM F02 HUSB I03 WIFE I04: Birth date 1977-06-15 occurs before marriage date 2009-11-29
-ERROR, INDIVIDUAL, US11, I03 Robert /Arbuckle/: Bigamy between Family F03 and Family F02
++------------------------------------------------------------------------+
+|        US28: Children in Family @F1@ Descending - Oldest First         |
++------+------------------+-----+------------+-------+------+------+-----+
+|  ID  |       name       | sex |   birth    | death | famc | fams | Age |
++------+------------------+-----+------------+-------+------+------+-----+
+| @I5@ | Michael /Scott/  |  M  | 2011-09-02 |  None | @F1@ | None |  8  |
+| @I4@ | Angela /Halpert/ |  F  | 2011-11-04 |  None | @F1@ | None |  8  |
++------+------------------+-----+------------+-------+------+------+-----+
++----------------------------------------------------------------------+
+|        US28: Children in Family F04 Descending - Oldest First        |
++-----+----------------+------+------------+-------+------+------+-----+
+|  ID |      name      | sex  |   birth    | death | famc | fams | Age |
++-----+----------------+------+------------+-------+------+------+-----+
+| I12 |  Huey SameID   | None | 1980-08-21 |  None | F04  | None |  39 |
+| I11 |   John Cena    | None | 1986-04-19 |  None | F04  | None |  33 |
+| I13 | Britney Spears | None | 1987-07-17 |  None | F04  | None |  32 |
++-----+----------------+------+------------+-------+------+------+-----+
++-----------------------------------------------------------------+
+|      US28: Children in Family G01 Descending - Oldest First     |
++-----+------------+-----+------------+-------+------+------+-----+
+|  ID |    name    | sex |   birth    | death | famc | fams | Age |
++-----+------------+-----+------------+-------+------+------+-----+
+| T03 | Jon /Snow/ |  M  | 2009-06-02 |  None | G01  | G02  |  10 |
++-----+------------+-----+------------+-------+------+------+-----+
++------------------------------------------------------------------------------+
+|            US28: Children in Family G02 Descending - Oldest First            |
++-----+--------------------+-----+------------+------------+------+------+-----+
+|  ID |        name        | sex |   birth    |   death    | famc | fams | Age |
++-----+--------------------+-----+------------+------------+------+------+-----+
+| T04 | Cercei /Lannister/ |  M  | 1977-06-15 | 1982-07-08 | G02  | G02  |  42 |
++-----+--------------------+-----+------------+------------+------+------+-----+
++--------------------------------------------------------------------+
+|       US28: Children in Family G03 Descending - Oldest First       |
++-----+---------------+-----+------------+-------+------+------+-----+
+|  ID |      name     | sex |   birth    | death | famc | fams | Age |
++-----+---------------+-----+------------+-------+------+------+-----+
+| T07 | Sansa /Stark/ |  M  | 1979-04-14 |  None | G03  | None |  40 |
+| T08 |  Khal /Drogo/ |  M  | 1979-04-14 |  None | G03  | None |  40 |
++-----+---------------+-----+------------+-------+------+------+-----+
+ERROR, INDIVIDUAL, US07, I03 Robert /Arbuckle/: The person is more than 150 years old, at 155 years old
+ERROR, FAMILY, US04, FAM F02 HUSB I03 WIFE I04: Marriage date 2050-10-12 is after divorce date 2010-10-12
+ERROR, INDIVIDUAL, US01, I08 Odie /Montoya/: Birth date 2022-04-14 occurs in the future
+ERROR, FAMILY, US01, FAM F02 HUSB I03 WIFE I04: Marriage date 2050-10-12 occurs in the future
+ERROR, FAMILY, US01, FAM F03 HUSB I03 WIFE I06: Marriage date 2050-08-11 occurs in the future
+ERROR, FAMILY, US02, FAM F01 HUSB I02 WIFE I01: Birth date 1800-06-02 occurs before marriage date 1956-05-31
+ERROR, FAMILY, US02, FAM F02 HUSB I03 WIFE I04: Birth date 1977-06-15 occurs before marriage date 2050-10-12
+ERROR, FAMILY, US02, FAM F03 HUSB I03 WIFE I06: Birth date 1976-10-07 occurs before marriage date 2050-08-11
+ERROR, FAMILY, US02, FAM F03 HUSB I03 WIFE I06: Birth date 2022-04-14 occurs before marriage date 2050-08-11
+ERROR, FAMILY, US02, FAM F04 HUSB I09 WIFE I10: Birth date 1980-08-21 occurs before marriage date 1981-06-08
+ERROR, FAMILY, US02, FAM G02 HUSB T03 WIFE T04: Birth date 1977-06-15 occurs before marriage date 2009-11-29
+ERROR, INDIVIDUAL, US11, @I1@ Jim /Halpert/: Bigamy between Family @F4@ and Family @F1@
+ERROR, INDIVIDUAL, US11, @I3@ Dwight /Schrute/: Bigamy between Family @F3@ and Family @F2@
+ERROR, INDIVIDUAL, US11, T03 Jon /Snow/: Bigamy between Family G03 and Family G02
+ERROR, INDIVIDUAL, US11, @I2@ Pam /Halpert/: Bigamy between Family @F2@ and Family @F1@
+ERROR, INDIVIDUAL, US11, T01 Arya /Stark/: Bigamy between Family G01 and Family @F3@
+ANOMALY, INDIVIDUAL, US23, I15 John Cena: Individual I15 John Cena has the same name and birth date as I11 John Cena
+ERROR, FAMILY, US13, FAM F01 HUSB I02 WIFE I01: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM F02 HUSB I03 WIFE I04: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM F03 HUSB I03 WIFE I06: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM @F1@ HUSB @I1@ WIFE @I2@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM @F2@ HUSB @I3@ WIFE @I2@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM @F3@ HUSB @I3@ WIFE T01: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM @F4@ HUSB @I1@ WIFE @I4@: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM F04 HUSB I09 WIFE I10: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM F05 HUSB I11 WIFE I13: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM G01 HUSB T02 WIFE T01: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM G02 HUSB T03 WIFE T04: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US13, FAM G03 HUSB T03 WIFE T06: Siblings @I5@ Michael /Scott/, @I4@ Angela /Halpert/ born less than 8 months apart 2011-09-02, 2011-11-04
+ERROR, FAMILY, US17, FAM @F4@ HUSB @I1@ WIFE @I4@: Parent @I1@ married child @I4@
+ERROR, FAMILY, US17, FAM G02 HUSB T03 WIFE T04: Parent T03 married child T04
 ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Garfield /Montoya/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
 ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Odie /Montoya/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Michael /Scott/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Jon /Snow/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Cercei /Lannister/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Cercei /Lannister/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Sansa /Stark/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
+ERROR, FAMILY, US16, FAM F01 HUSB I02 WIFE I01: Males (Khal /Drogo/) in FAM F01 HUSB I02 WIFE I01 do not have the same last name
 ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Garfield /Montoya/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
 ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Odie /Montoya/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Michael /Scott/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Jon /Snow/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Cercei /Lannister/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Cercei /Lannister/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Sansa /Stark/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
+ERROR, FAMILY, US16, FAM F02 HUSB I03 WIFE I04: Males (Khal /Drogo/) in FAM F02 HUSB I03 WIFE I04 do not have the same last name
 ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Garfield /Montoya/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
 ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Odie /Montoya/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
-ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1920, 60+ years before child was born 2009-06-02
-ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Father Henry /Arbuckle/ born 1920, 80+ years before child was born 2009-06-02
-ERROR, INDIVIDUAL, US05, I04 Faye /Arbuckle/: Married 2009-11-29 after death 1982-07-08
-ERROR, FAMILY, US10, FAM F01 HUSB I02 WIFE I01: Married 1929-05-31 before husband turned 14 1920-07-21
-ERROR, FAMILY, US10, FAM F01 HUSB I02 WIFE I01: Married 1929-05-31 before wife turned 14 1920-04-13
-ERROR, FAMILY, US10, FAM F02 HUSB I03 WIFE I04: Married 2009-11-29 before husband turned 14 2009-06-02
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Michael /Scott/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Jon /Snow/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Cercei /Lannister/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Cercei /Lannister/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Sansa /Stark/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM F03 HUSB I03 WIFE I06: Males (Khal /Drogo/) in FAM F03 HUSB I03 WIFE I06 do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Robert /Arbuckle/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Garfield /Montoya/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Odie /Montoya/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Michael /Scott/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Jon /Snow/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Cercei /Lannister/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Cercei /Lannister/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Sansa /Stark/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F1@ HUSB @I1@ WIFE @I2@: Males (Khal /Drogo/) in FAM @F1@ HUSB @I1@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Robert /Arbuckle/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Jon /Arbuckle/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Garfield /Montoya/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Odie /Montoya/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Michael /Scott/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Jon /Snow/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Cercei /Lannister/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Cercei /Lannister/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Sansa /Stark/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F2@ HUSB @I3@ WIFE @I2@: Males (Khal /Drogo/) in FAM @F2@ HUSB @I3@ WIFE @I2@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Robert /Arbuckle/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Jon /Arbuckle/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Jon /Arbuckle/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Garfield /Montoya/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Odie /Montoya/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Michael /Scott/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Jon /Snow/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Cercei /Lannister/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Cercei /Lannister/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Sansa /Stark/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F3@ HUSB @I3@ WIFE T01: Males (Khal /Drogo/) in FAM @F3@ HUSB @I3@ WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Robert /Arbuckle/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Jon /Arbuckle/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Jon /Arbuckle/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Garfield /Montoya/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Odie /Montoya/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Michael /Scott/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Jon /Snow/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Cercei /Lannister/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Cercei /Lannister/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Sansa /Stark/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM @F4@ HUSB @I1@ WIFE @I4@: Males (Khal /Drogo/) in FAM @F4@ HUSB @I1@ WIFE @I4@ do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Robert /Arbuckle/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Jon /Arbuckle/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Jon /Arbuckle/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Garfield /Montoya/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Odie /Montoya/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Michael /Scott/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Jon /Snow/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Cercei /Lannister/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Cercei /Lannister/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Sansa /Stark/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F04 HUSB I09 WIFE I10: Males (Khal /Drogo/) in FAM F04 HUSB I09 WIFE I10 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Robert /Arbuckle/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Jon /Arbuckle/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Jon /Arbuckle/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Garfield /Montoya/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Odie /Montoya/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Michael /Scott/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Jon /Snow/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Cercei /Lannister/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Cercei /Lannister/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Sansa /Stark/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM F05 HUSB I11 WIFE I13: Males (Khal /Drogo/) in FAM F05 HUSB I11 WIFE I13 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Robert /Arbuckle/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Jon /Arbuckle/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Jon /Arbuckle/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Garfield /Montoya/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Odie /Montoya/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Michael /Scott/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Jon /Snow/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Cercei /Lannister/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Cercei /Lannister/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Sansa /Stark/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G01 HUSB T02 WIFE T01: Males (Khal /Drogo/) in FAM G01 HUSB T02 WIFE T01 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Robert /Arbuckle/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Jon /Arbuckle/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Jon /Arbuckle/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Garfield /Montoya/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Odie /Montoya/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Michael /Scott/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Cercei /Lannister/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Cercei /Lannister/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Sansa /Stark/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G02 HUSB T03 WIFE T04: Males (Khal /Drogo/) in FAM G02 HUSB T03 WIFE T04 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Robert /Arbuckle/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Jon /Arbuckle/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Jon /Arbuckle/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Garfield /Montoya/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Odie /Montoya/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Michael /Scott/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Cercei /Lannister/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Cercei /Lannister/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Sansa /Stark/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US16, FAM G03 HUSB T03 WIFE T06: Males (Khal /Drogo/) in FAM G03 HUSB T03 WIFE T06 do not have the same last name
+ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1936, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1936, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1936, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM F01 HUSB I02 WIFE I01: Mother Francis /Arbuckle/ born 1936, 60+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ born 1956, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Mother Clara /Montoya/ born 1962, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ born 1800, 80+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1976-10-07
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1977-06-15
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ born 1900, 60+ years before child was born 1979-04-14
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM @F3@ HUSB @I3@ WIFE T01: Father Dwight /Schrute/ born 1927, 80+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ born 1900, 80+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM F04 HUSB I09 WIFE I10: Mother Martha Stewart born 1961, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Father Dany /Targaryan/ born 1920, 80+ years before child was born 2022-04-14
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Father Dany /Targaryan/ born 1920, 80+ years before child was born 2011-11-04
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Father Dany /Targaryan/ born 1920, 80+ years before child was born 2011-09-02
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 1986-04-19
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 1980-08-21
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 1987-07-17
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ born 1920, 60+ years before child was born 2009-06-02
+ERROR, FAMILY, US12, FAM G01 HUSB T02 WIFE T01: Father Dany /Targaryan/ born 1920, 80+ years before child was born 2009-06-02
+ERROR, INDIVIDUAL, US05, I03 Robert /Arbuckle/: Married 2050-08-11 after death 1955-05-31
+ERROR, INDIVIDUAL, US05, I04 Faye /Arbuckle/: Married 2050-10-12 after death 1982-07-08
+ERROR, INDIVIDUAL, US05, T04 Cercei /Lannister/: Married 2009-11-29 after death 1982-07-08
+ERROR, INDIVIDUAL, US03, I02 Henry /Arbuckle/: Birth date 2019-07-21 occurs after death date 2018-03-07
+ERROR, INDIVIDUAL, US22, I12 Huey SameID: ID I12 is non-unique and shared with 1 other individual(s).
+ERROR, INDIVIDUAL, US22, T04 Cercei /Lannister/: ID T04 is non-unique and shared with 1 other individual(s).
+ERROR, FAMILY, US21, FAM @F1@ HUSB @I1@ WIFE @I2@: Husband in FAM @F1@ HUSB @I1@ WIFE @I2@ does not have the correct gender for role, has F instead.
+ERROR, FAMILY, US21, FAM @F1@ HUSB @I1@ WIFE @I2@: Wife in FAM @F1@ HUSB @I1@ WIFE @I2@ does not have the correct gender for role, has M instead.
+ERROR, FAMILY, US21, FAM @F2@ HUSB @I3@ WIFE @I2@: Wife in FAM @F2@ HUSB @I3@ WIFE @I2@ does not have the correct gender for role, has M instead.
+ERROR, FAMILY, US21, FAM @F4@ HUSB @I1@ WIFE @I4@: Husband in FAM @F4@ HUSB @I1@ WIFE @I4@ does not have the correct gender for role, has F instead.
+ERROR, FAMILY, US21, FAM F04 HUSB I09 WIFE I10: Husband in FAM F04 HUSB I09 WIFE I10 does not have the correct gender for role, has None instead.
+ERROR, FAMILY, US21, FAM F04 HUSB I09 WIFE I10: Wife in FAM F04 HUSB I09 WIFE I10 does not have the correct gender for role, has None instead.
+ERROR, FAMILY, US21, FAM F05 HUSB I11 WIFE I13: Husband in FAM F05 HUSB I11 WIFE I13 does not have the correct gender for role, has None instead.
+ERROR, FAMILY, US21, FAM F05 HUSB I11 WIFE I13: Wife in FAM F05 HUSB I11 WIFE I13 does not have the correct gender for role, has None instead.
+ERROR, FAMILY, US21, FAM G02 HUSB T03 WIFE T04: Wife in FAM G02 HUSB T03 WIFE T04 does not have the correct gender for role, has M instead.
+ERROR, FAMILY, US10, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 before husband turned 14 1900-02-26
+ERROR, FAMILY, US10, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 before wife turned 14 1900-02-27
+ERROR, FAMILY, US10, FAM @F2@ HUSB @I3@ WIFE @I2@: Married 1902-08-07 before wife turned 14 1900-02-27
+ERROR, FAMILY, US10, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 before wife turned 14 2011-11-04
+ERROR, FAMILY, US10, FAM G01 HUSB T02 WIFE T01: Married 1929-05-31 before husband turned 14 1920-07-21
+ERROR, FAMILY, US10, FAM G01 HUSB T02 WIFE T01: Married 1929-05-31 before wife turned 14 1920-04-13
+ERROR, FAMILY, US10, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 before husband turned 14 2009-06-02
+ERROR, FAMILY, US09, FAM F01 HUSB I02 WIFE I01: Father Henry /Arbuckle/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1976-10-07
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 1986-04-19
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1986-04-19
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1980-08-21
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 1987-07-17
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1987-07-17
 ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Mother Faye /Arbuckle/ died before child was born 2009-06-02
-ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2009-11-29 after child was born 2009-06-02
-ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2009-11-29 after child was born 1977-06-15
-ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2009-11-29 after child was born 1977-06-15
-ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2009-11-29 after child was born 1979-04-14
-ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2009-11-29 after child was born 1979-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 2009-06-02
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1979-04-14
+ERROR, FAMILY, US09, FAM F02 HUSB I03 WIFE I04: Father Robert /Arbuckle/ died more than 9 months before child was born 1979-04-14
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1976-10-07
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1986-04-19
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1980-08-21
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1987-07-17
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 2009-06-02
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1977-06-15
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1979-04-14
+ERROR, FAMILY, US09, FAM F03 HUSB I03 WIFE I06: Father Robert /Arbuckle/ died more than 9 months before child was born 1979-04-14
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F1@ HUSB @I1@ WIFE @I2@: Father Jim /Halpert/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F2@ HUSB @I3@ WIFE @I2@: Mother Pam /Halpert/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F3@ HUSB @I3@ WIFE T01: Mother Arya /Stark/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM @F4@ HUSB @I1@ WIFE @I4@: Father Jim /Halpert/ died more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM G01 HUSB T02 WIFE T01: Father Dany /Targaryan/ died more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM G01 HUSB T02 WIFE T01: Mother Arya /Stark/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM G02 HUSB T03 WIFE T04: Mother Cercei /Lannister/ died before child was born 2022-04-14
+ERROR, FAMILY, US09, FAM G02 HUSB T03 WIFE T04: Mother Cercei /Lannister/ died before child was born 2011-11-04
+ERROR, FAMILY, US09, FAM G02 HUSB T03 WIFE T04: Mother Cercei /Lannister/ died before child was born 2011-09-02
+ERROR, FAMILY, US09, FAM G02 HUSB T03 WIFE T04: Mother Cercei /Lannister/ died before child was born 1986-04-19
+ERROR, FAMILY, US09, FAM G02 HUSB T03 WIFE T04: Mother Cercei /Lannister/ died before child was born 1987-07-17
+ERROR, FAMILY, US09, FAM G02 HUSB T03 WIFE T04: Mother Cercei /Lannister/ died before child was born 2009-06-02
+ERROR, INDIVIDUAL, US06, I02 Henry /Arbuckle/: Divorced 2018-03-20 after death 2018-03-07
+ERROR, INDIVIDUAL, US06, I04 Faye /Arbuckle/: Divorced 2010-10-12 after death 1982-07-08
+ERROR, FAMILY, US08, FAM F01 HUSB I02 WIFE I01: Married 1956-05-31 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F01 HUSB I02 WIFE I01: Divorced 2018-03-20 more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Divorced 2010-10-12 more than 9 months before child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2011-11-04
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Divorced 2010-10-12 more than 9 months before child was born 2011-11-04
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2011-09-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Divorced 2010-10-12 more than 9 months before child was born 2011-09-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1986-04-19
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1980-08-21
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1987-07-17
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 2009-06-02
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM F02 HUSB I03 WIFE I04: Married 2050-10-12 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2022-04-14
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2011-11-04
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2011-09-02
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1986-04-19
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1980-08-21
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1987-07-17
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 2009-06-02
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM F03 HUSB I03 WIFE I06: Married 2050-08-11 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM @F1@ HUSB @I1@ WIFE @I2@: Married 1902-08-06 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F2@ HUSB @I3@ WIFE @I2@: Married 1902-08-07 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1986-04-19
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1980-08-21
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1987-07-17
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 2009-06-02
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM @F3@ HUSB @I3@ WIFE T01: Married 2011-03-05 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1986-04-19
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1980-08-21
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1987-07-17
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM @F4@ HUSB @I1@ WIFE @I4@: Married 2003-08-03 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1980-08-21
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM F04 HUSB I09 WIFE I10: Married 1981-06-08 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1986-04-19
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1980-08-21
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1987-07-17
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM F05 HUSB I11 WIFE I13: Married 2004-04-22 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM G01 HUSB T02 WIFE T01: Married 1929-05-31 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1800-06-02
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1976-10-07
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1986-04-19
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1980-08-21
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1987-07-17
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 2009-06-02
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1977-06-15
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM G02 HUSB T03 WIFE T04: Married 2009-11-29 after child was born 1979-04-14
+ERROR, FAMILY, US08, FAM G03 HUSB T03 WIFE T06: Married 1963-02-11 after child was born 1800-06-02
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM F01 HUSB I02 WIFE I01 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM F02 HUSB I03 WIFE I04 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM F03 HUSB I03 WIFE I06 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM @F1@ HUSB @I1@ WIFE @I2@ are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM @F2@ HUSB @I3@ WIFE @I2@ are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM @F3@ HUSB @I3@ WIFE T01 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM @F4@ HUSB @I1@ WIFE @I4@ are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM F04 HUSB I09 WIFE I10 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM F05 HUSB I11 WIFE I13 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM G01 HUSB T02 WIFE T01 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM G02 HUSB T03 WIFE T04 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM F05 HUSB I11 WIFE I13: Siblings I11 and I13 of FAM G03 HUSB T03 WIFE T06 are married in FAM F05 HUSB I11 WIFE I13
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM F01 HUSB I02 WIFE I01 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM F02 HUSB I03 WIFE I04 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM F03 HUSB I03 WIFE I06 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM @F1@ HUSB @I1@ WIFE @I2@ are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM @F2@ HUSB @I3@ WIFE @I2@ are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM @F3@ HUSB @I3@ WIFE T01 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM @F4@ HUSB @I1@ WIFE @I4@ are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM F04 HUSB I09 WIFE I10 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM F05 HUSB I11 WIFE I13 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM G01 HUSB T02 WIFE T01 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM G02 HUSB T03 WIFE T04 are married in FAM G02 HUSB T03 WIFE T04
+ERROR, FAMILY, US18, FAM G02 HUSB T03 WIFE T04: Siblings T03 and T04 of FAM G03 HUSB T03 WIFE T06 are married in FAM G02 HUSB T03 WIFE T04

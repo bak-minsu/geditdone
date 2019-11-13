@@ -1,1 +1,1 @@
-ERROR, INDIVIDUAL, US42, I01 Francis /Arbuckle/: Incorrect Date Given. Correct this error before running the program. Exiting.
+ERROR, FAMILY, US42, FAM F01 HUSB None WIFE None: Incorrect Date Given. Correct this error before running the program. Exiting.
